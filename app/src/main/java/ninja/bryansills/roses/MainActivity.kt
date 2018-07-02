@@ -6,10 +6,13 @@ import ninja.bryansills.network.NetworkService
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var networkService: NetworkService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        networkService = NetworkService()
     }
 
     override fun onResume() {
