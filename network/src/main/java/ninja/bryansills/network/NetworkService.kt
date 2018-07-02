@@ -1,37 +1,34 @@
 package ninja.bryansills.network
 
-import android.util.Log
+import io.reactivex.Observable
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class NetworkService {
+class NetworkService(feedlyAccessToken: String) {
     private val feedly: FeedlyService
     init {
+        val interceptor = Interceptor { chain ->
+            chain.proceed(chain.request()
+                    .newBuilder()
+                    .addHeader("Authorization", feedlyAccessToken)
+                    .build())
+        }
+        val okHttp = OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build()
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://cloud.feedly.com/v3/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(MoshiConverterFactory.create().asLenient())
+                .client(okHttp)
                 .build()
         feedly = retrofit.create(FeedlyService::class.java)
     }
 
-    fun getProfile() {
-        feedly.profile().subscribe({
-            Log.d("BLARG", it?.fullName)
-        },
-                {Log.d("BLARG", it.toString())}
-        )
-
-
-
-//                .enqueue(object: Callback<ProfileResponse> {
-//            override fun onResponse(call: Call<ProfileResponse>?, response: Response<ProfileResponse>?) {
-//            }
-//
-//            override fun onFailure(call: Call<ProfileResponse>?, t: Throwable?) {
-//                Log.d("BLARG", t.toString())
-//            }
-//        })
+    fun getProfile(): Observable<ProfileResponse> {
+        return feedly.profile()
     }
 }

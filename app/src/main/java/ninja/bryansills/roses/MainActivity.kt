@@ -12,11 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        networkService = NetworkService()
+        networkService = NetworkService(BuildConfig.FEEDLY_ACCESS_TOKEN)
     }
 
     override fun onResume() {
         super.onResume()
-        NetworkService().getProfile()
+        networkService.getProfile()
     }
 }
