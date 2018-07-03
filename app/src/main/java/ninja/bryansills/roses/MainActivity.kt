@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        subscription.add(networkService.getProfile()
+        subscription.add(networkService.streamContents()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { profile -> Log.d("BLARG", profile.toString()) },
+                        { response -> Log.d("BLARG", response.toString()) },
                         { error -> Log.e("BLARG", error.toString()) }
                 )
         )

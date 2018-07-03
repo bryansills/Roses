@@ -1,6 +1,7 @@
 package ninja.bryansills.network
 
 import io.reactivex.Observable
+import ninja.bryansills.network.streams.StreamContentsResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -30,5 +31,11 @@ class NetworkService(feedlyAccessToken: String) {
 
     fun getProfile(): Observable<ProfileResponse> {
         return feedly.profile()
+    }
+
+    fun streamContents(): Observable<StreamContentsResponse> {
+        return feedly.profile().flatMap { response ->
+            feedly.streamContents("user/${response.id}/category/global.all", 20)
+        }
     }
 }
