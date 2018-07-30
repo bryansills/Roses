@@ -14,7 +14,11 @@ class DatabaseService(context: Context) {
                 .build()
     }
 
-    fun entries(): Flowable<Entry> {
+    fun entries(): Flowable<List<Entry>> {
         return appDatabase.entryDao().getAllEntries()
+    }
+
+    fun insertEntries(entries: List<Entry>) {
+        appDatabase.entryDao().insertEntries(entries)
     }
 }

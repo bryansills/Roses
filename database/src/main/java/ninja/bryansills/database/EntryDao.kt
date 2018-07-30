@@ -9,7 +9,7 @@ import io.reactivex.Flowable
 @Dao
 interface EntryDao {
     @Query("SELECT * FROM entries")
-    fun getAllEntries(): Flowable<Entry>
+    fun getAllEntries(): Flowable<List<Entry>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEntries(entries: List<Entry>)
