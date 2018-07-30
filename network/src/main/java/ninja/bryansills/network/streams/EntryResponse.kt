@@ -15,12 +15,10 @@ data class EntryResponse(
     val url: String?
         get() {
             val alternateUrl = alternate?.find { it.type == "text/html" }?.href
-            if (alternateUrl != null) {
-                return alternateUrl
-            } else if (canonicalUrl != null) {
-                return canonicalUrl
-            } else {
-                return null
+            return when {
+                alternateUrl != null -> alternateUrl
+                canonicalUrl != null -> canonicalUrl
+                else -> null
             }
         }
 }
