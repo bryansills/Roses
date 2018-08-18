@@ -10,6 +10,7 @@ data class EntryResponse(
         val author: String?,
         val canonicalUrl: String?,
         val originId: String,
+        val origin: Origin,
         val alternate: List<AlternateEntry>?
 ) {
     val url: String?
