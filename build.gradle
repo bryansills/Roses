@@ -6,7 +6,7 @@ buildscript {
     ]
 
     ext.versions = [
-        'buildtools': '3.2.0-beta05',
+        'buildtools': '3.2.0-rc02',
         'kotlin': '1.2.60',
         'appcompat': '1.0.0-rc01',
         'constraint': '2.0.0-alpha2',

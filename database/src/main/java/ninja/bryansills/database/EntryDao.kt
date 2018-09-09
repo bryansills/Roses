@@ -12,5 +12,5 @@ interface EntryDao {
     fun getAllEntries(): Flowable<List<Entry>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEntries(entries: List<Entry>)
+    fun insertEntries(entries: List<Entry>): List<Long>
 }

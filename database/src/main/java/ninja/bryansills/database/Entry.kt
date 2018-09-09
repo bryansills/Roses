@@ -2,11 +2,16 @@ package ninja.bryansills.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "entries")
+@Entity(tableName = "entries",
+        foreignKeys = [ForeignKey(entity = Origin::class,
+                                  parentColumns = ["id"],
+                                  childColumns = ["origin_id"])])
 data class Entry(
-        @PrimaryKey @ColumnInfo(name = "id") val id: String,
-        @ColumnInfo(name = "title") val title: String?,
-        @ColumnInfo(name = "url") val url: String?
+        @PrimaryKey val id: String,
+        val title: String?,
+        val url: String?,
+        @ColumnInfo(name = "origin_id") val originId: String?
 )
