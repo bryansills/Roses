@@ -1,8 +1,8 @@
 package ninja.bryansills.repo
 
 import io.reactivex.Flowable
-import ninja.bryansills.database.Entry
+import ninja.bryansills.database.Category
 
 interface Repository {
-    fun entries(): Flowable<List<Entry>>
+    fun categories(): Flowable<List<Category>>
 }

@@ -15,6 +15,10 @@ class DatabaseService(context: Context) {
         return appDatabase.entryDao().getAllEntries()
     }
 
+    fun categories(): Flowable<List<Category>> {
+        return appDatabase.categoryDao().getAllCategories()
+    }
+
     fun insertEntries(entries: List<EntryResponse>) {
         val grouping = entries.groupBy { entry -> entry.origin.streamId }
         grouping.values.map { insertGroupOfEntries(it) }

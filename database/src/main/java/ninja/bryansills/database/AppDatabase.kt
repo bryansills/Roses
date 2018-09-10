@@ -8,4 +8,5 @@ import androidx.room.RoomDatabase
 abstract class AppDatabase : RoomDatabase() {
     abstract fun entryDao(): EntryDao
     abstract fun originDao(): OriginDao
+    abstract fun categoryDao(): CategoryDao
 }
