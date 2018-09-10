@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { response -> Log.d("BLARG", response.toString()) },
-                        { error -> Log.e("BLARG", error.toString()) }
+                        { response -> Log.d("BLARG", "response: " + response.toString()) },
+                        { error -> Log.e("BLARG", "error: " + error.toString()) }
                 )
         )
     }

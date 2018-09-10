@@ -8,9 +8,9 @@ import ninja.bryansills.network.NetworkService
 
 class DefaultRepository(var networkService: NetworkService, var databaseService: DatabaseService) : Repository {
     override fun entries(): Flowable<List<Entry>> {
-        networkService.streamContents().map { item -> item.items.map { entry -> Entry(entry.id, entry.title, entry.url, entry.originId) } }
+        networkService.streamContents()
                 .subscribeOn(Schedulers.io())
-                .subscribe { response -> databaseService.insertEntries(response) }
+                .subscribe { response -> databaseService.insertEntries(response.items.asList()) }
         return databaseService.entries()
     }
 

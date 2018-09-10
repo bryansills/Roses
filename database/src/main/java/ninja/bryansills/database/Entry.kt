@@ -13,5 +13,5 @@ data class Entry(
         @PrimaryKey val id: String,
         val title: String?,
         val url: String?,
-        @ColumnInfo(name = "origin_id") val originId: String?
+        @ColumnInfo(name = "origin_id") val originId: Long?
 )

@@ -5,6 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "origins")
 data class Origin(
-        @PrimaryKey val id: String,
+        val networkId: String,
         val title: String,
-        val htmlUrl: String)
+        val htmlUrl: String,
+        @PrimaryKey(autoGenerate = true) val id: Long = 0
+)
