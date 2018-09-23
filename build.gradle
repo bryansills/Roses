@@ -6,8 +6,8 @@ buildscript {
     ]
 
     ext.versions = [
-        'buildtools': '3.2.0-rc02',
-        'kotlin': '1.2.60',
+        'buildtools': '3.2.0-rc03',
+        'kotlin': '1.2.70',
         'appcompat': '1.0.0-rc01',
         'constraint': '2.0.0-alpha2',
         'room': '1.1.1',
