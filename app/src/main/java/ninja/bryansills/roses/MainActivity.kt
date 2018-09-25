@@ -3,6 +3,8 @@ package ninja.bryansills.roses
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         categoryList = findViewById(R.id.category_list)
         categoryList.layoutManager = LinearLayoutManager(this)
+        categoryList.addItemDecoration(DividerItemDecoration(this, VERTICAL))
         categoryList.adapter = CategoryAdapter {
             Log.d("BLARG", it.toString())
         }.also { this.categoryAdapter = it }
