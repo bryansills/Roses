@@ -7,7 +7,7 @@ import io.reactivex.Flowable
 @Dao
 interface CategoryDao {
     @Query("""
-        SELECT COUNT(entries.origin_id) as count, origins.title
+        SELECT origins.id, origins.title, COUNT(entries.origin_id) as count
         FROM entries, origins
         WHERE entries.origin_id = origins.id
         GROUP BY origin_id

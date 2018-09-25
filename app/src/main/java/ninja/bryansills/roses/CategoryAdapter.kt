@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.databinding.ItemCategoryBinding
 
-class CategoryAdapter(val clickListener: (UiCategory) -> Unit) : ListAdapter<UiCategory, CategoryViewHolder>(UiCategoryCallback()) {
+class CategoryAdapter(val clickListener: (Category) -> Unit) : ListAdapter<Category, CategoryViewHolder>(CategoryCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val categoryBinding = ItemCategoryBinding.inflate(inflater, parent, false)
@@ -18,12 +19,12 @@ class CategoryAdapter(val clickListener: (UiCategory) -> Unit) : ListAdapter<UiC
     }
 }
 
-class UiCategoryCallback : DiffUtil.ItemCallback<UiCategory>() {
-    override fun areItemsTheSame(oldItem: UiCategory, newItem: UiCategory): Boolean {
+class CategoryCallback : DiffUtil.ItemCallback<Category>() {
+    override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: UiCategory, newItem: UiCategory): Boolean {
+    override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
         return oldItem == newItem
     }
 }

@@ -1,4 +1,4 @@
-package ninja.bryansills.database
+package ninja.bryansills.repo
 
 data class Category(
         val id: String,

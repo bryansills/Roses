@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.database.DatabaseService
 import ninja.bryansills.network.NetworkService
-import ninja.bryansills.repo.DefaultRepository
+import ninja.bryansills.repo.RealRepository
 import ninja.bryansills.repo.Repository
 
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         var networkService = NetworkService(BuildConfig.FEEDLY_ACCESS_TOKEN)
         var databaseService = DatabaseService(applicationContext)
-        repo = DefaultRepository(networkService, databaseService)
+        repo = RealRepository(networkService, databaseService)
 
         subscription = CompositeDisposable()
     }
@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         subscription.add(repo.categories()
-                .map { it.map { UiCategory("BLARG", it.title, it.count) }}
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
