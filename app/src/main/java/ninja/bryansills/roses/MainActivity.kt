@@ -3,10 +3,12 @@ package ninja.bryansills.roses
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -14,9 +16,13 @@ import ninja.bryansills.database.DatabaseService
 import ninja.bryansills.network.NetworkService
 import ninja.bryansills.repo.RealRepository
 import ninja.bryansills.repo.Repository
+import ninja.bryansills.roses.databinding.ActivityMainBinding
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject lateinit var bindingComponent: DataBindingComponent
 
     lateinit var repo: Repository
     lateinit var subscription: CompositeDisposable
@@ -25,8 +31,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var categoryList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main, bindingComponent);
 
         categoryList = findViewById(R.id.category_list)
         categoryList.layoutManager = LinearLayoutManager(this)
