@@ -15,7 +15,6 @@ class RosesApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         DaggerApplicationComponent.builder().application(this).build().inject(this)
-        DataBindingUtil.setDefaultComponent(DataBindingComponent())
     }
 
     override fun activityInjector() = dispatchingActivityInjector

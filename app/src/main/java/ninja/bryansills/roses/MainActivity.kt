@@ -22,8 +22,6 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var bindingComponent: DataBindingComponent
-
     lateinit var repo: Repository
     lateinit var subscription: CompositeDisposable
 
@@ -33,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main, bindingComponent);
 
         categoryList = findViewById(R.id.category_list)
         categoryList.layoutManager = LinearLayoutManager(this)

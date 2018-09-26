@@ -1,5 +1,11 @@
 package ninja.bryansills.roses
 
 import androidx.databinding.DataBindingComponent
+import dagger.Component
+import dagger.Module
 
-class DataBindingComponent : DataBindingComponent
+@Component(modules = [BindingModule::class])
+interface DataBindingComponent : DataBindingComponent
+
+@Module
+class BindingModule
