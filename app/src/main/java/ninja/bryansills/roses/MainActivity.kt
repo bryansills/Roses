@@ -3,7 +3,6 @@ package ninja.bryansills.roses
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +15,6 @@ import ninja.bryansills.database.DatabaseService
 import ninja.bryansills.network.NetworkService
 import ninja.bryansills.repo.RealRepository
 import ninja.bryansills.repo.Repository
-import ninja.bryansills.roses.databinding.ActivityMainBinding
-import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,8 +26,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var categoryList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        AndroidInjection.inject(this)
 
         categoryList = findViewById(R.id.category_list)
         categoryList.layoutManager = LinearLayoutManager(this)
