@@ -1,8 +1,9 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.inject
 
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import ninja.bryansills.roses.RosesApplication
 
 @Component(modules = [
             AndroidSupportInjectionModule::class,

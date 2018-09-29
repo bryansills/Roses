@@ -2,6 +2,7 @@ package ninja.bryansills.roses
 
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import ninja.bryansills.roses.inject.DaggerApplicationComponent
 
 
 class RosesApplication : DaggerApplication() {

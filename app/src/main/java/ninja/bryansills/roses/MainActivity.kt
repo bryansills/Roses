@@ -11,15 +11,13 @@ import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import ninja.bryansills.database.DatabaseService
-import ninja.bryansills.network.NetworkService
-import ninja.bryansills.repo.RealRepository
 import ninja.bryansills.repo.Repository
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var repo: Repository
+    @Inject lateinit var repository: Repository
     lateinit var subscription: CompositeDisposable
 
     lateinit var categoryAdapter: CategoryAdapter
@@ -37,16 +35,12 @@ class MainActivity : AppCompatActivity() {
             Log.d("BLARG", it.toString())
         }.also { this.categoryAdapter = it }
 
-        var networkService = NetworkService(BuildConfig.FEEDLY_ACCESS_TOKEN)
-        var databaseService = DatabaseService(applicationContext)
-        repo = RealRepository(networkService, databaseService)
-
         subscription = CompositeDisposable()
     }
 
     override fun onResume() {
         super.onResume()
-        subscription.add(repo.categories()
+        subscription.add(repository.categories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

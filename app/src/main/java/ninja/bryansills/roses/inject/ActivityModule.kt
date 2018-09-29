@@ -1,12 +1,13 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.inject
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import ninja.bryansills.roses.MainActivity
 import javax.inject.Singleton
 
 @Module
 abstract class ActivityModule {
     @Singleton
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [RepoModule::class])
     abstract fun contributeYourActivityInjector(): MainActivity
 }
