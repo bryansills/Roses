@@ -15,7 +15,7 @@ import ninja.bryansills.repo.Repository
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity() {
 
     @Inject lateinit var repository: Repository
     lateinit var subscription: CompositeDisposable
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_category)
         AndroidInjection.inject(this)
 
         categoryList = findViewById(R.id.category_list)
