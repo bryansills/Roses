@@ -3,6 +3,7 @@ package ninja.bryansills.roses
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,9 @@ import javax.inject.Inject
 
 class CategoryActivity : AppCompatActivity() {
 
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var repository: Repository
+    lateinit var categoryViewModel: CategoryViewModel
     lateinit var subscription: CompositeDisposable
 
     lateinit var categoryAdapter: CategoryAdapter
@@ -35,12 +38,13 @@ class CategoryActivity : AppCompatActivity() {
             Log.d("BLARG", it.toString())
         }.also { this.categoryAdapter = it }
 
+        categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
         subscription = CompositeDisposable()
     }
 
     override fun onResume() {
         super.onResume()
-        subscription.add(repository.categories()
+        subscription.add(categoryViewModel.categories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

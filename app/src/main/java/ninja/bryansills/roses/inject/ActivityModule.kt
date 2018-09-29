@@ -8,6 +8,6 @@ import javax.inject.Singleton
 @Module
 abstract class ActivityModule {
     @Singleton
-    @ContributesAndroidInjector(modules = [RepoModule::class])
+    @ContributesAndroidInjector(modules = [RepoModule::class, ViewModelModule::class])
     abstract fun contributeYourActivityInjector(): CategoryActivity
 }

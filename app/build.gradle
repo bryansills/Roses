@@ -44,6 +44,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.viewmodel}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${versions.viewmodel}"
+
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
     implementation "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}"
 

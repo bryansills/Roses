@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.databinding.ItemCategoryBinding
 
-class CategoryAdapter(val clickListener: (Category) -> Unit) : ListAdapter<Category, CategoryViewHolder>(CategoryCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+class CategoryAdapter(val clickListener: (Category) -> Unit) : ListAdapter<Category, CategoryItemViewHolder>(CategoryCallback()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val categoryBinding = ItemCategoryBinding.inflate(inflater, parent, false)
-        return CategoryViewHolder(categoryBinding)
+        return CategoryItemViewHolder(categoryBinding)
     }
 
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryItemViewHolder, position: Int) {
         holder.bind(getItem(position), clickListener)
     }
 }
