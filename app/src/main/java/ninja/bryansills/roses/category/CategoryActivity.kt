@@ -1,5 +1,6 @@
 package ninja.bryansills.roses.category
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.ViewModelFactory
+import ninja.bryansills.roses.entry.EntryActivity
+import ninja.bryansills.roses.entry.EntryActivity.Companion.CATEGORY_ID
 import javax.inject.Inject
 
 
@@ -35,7 +38,9 @@ class CategoryActivity : AppCompatActivity() {
         categoryList.layoutManager = LinearLayoutManager(this)
         categoryList.addItemDecoration(DividerItemDecoration(this, VERTICAL))
         categoryList.adapter = CategoryAdapter {
-            Log.d("BLARG", it.toString())
+            val intent = Intent(this, EntryActivity::class.java)
+            intent.putExtra(CATEGORY_ID, it.id)
+            startActivity(intent)
         }.also { this.categoryAdapter = it }
 
         categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
