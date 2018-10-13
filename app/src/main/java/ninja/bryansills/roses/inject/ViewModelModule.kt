@@ -6,7 +6,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
-import ninja.bryansills.roses.CategoryViewModel
+import ninja.bryansills.roses.category.CategoryViewModel
 import ninja.bryansills.roses.ViewModelFactory
 
 @Module

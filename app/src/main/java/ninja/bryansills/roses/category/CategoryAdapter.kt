@@ -1,4 +1,4 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

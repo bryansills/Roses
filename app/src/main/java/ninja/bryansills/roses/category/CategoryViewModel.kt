@@ -1,4 +1,4 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.category
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.Flowable

@@ -1,4 +1,4 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.category
 
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +12,8 @@ import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import ninja.bryansills.roses.R
+import ninja.bryansills.roses.ViewModelFactory
 import javax.inject.Inject
 
 

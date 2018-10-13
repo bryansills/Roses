@@ -1,4 +1,4 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.category
 
 import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.repo.Category
