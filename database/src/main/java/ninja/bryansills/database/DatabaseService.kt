@@ -6,9 +6,11 @@ import io.reactivex.Flowable
 import ninja.bryansills.network.streams.EntryResponse
 
 class DatabaseService(context: Context) {
-    private val appDatabase: AppDatabase = Room.inMemoryDatabaseBuilder(
+    private val appDatabase: AppDatabase = Room.databaseBuilder(
                 context.applicationContext,
-                AppDatabase::class.java)
+                AppDatabase::class.java,
+                "roses.db")
+            .fallbackToDestructiveMigration()
             .build()
 
     fun entries(): Flowable<List<Entry>> {
@@ -22,6 +24,10 @@ class DatabaseService(context: Context) {
     fun insertEntries(entries: List<EntryResponse>) {
         val grouping = entries.groupBy { entry -> entry.origin.streamId }
         grouping.values.map { insertGroupOfEntries(it) }
+    }
+
+    fun getEntries(categoryId: String): Flowable<List<Entry>> {
+        return appDatabase.entryDao().getEntries(categoryId)
     }
 
     private fun insertGroupOfEntries(entries: List<EntryResponse>) {

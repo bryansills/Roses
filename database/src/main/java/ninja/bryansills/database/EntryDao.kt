@@ -11,6 +11,9 @@ interface EntryDao {
     @Query("SELECT * FROM entries")
     fun getAllEntries(): Flowable<List<Entry>>
 
+    @Query("SELECT * FROM entries WHERE origin_id = :categoryId")
+    fun getEntries(categoryId: String): Flowable<List<Entry>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEntries(entries: List<Entry>): List<Long>
 }
