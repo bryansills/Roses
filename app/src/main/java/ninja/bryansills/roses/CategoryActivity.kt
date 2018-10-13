@@ -12,14 +12,12 @@ import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import ninja.bryansills.repo.Repository
 import javax.inject.Inject
 
 
 class CategoryActivity : AppCompatActivity() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    @Inject lateinit var repository: Repository
     lateinit var categoryViewModel: CategoryViewModel
     lateinit var subscription: CompositeDisposable
 

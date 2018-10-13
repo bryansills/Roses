@@ -1,13 +1,21 @@
 package ninja.bryansills.roses.inject
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import ninja.bryansills.repo.Repository
+import dagger.multibindings.ClassKey
+import dagger.multibindings.IntoMap
+import ninja.bryansills.roses.CategoryViewModel
 import ninja.bryansills.roses.ViewModelFactory
 
 @Module
-class ViewModelModule {
-    @Provides
-    fun viewModelFactory(repository: Repository): ViewModelProvider.Factory = ViewModelFactory(repository)
+abstract class ViewModelModule {
+    @Binds
+    @IntoMap
+    @ClassKey(CategoryViewModel::class)
+    abstract fun bindCategoryViewModel(categoryViewModel: CategoryViewModel): ViewModel
+
+    @Binds
+    abstract fun bindFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

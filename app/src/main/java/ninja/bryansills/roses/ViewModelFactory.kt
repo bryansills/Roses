@@ -2,19 +2,16 @@ package ninja.bryansills.roses
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ninja.bryansills.repo.Repository
 import javax.inject.Inject
+import javax.inject.Provider
 
 class ViewModelFactory
-    @Inject constructor(val repository: Repository) : ViewModelProvider.Factory {
+    @Inject constructor(val viewModelMap: @JvmSuppressWildcards Map<Class<*>, Provider<ViewModel>>)
+    : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CategoryViewModel::class.java)) {
-            return CategoryViewModel(repository) as T
-        } else {
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-
+    override fun <T : ViewModel> create(modelClass: Class<T>) = viewModelMap.filter { it.key.isAssignableFrom(modelClass) }
+            .values
+            .firstOrNull()?.get() as T?
+            ?: throw IllegalStateException("no viewmodel found")
 }

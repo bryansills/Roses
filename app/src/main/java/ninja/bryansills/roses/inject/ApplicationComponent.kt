@@ -8,7 +8,8 @@ import ninja.bryansills.roses.RosesApplication
 @Component(modules = [
             AndroidSupportInjectionModule::class,
             ApplicationModule::class,
-            ActivityModule::class
+            ActivityModule::class,
+            ViewModelModule::class
 ])
 interface ApplicationComponent: AndroidInjector<RosesApplication> {
     @Component.Builder
