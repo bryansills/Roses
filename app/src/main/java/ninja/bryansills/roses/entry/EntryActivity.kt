@@ -3,6 +3,9 @@ package ninja.bryansills.roses.entry
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,13 +23,22 @@ class EntryActivity : AppCompatActivity() {
     lateinit var subscription: CompositeDisposable
     lateinit var categoryId: String
 
+    lateinit var entryAdapter: EntryAdapter
+    lateinit var entryList: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entry)
         AndroidInjection.inject(this)
 
+        entryList = findViewById(R.id.entry_list)
+        entryList.layoutManager = LinearLayoutManager(this)
+        entryList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        entryList.adapter = EntryAdapter {
+            Log.d("BLARG", it.toString())
+        }.also { this.entryAdapter = it }
+
         categoryId = intent.getStringExtra(CATEGORY_ID)
-        Log.d("BLARG", categoryId)
         subscription = CompositeDisposable()
     }
 
@@ -36,7 +48,7 @@ class EntryActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { response -> Log.d("BLARG", response.toString()) },
+                        { response -> entryAdapter.submitList(response) },
                         { error -> Log.w("BLARG", error.toString()) }
                 ))
     }
