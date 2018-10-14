@@ -13,5 +13,7 @@ data class Entry(
         @PrimaryKey val id: String,
         val title: String?,
         val url: String?,
+        val published: Long,
+        val author: String?,
         @ColumnInfo(name = "origin_id") val originId: Long?
 )

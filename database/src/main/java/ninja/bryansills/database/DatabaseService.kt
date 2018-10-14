@@ -33,7 +33,14 @@ class DatabaseService(context: Context) {
     private fun insertGroupOfEntries(entries: List<EntryResponse>) {
         val origin = entries[0].origin
         val dbOriginId = appDatabase.originDao().insertOrigin(Origin(origin.streamId, origin.title, origin.htmlUrl))
-        val dbEntries = entries.map { netEntry -> Entry(netEntry.id, netEntry.title, netEntry.url, dbOriginId) }
+        val dbEntries = entries.map { netEntry ->
+            Entry(netEntry.id,
+                  netEntry.title,
+                  netEntry.url,
+                  netEntry.published,
+                  netEntry.author,
+                  dbOriginId)
+        }
 
         appDatabase.entryDao().insertEntries(dbEntries)
     }
