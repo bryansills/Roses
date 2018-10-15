@@ -43,6 +43,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "androidx.core:core-ktx:${versions.ktx}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.viewmodel}"
     kapt "androidx.lifecycle:lifecycle-compiler:${versions.viewmodel}"

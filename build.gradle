@@ -9,6 +9,7 @@ buildscript {
         'buildtools': '3.2.1',
         'kotlin': '1.2.71',
         'appcompat': '1.0.0',
+        'ktx': '1.0.0-alpha1',
         'constraint': '2.0.0-alpha2',
         'room': '2.0.0-rc01',
         'viewmodel': '2.0.0',
