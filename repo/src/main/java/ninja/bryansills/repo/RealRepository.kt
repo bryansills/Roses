@@ -19,6 +19,6 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
 
     override fun getEntries(categoryId: String): Flowable<List<Entry>> {
         return databaseService.getEntries(categoryId).map {
-            dbEntries -> dbEntries.map { Entry(it.id, it.title, it.url, Date(it.published), it.author) } }
+            dbEntries -> dbEntries.map { Entry(it.id, it.title, it.url, Date(it.published), it.author, it.summary) } }
     }
 }

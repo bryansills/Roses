@@ -11,7 +11,8 @@ data class EntryResponse(
         val canonicalUrl: String?,
         val originId: String,
         val origin: Origin,
-        val alternate: List<AlternateEntry>?
+        val alternate: List<AlternateEntry>?,
+        val summary: Summary?
 ) {
     val url: String?
         get() {

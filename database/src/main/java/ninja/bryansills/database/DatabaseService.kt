@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import io.reactivex.Flowable
 import ninja.bryansills.network.streams.EntryResponse
+import org.jsoup.Jsoup
 
 class DatabaseService(context: Context) {
     private val appDatabase: AppDatabase = Room.databaseBuilder(
@@ -39,9 +40,21 @@ class DatabaseService(context: Context) {
                   netEntry.url,
                   netEntry.published,
                   netEntry.author,
+                  netEntry.summary?.run { cleanHtml(content) },
                   dbOriginId)
         }
 
         appDatabase.entryDao().insertEntries(dbEntries)
+    }
+
+    private fun cleanHtml(html: String): String {
+        val document = Jsoup.parse(html)
+
+        val media = document.select("[src]")
+        media.forEach {
+            it.remove()
+        }
+
+        return document.html()
     }
 }

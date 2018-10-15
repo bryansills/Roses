@@ -35,7 +35,7 @@ class NetworkService(feedlyAccessToken: String) {
 
     fun streamContents(): Observable<StreamContentsResponse> {
         return feedly.profile().flatMap { response ->
-            feedly.streamContents("user/${response.id}/category/global.all", 20)
+            feedly.streamContents("user/${response.id}/category/global.all", 50)
         }
     }
 }

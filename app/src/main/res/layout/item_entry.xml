@@ -33,8 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{entry.author}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/entry_title"
             tools:text="by Bryan Sills" />
@@ -43,10 +41,24 @@
             android:id="@+id/entry_published"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:visibleGone="@{entry.published != null}"
             app:published="@{entry.published}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="5 mins ago" />
+            tools:text="11:30 AM" />
+
+        <TextView
+            android:id="@+id/entry_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:visibleGone="@{entry.summary != null}"
+            app:html="@{entry.summary}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/entry_author"
+            tools:text="This is the summary for the entry. It can be very long."/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

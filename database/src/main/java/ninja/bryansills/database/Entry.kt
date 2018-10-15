@@ -15,5 +15,6 @@ data class Entry(
         val url: String?,
         val published: Long,
         val author: String?,
+        val summary: String?,
         @ColumnInfo(name = "origin_id") val originId: Long?
 )
