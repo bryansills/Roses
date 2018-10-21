@@ -1,5 +1,7 @@
 package ninja.bryansills.roses.entry
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -35,7 +37,13 @@ class EntryActivity : AppCompatActivity() {
         entryList.layoutManager = LinearLayoutManager(this)
         entryList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         entryList.adapter = EntryAdapter {
-            Log.d("BLARG", it.toString())
+            if (it.url != null) {
+                val uri = Uri.parse(it.url)
+                val browserIntent = Intent(Intent.ACTION_VIEW, uri)
+                if (browserIntent.resolveActivity(this.packageManager) != null) {
+                    startActivity(browserIntent)
+                }
+            }
         }.also { this.entryAdapter = it }
 
         categoryId = intent.getStringExtra(CATEGORY_ID)
