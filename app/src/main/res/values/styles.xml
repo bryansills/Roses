@@ -8,4 +8,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EntryTitle">
+        <item name="android:textColor">@color/textMain</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="EntrySubhead">
+        <item name="android:textColor">@color/textSub</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="EntryBody">
+        <item name="android:textColor">@color/textBody</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="CategoryTitle">
+        <item name="android:textColor">@color/textMain</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CategorySubhead">
+        <item name="android:textColor">@color/textBody</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
