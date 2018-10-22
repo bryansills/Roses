@@ -16,7 +16,7 @@ abstract class ViewModelModule {
     @IntoMap
     @ClassKey(CategoryViewModel::class)
     abstract fun bindCategoryViewModel(categoryViewModel: CategoryViewModel): ViewModel
-    
+
     @Binds
     @IntoMap
     @ClassKey(EntryViewModel::class)

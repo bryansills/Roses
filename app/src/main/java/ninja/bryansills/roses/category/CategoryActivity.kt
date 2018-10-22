@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.AndroidInjection
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +23,10 @@ import ninja.bryansills.roses.entry.EntryActivity.Companion.CATEGORY_ID
 import javax.inject.Inject
 
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity(), HasSupportFragmentInjector {
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    override fun supportFragmentInjector() = dispatchingAndroidInjector
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var categoryViewModel: CategoryViewModel
