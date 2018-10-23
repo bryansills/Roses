@@ -4,12 +4,13 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ninja.bryansills.roses.RosesApplication
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [
             AndroidSupportInjectionModule::class,
             ApplicationModule::class,
-            ActivityModule::class,
-            ViewModelModule::class
+            ActivityModule::class
 ])
 interface ApplicationComponent: AndroidInjector<RosesApplication> {
     @Component.Builder

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/categoryActivity">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoryFragment">
 
-    <activity
-        android:id="@+id/categoryActivity"
-        android:name="ninja.bryansills.roses.category.CategoryActivity"
-        android:label="CategoryActivity" />
-    <activity
-        android:id="@+id/entryActivity"
-        android:name="ninja.bryansills.roses.entry.EntryActivity"
-        android:label="EntryActivity" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="ninja.bryansills.roses.category.CategoryFragment"
+        android:label="CategoryFragment" />
 </navigation>
