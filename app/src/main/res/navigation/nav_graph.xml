@@ -8,5 +8,18 @@
     <fragment
         android:id="@+id/categoryFragment"
         android:name="ninja.bryansills.roses.category.CategoryFragment"
-        android:label="CategoryFragment" />
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/select_category"
+            app:destination="@id/entryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/entryFragment"
+        android:name="ninja.bryansills.roses.entry.EntryFragment"
+        android:label="EntryFragment" >
+        <argument
+            android:name="categoryId"
+            android:defaultValue="MISSING_ID"
+            app:argType="string" />
+    </fragment>
 </navigation>
