@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -28,6 +29,8 @@ class EntryFragment : Fragment() {
     lateinit var subscription: CompositeDisposable
 
     lateinit var categoryId: String
+    lateinit var categoryName: String
+
     lateinit var entryAdapter: EntryAdapter
     lateinit var entryList: RecyclerView
 
@@ -39,11 +42,13 @@ class EntryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoryId = EntryFragmentArgs.fromBundle(arguments).categoryId
+        categoryName = EntryFragmentArgs.fromBundle(arguments).categoryName
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_entry, container, false)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.title = categoryName
         entryList = view.findViewById(R.id.entry_list)
         entryList.layoutManager = LinearLayoutManager(context)
         entryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))

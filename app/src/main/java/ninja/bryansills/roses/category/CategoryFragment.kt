@@ -43,6 +43,7 @@ class CategoryFragment : Fragment() {
         categoryList.adapter = CategoryAdapter {
             val action = CategoryFragmentDirections.selectCategory()
             action.setCategoryId(it.id)
+            action.setCategoryName(it.title)
             view.findNavController().navigate(action)
         }.also { this.categoryAdapter = it }
 
