@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "82c3f669c867c1adfc95138ec6f37f50",
+    "identityHash": "3d5c2f8e61d49a8f77d5cdb5e977a8aa",
     "entities": [
       {
         "tableName": "entries",
@@ -57,7 +57,16 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_entries_origin_id",
+            "unique": false,
+            "columnNames": [
+              "origin_id"
+            ],
+            "createSql": "CREATE  INDEX `index_entries_origin_id` ON `${TABLE_NAME}` (`origin_id`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "origins",
@@ -74,8 +83,14 @@
       },
       {
         "tableName": "origins",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`network_id` TEXT NOT NULL, `title` TEXT NOT NULL, `html_url` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `network_id` TEXT NOT NULL, `title` TEXT NOT NULL, `html_url` TEXT NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
           {
             "fieldPath": "networkId",
             "columnName": "network_id",
@@ -93,12 +108,6 @@
             "columnName": "html_url",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
           }
         ],
         "primaryKey": {
@@ -111,9 +120,10 @@
         "foreignKeys": []
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"82c3f669c867c1adfc95138ec6f37f50\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3d5c2f8e61d49a8f77d5cdb5e977a8aa\")"
     ]
   }
 }

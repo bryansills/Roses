@@ -13,7 +13,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
                 .subscribe { response -> databaseService.insertEntries(response.items.toList()) }
 
         return databaseService.categories().map { categories -> categories.map {
-            return@map Category(it.id, it.title, it.count)
+            Category(it.id, it.title, it.count)
         } }
     }
 

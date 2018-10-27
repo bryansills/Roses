@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "origins")
 data class Origin(
+        @PrimaryKey(autoGenerate = true) val id: Long? = null,
         @ColumnInfo(name = "network_id") val networkId: String,
         val title: String,
-        @ColumnInfo(name = "html_url") val htmlUrl: String,
-        @PrimaryKey(autoGenerate = true) val id: Long? = null
+        @ColumnInfo(name = "html_url") val htmlUrl: String
 )
