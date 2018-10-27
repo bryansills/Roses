@@ -9,5 +9,5 @@ data class Origin(
         @ColumnInfo(name = "network_id") val networkId: String,
         val title: String,
         @ColumnInfo(name = "html_url") val htmlUrl: String,
-        @PrimaryKey(autoGenerate = true) val id: Long = 0
+        @PrimaryKey(autoGenerate = true) val id: Long? = null
 )
