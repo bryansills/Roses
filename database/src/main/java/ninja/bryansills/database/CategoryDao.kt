@@ -2,7 +2,7 @@ package ninja.bryansills.database
 
 import androidx.room.Dao
 import androidx.room.Query
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface CategoryDao {
@@ -12,5 +12,5 @@ interface CategoryDao {
         WHERE entries.origin_id = origins.id
         GROUP BY origin_id
     """)
-    fun getAllCategories(): Flowable<List<Category>>
+    fun getAllCategories(): Single<List<Category>>
 }

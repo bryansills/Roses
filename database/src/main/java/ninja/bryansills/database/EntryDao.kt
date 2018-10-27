@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface EntryDao {
@@ -15,5 +17,8 @@ interface EntryDao {
     fun getEntries(categoryId: String): Flowable<List<Entry>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEntries(entries: List<Entry>): List<Long>
+    fun insertEntries(entries: List<Entry>): Completable
+
+    @Query("SELECT updated_at FROM entries ORDER BY updated_at DESC LIMIT 1")
+    fun getLastUpdatedAt(): Single<Long>
 }
