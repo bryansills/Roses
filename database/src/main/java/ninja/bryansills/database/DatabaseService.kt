@@ -33,6 +33,10 @@ class DatabaseService(context: Context) {
         return appDatabase.entryDao().getEntries(categoryId)
     }
 
+    fun getLastUpdated(): Single<Long> {
+        return appDatabase.entryDao().getLastUpdatedAt()
+    }
+
     private fun insertGroupOfEntries(entries: List<EntryResponse>): Completable {
         val timestamp = Date().time
         val origin = entries[0].origin
