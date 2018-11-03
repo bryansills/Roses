@@ -21,11 +21,9 @@
         tools:layout="@layout/fragment_entry" >
         <argument
             android:name="categoryId"
-            android:defaultValue="MISSING_ID"
             app:argType="string" />
         <argument
             android:name="categoryName"
-            android:defaultValue="MISSING_CATEGORY"
             app:argType="string" />
     </fragment>
 </navigation>

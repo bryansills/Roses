@@ -36,8 +36,5 @@ dependencies {
 
     implementation 'org.jsoup:jsoup:1.11.3'
 
-    implementation "org.threeten:threetenbp:${versions.threetenabp}:no-tzdb"
-    implementation "com.gabrielittner.threetenbp:lazythreetenbp:${versions.lazythreeten}"
-
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
 }

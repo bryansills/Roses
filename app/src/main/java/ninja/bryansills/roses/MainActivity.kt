@@ -27,5 +27,5 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 
     override fun onSupportNavigateUp() =
-            findNavController(R.id.nav_host_fragment).navigateUp()
+            findNavController(R.id.nav_host_fragment).navigateUp() || super.onSupportNavigateUp()
 }

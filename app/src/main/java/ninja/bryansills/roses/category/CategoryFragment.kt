@@ -41,10 +41,7 @@ class CategoryFragment : Fragment() {
         categoryList.layoutManager = LinearLayoutManager(context)
         categoryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         categoryList.adapter = CategoryAdapter {
-            val action = CategoryFragmentDirections.selectCategory()
-            action.setCategoryId(it.id)
-            action.setCategoryName(it.title)
-            view.findNavController().navigate(action)
+            view.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
         }.also { this.categoryAdapter = it }
 
         categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
