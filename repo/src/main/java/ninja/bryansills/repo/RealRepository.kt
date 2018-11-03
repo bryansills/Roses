@@ -41,7 +41,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
     }
 
     private fun getDatabaseCategories(): Single<List<Category>> {
-        return databaseService.categories()
+        return databaseService.getCategories()
             .map { categories -> categories.map { Category(it.id, it.title, it.count) } }
     }
 }

@@ -11,6 +11,10 @@ import org.jsoup.Jsoup
 import java.util.Date
 
 class DatabaseService(context: Context) {
+    companion object {
+        const val MISSING_TIMESTAMP = -1L
+    }
+
     private val appDatabase: AppDatabase = Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
@@ -19,7 +23,7 @@ class DatabaseService(context: Context) {
             .build()
 
 
-    fun categories(): Single<List<Category>> {
+    fun getCategories(): Single<List<Category>> {
         return appDatabase.categoryDao().getAllCategories()
     }
 
@@ -34,7 +38,7 @@ class DatabaseService(context: Context) {
     }
 
     fun getLastUpdated(): Single<Long> {
-        return appDatabase.entryDao().getLastUpdatedAt()
+        return appDatabase.entryDao().getLastUpdatedAt().onErrorReturn { MISSING_TIMESTAMP }
     }
 
     private fun insertGroupOfEntries(entries: List<EntryResponse>): Completable {
