@@ -1,5 +1,6 @@
 package ninja.bryansills.repo
 
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import ninja.bryansills.database.DatabaseService
@@ -24,6 +25,12 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
             dbEntries -> dbEntries.map { Entry(it.id, it.title, it.url, Date(it.published), it.author, it.summary) } }
     }
 
+    override fun updateDatabase(): Completable {
+        return networkService.streamContents()
+                .map { response -> response.items.toList() }
+                .flatMapCompletable { items -> databaseService.insertEntries(items) }
+    }
+
     private fun isOutdated(timestamp: Long): Boolean {
         val current = Calendar.getInstance()
         current.add(Calendar.HOUR, -3)
@@ -33,10 +40,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
     }
 
     private fun fetchNetworkThenGetDatabaseCategories(): Observable<List<Category>> {
-        return networkService.streamContents()
-                .map { response -> response.items.toList() }
-                .flatMapCompletable { items -> databaseService.insertEntries(items) }
-                .andThen(getDatabaseCategories())
+                return updateDatabase().andThen(getDatabaseCategories())
 
     }
 

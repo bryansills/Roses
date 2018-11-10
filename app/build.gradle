@@ -41,6 +41,7 @@ dependencies {
     implementation project(":repo")
     implementation project(":network")
     implementation project(":database")
+    implementation project(":background")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
