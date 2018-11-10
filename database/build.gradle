@@ -30,7 +30,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}"
 
     api "androidx.arch.core:core-runtime:${versions.archcore}"
-    implementation "androidx.room:room-runtime:${versions.room}"
+    api "androidx.room:room-runtime:${versions.room}"
     implementation "androidx.room:room-rxjava2:${versions.room}"
     kapt "androidx.room:room-compiler:${versions.room}"
 

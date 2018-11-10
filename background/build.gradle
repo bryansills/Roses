@@ -18,7 +18,7 @@ android {
 dependencies {
     implementation project(":repo")
 
-    implementation "android.arch.work:work-runtime:${versions.work}"
+    api "android.arch.work:work-runtime:${versions.work}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
 }
