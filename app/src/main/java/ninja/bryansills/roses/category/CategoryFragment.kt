@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -16,8 +17,10 @@ import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.ViewModelFactory
+import ninja.bryansills.roses.databinding.FragmentCategoryBinding
 import javax.inject.Inject
 
 class CategoryFragment : Fragment() {
@@ -26,6 +29,7 @@ class CategoryFragment : Fragment() {
     lateinit var categoryViewModel: CategoryViewModel
     lateinit var subscription: CompositeDisposable
 
+    lateinit var binding: FragmentCategoryBinding
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var categoryList: RecyclerView
 
@@ -35,19 +39,19 @@ class CategoryFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_category, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
 
-        categoryList = view.findViewById(R.id.category_list)
+        categoryList = binding.root.findViewById(R.id.category_list)
         categoryList.layoutManager = LinearLayoutManager(context)
         categoryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         categoryList.adapter = CategoryAdapter {
-            view.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
+            binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
         }.also { this.categoryAdapter = it }
 
         categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
         subscription = CompositeDisposable()
 
-        return view
+        return binding.root
     }
 
     override fun onStart() {
@@ -57,8 +61,8 @@ class CategoryFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { when (it) {
-                            is CategoryUiModel.Success -> categoryAdapter.submitList(it.categories)
-                            CategoryUiModel.Loading -> Log.d("BLARG", "LOADING")
+                            is CategoryUiModel.Success -> onSuccess(it.categories)
+                            CategoryUiModel.Loading -> onLoading()
                             is CategoryUiModel.Error -> Log.d("BLARG", it.error.message)
                         } }, { Log.d("BLARG", "throwing ${it.message}")}
                 ))
@@ -67,5 +71,14 @@ class CategoryFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         subscription.clear()
+    }
+
+    fun onSuccess(categories: List<Category>) {
+        binding.loading = false
+        categoryAdapter.submitList(categories)
+    }
+
+    fun onLoading() {
+        binding.loading = true
     }
 }
