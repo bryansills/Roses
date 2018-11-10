@@ -23,7 +23,7 @@ class DatabaseService(context: Context) {
             .build()
 
 
-    fun getCategories(): Single<List<Category>> {
+    fun getCategories(): Observable<List<Category>> {
         return appDatabase.categoryDao().getAllCategories()
     }
 
@@ -38,7 +38,8 @@ class DatabaseService(context: Context) {
     }
 
     fun getLastUpdated(): Single<Long> {
-        return appDatabase.entryDao().getLastUpdatedAt().onErrorReturn { MISSING_TIMESTAMP }
+        return appDatabase.entryDao().getLastUpdatedAt()
+                .onErrorReturn { MISSING_TIMESTAMP }
     }
 
     private fun insertGroupOfEntries(entries: List<EntryResponse>): Completable {

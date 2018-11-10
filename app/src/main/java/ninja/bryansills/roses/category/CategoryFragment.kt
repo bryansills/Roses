@@ -56,8 +56,11 @@ class CategoryFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { response -> categoryAdapter.submitList(response) },
-                        { error -> Log.w("BLARG", error.toString()) }
+                        { when (it) {
+                            is CategoryUiModel.Success -> categoryAdapter.submitList(it.categories)
+                            CategoryUiModel.Loading -> Log.d("BLARG", "LOADING")
+                            is CategoryUiModel.Error -> Log.d("BLARG", it.error.message)
+                        } }, { Log.d("BLARG", "throwing ${it.message}")}
                 ))
     }
 

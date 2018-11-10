@@ -1,16 +1,16 @@
 package ninja.bryansills.repo
 
 import io.reactivex.Flowable
-import io.reactivex.Single
+import io.reactivex.Observable
 import ninja.bryansills.database.DatabaseService
 import ninja.bryansills.network.NetworkService
 import java.util.Calendar
 import java.util.Date
 
 class RealRepository(var networkService: NetworkService, var databaseService: DatabaseService) : Repository {
-    override fun categories(): Single<List<Category>> {
+    override fun categories(): Observable<List<Category>> {
         return databaseService.getLastUpdated()
-            .flatMap { timestamp ->
+            .flatMapObservable { timestamp ->
                 if(isOutdated(timestamp)) {
                     fetchNetworkThenGetDatabaseCategories()
                 } else {
@@ -32,7 +32,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
         return currentDate.after(Date(timestamp))
     }
 
-    private fun fetchNetworkThenGetDatabaseCategories(): Single<List<Category>> {
+    private fun fetchNetworkThenGetDatabaseCategories(): Observable<List<Category>> {
         return networkService.streamContents()
                 .map { response -> response.items.toList() }
                 .flatMapCompletable { items -> databaseService.insertEntries(items) }
@@ -40,7 +40,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
 
     }
 
-    private fun getDatabaseCategories(): Single<List<Category>> {
+    private fun getDatabaseCategories(): Observable<List<Category>> {
         return databaseService.getCategories()
             .map { categories -> categories.map { Category(it.id, it.title, it.count) } }
     }

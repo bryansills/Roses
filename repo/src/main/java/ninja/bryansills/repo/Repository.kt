@@ -1,10 +1,10 @@
 package ninja.bryansills.repo
 
 import io.reactivex.Flowable
-import io.reactivex.Single
+import io.reactivex.Observable
 
 interface Repository {
-    fun categories(): Single<List<Category>>
+    fun categories(): Observable<List<Category>>
 
     fun getEntries(categoryId: String): Flowable<List<Entry>>
 }
