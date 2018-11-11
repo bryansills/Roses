@@ -24,6 +24,7 @@ buildscript {
         'dagger': '2.16',
         'atsl': '1.1.0-alpha4',
         'espresso': '3.1.0-alpha4',
+        'jsoup': '1.11.3'
     ]
 
     repositories {

@@ -10,7 +10,8 @@ import javax.inject.Singleton
 @Component(modules = [
             AndroidSupportInjectionModule::class,
             ApplicationModule::class,
-            ActivityModule::class
+            ActivityModule::class,
+            WorkerModule::class
 ])
 interface ApplicationComponent: AndroidInjector<RosesApplication> {
     @Component.Builder

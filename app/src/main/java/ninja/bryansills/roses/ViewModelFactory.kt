@@ -10,8 +10,9 @@ class ViewModelFactory
     : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>) = viewModelMap.filter { it.key.isAssignableFrom(modelClass) }
-            .values
-            .firstOrNull()?.get() as T?
-            ?: throw IllegalStateException("no viewmodel found")
+    override fun <T : ViewModel> create(modelClass: Class<T>) =
+            viewModelMap.filter { it.key.isAssignableFrom(modelClass) }
+                .values
+                .firstOrNull()?.get() as T?
+                ?: throw IllegalStateException("no ViewModel found")
 }
