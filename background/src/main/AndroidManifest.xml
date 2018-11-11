@@ -1,1 +1,10 @@
-<manifest package="ninja.bryansills.background" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ninja.bryansills.background">
+    <application>
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:enabled="false"
+            android:exported="false"
+            android:authorities="${applicationId}.workmanager-init" />
+    </application>
+</manifest>
