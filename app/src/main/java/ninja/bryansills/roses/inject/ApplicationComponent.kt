@@ -3,6 +3,7 @@ package ninja.bryansills.roses.inject
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import ninja.bryansills.background.WorkerModule
 import ninja.bryansills.roses.RosesApplication
 import javax.inject.Singleton
 

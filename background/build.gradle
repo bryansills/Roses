@@ -21,4 +21,7 @@ dependencies {
     api "android.arch.work:work-runtime:${versions.work}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
+
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation "com.google.dagger:dagger-android:${versions.dagger}"
 }

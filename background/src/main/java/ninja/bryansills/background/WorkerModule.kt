@@ -1,13 +1,10 @@
-package ninja.bryansills.roses.inject
+package ninja.bryansills.background
 
 import androidx.work.WorkerFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
-import ninja.bryansills.background.BackgroundWorker
-import ninja.bryansills.roses.BackgroundWorkerFactory
-import ninja.bryansills.roses.WorkerFactoryProvider
 
 @Module
 interface WorkerModule {
@@ -17,5 +14,5 @@ interface WorkerModule {
     @Binds
     @IntoMap
     @ClassKey(BackgroundWorker::class)
-    fun bindBackgroundWorkerFactory(backgroundWorkerFactory: BackgroundWorkerFactory): BackgroundWorkerFactory
+    fun bindBackgroundWorkerFactory(workerFactory: BackgroundWorkerFactory): RosesWorkerFactory
 }
