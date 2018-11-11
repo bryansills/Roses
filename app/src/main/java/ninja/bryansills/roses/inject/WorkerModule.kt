@@ -7,12 +7,12 @@ import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 import ninja.bryansills.background.BackgroundWorker
 import ninja.bryansills.roses.BackgroundWorkerFactory
-import ninja.bryansills.roses.RosesWorkerFactory
+import ninja.bryansills.roses.WorkerFactoryProvider
 
 @Module
 interface WorkerModule {
     @Binds
-    fun bindWorkerFactory(rosesWorkerFactory: RosesWorkerFactory): WorkerFactory
+    fun bindWorkerFactory(workerFactoryProvider: WorkerFactoryProvider): WorkerFactory
 
     @Binds
     @IntoMap

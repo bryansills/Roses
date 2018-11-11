@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 import javax.inject.Inject
 import javax.inject.Provider
 
-class RosesWorkerFactory
+class WorkerFactoryProvider
     @Inject constructor(val workerMap: @JvmSuppressWildcards Map<Class<*>, Provider<BackgroundWorkerFactory>>)
     : WorkerFactory() {
 
