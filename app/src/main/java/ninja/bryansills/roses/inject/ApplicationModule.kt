@@ -4,10 +4,12 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ninja.bryansills.background.WorkerModule
+import ninja.bryansills.repo.RepoModule
+import ninja.bryansills.roses.BuildConfig
 import ninja.bryansills.roses.RosesApplication
 import javax.inject.Named
 
-@Module(includes = [RepoModule::class, ViewModelModule::class, WorkerModule::class])
+@Module(includes = [ViewModelModule::class, WorkerModule::class, RepoModule::class])
 class ApplicationModule {
     @Provides
     fun context(app: RosesApplication): Context = app.applicationContext
@@ -15,4 +17,8 @@ class ApplicationModule {
     @Provides
     @Named("REFRESH_INTERVAL")
     fun provideRefreshInterval(): Int = 3
+
+    @Provides
+    @Named("FEEDLY_ACCESS_TOKEN")
+    fun provideFeedlyAccessToken(): String = BuildConfig.FEEDLY_ACCESS_TOKEN
 }

@@ -8,7 +8,7 @@ import ninja.bryansills.network.NetworkService
 import java.util.Calendar
 import java.util.Date
 
-class RealRepository(var networkService: NetworkService, var databaseService: DatabaseService) : Repository {
+class RealRepository(var networkService: NetworkService, var databaseService: DatabaseService, var refreshInterval: Int) : Repository {
     override fun categories(): Observable<List<Category>> {
         return databaseService.getLastUpdated()
             .flatMapObservable { timestamp ->
@@ -33,7 +33,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
 
     private fun isOutdated(timestamp: Long): Boolean {
         val current = Calendar.getInstance()
-        current.add(Calendar.HOUR, -3)
+        current.add(Calendar.HOUR, -refreshInterval)
         val currentDate = current.time
 
         return currentDate.after(Date(timestamp))
