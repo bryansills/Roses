@@ -2,7 +2,6 @@ package ninja.bryansills.roses.category
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,8 +62,8 @@ class CategoryFragment : Fragment() {
                         { when (it) {
                             is CategoryUiModel.Success -> onSuccess(it.categories)
                             CategoryUiModel.Loading -> onLoading()
-                            is CategoryUiModel.Error -> Log.d("BLARG", it.error.message)
-                        } }, { Log.d("BLARG", "throwing ${it.message}")}
+                            is CategoryUiModel.Error -> onError(it.error)
+                        } }, { onError(it.message ?: "We are in uncharted territory") }
                 ))
     }
 
@@ -80,5 +79,10 @@ class CategoryFragment : Fragment() {
 
     fun onLoading() {
         binding.loading = true
+    }
+
+    fun onError(error: String) {
+        binding.loading = false
+        binding.error = error
     }
 }

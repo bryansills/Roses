@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 
 interface Repository {
-    fun categories(): Observable<List<Category>>
+    fun categories(): Observable<FetchCategoryResult>
 
     fun getEntries(categoryId: String): Flowable<List<Entry>>
 

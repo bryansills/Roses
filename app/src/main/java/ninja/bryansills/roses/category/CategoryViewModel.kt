@@ -3,7 +3,7 @@ package ninja.bryansills.roses.category
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
-import ninja.bryansills.repo.Category
+import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.repo.Repository
 import javax.inject.Inject
 
@@ -13,11 +13,22 @@ class CategoryViewModel @Inject constructor(val repository: Repository) : ViewMo
                 .compose(toCategoryUiModel())
     }
 
-    private fun toCategoryUiModel(): ObservableTransformer<in List<Category>, out CategoryUiModel>? {
+    private fun toCategoryUiModel(): ObservableTransformer<in FetchCategoryResult, out CategoryUiModel>? {
         return ObservableTransformer { it ->
-            it.map { CategoryUiModel.Success(it) as CategoryUiModel }
+            it.map { when (it) {
+                    is FetchCategoryResult.Success ->CategoryUiModel.Success(it.categories)
+                    is FetchCategoryResult.Error -> toErrorMessage(it.error)
+                } }
                 .startWith(CategoryUiModel.Loading)
-                .onErrorReturn { CategoryUiModel.Error(it) }
+                .onErrorReturn { CategoryUiModel.Error("There has been an unknown error.") }
+        }
+    }
+
+    private fun toErrorMessage(error: FetchCategoryResult.FetchCategoryError): CategoryUiModel {
+        return when (error) {
+            FetchCategoryResult.FetchCategoryError.API_KEY_INVALID -> CategoryUiModel.Error("API key is invalid. Please refresh it.")
+            FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED -> CategoryUiModel.Error("API rate limit reached. Try again tomorrow.")
+            else -> CategoryUiModel.Error("There has been an unknown error.")
         }
     }
 }

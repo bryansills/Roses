@@ -7,6 +7,10 @@
         <variable
             name="loading"
             type="boolean" />
+
+        <variable
+            name="error"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +22,7 @@
             android:id="@+id/category_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:visibleGone="@{error == null}"
             tools:listitem="@layout/item_category"/>
 
         <ProgressBar
@@ -30,6 +35,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:visibleGone="@{loading}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@{error}"
+            app:layout_constraintBottom_toBottomOf="@+id/category_list"
+            app:layout_constraintEnd_toEndOf="@+id/category_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleGone="@{error != null}"
+            tools:text="This is an error message." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
