@@ -8,6 +8,7 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -35,4 +36,9 @@ dependencies {
     kapt "androidx.room:room-compiler:${versions.room}"
 
     implementation "org.jsoup:jsoup:${versions.jsoup}"
+
+    androidTestImplementation "androidx.test:core:${versions.testcore}"
+    androidTestImplementation "androidx.arch.core:core-testing:${versions.archcore}"
+    androidTestImplementation "androidx.test:runner:${versions.atsl}"
+    androidTestImplementation "androidx.room:room-testing:${versions.room}"
 }
