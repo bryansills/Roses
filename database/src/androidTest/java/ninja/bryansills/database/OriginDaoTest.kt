@@ -2,8 +2,7 @@ package ninja.bryansills.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.runner.AndroidJUnit4
-import org.hamcrest.CoreMatchers.notNullValue
-import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,15 +14,58 @@ class OriginDaoTest : DbTest() {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Test
-    fun insertOrigin() {
-        val input = Origin(
-                networkId = "TEST_NETWORK_ID",
-                title = "TEST_TITLE",
-                htmlUrl = "TEST_URL"
-        )
+    fun upsertInsert() {
+        val input = createOrigin(1)
 
         val outputId = db.originDao().upsertOrigin(input)
 
-        assertThat(outputId, notNullValue())
+        assertTrue(outputId >= 0L)
+    }
+
+    @Test
+    fun upsertInsertAutoIncrements() {
+        val first = createOrigin(1)
+        val second = createOrigin(2)
+
+        val firstOutput = db.originDao().upsertOrigin(first)
+        val secondOutput = db.originDao().upsertOrigin(second)
+
+        assertTrue(firstOutput < secondOutput)
+    }
+
+    @Test
+    fun upsertUpdate() {
+        val first = createOrigin(1)
+        val firstDuplicate = createOrigin(1)
+
+        val firstOutput = db.originDao().upsertOrigin(first)
+        val firstDuplicateOutput = db.originDao().upsertOrigin(firstDuplicate)
+
+        assertTrue(firstOutput == firstDuplicateOutput)
+    }
+
+    @Test
+    fun upsertUpdateOldOrigin() {
+        val first = createOrigin(1)
+        val second = createOrigin(2)
+        val third = createOrigin(3)
+        val firstDuplicate = createOrigin(1)
+
+        val firstOutput = db.originDao().upsertOrigin(first)
+        val secondOutput = db.originDao().upsertOrigin(second)
+        val thirdOutput = db.originDao().upsertOrigin(third)
+        val firstDuplicateOutput = db.originDao().upsertOrigin(firstDuplicate)
+
+        assertTrue(firstOutput == firstDuplicateOutput)
+        assertTrue(firstOutput <= secondOutput)
+        assertTrue(secondOutput <= thirdOutput)
+    }
+
+    private fun createOrigin(id: Int): Origin {
+        return Origin(
+                networkId = "TEST_NETWORK_ID_$id",
+                title = "TEST_TITLE_$id",
+                htmlUrl = "TEST_URL_$id"
+        )
     }
 }
