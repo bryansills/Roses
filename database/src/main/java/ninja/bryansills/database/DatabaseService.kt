@@ -1,7 +1,5 @@
 package ninja.bryansills.database
 
-import android.content.Context
-import androidx.room.Room
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -9,19 +7,12 @@ import io.reactivex.Single
 import ninja.bryansills.network.streams.EntryResponse
 import org.jsoup.Jsoup
 import java.util.Date
+import javax.inject.Inject
 
-class DatabaseService(context: Context) {
+class DatabaseService @Inject constructor(val appDatabase: AppDatabase) {
     companion object {
         const val MISSING_TIMESTAMP = -1L
     }
-
-    private val appDatabase: AppDatabase = Room.databaseBuilder(
-                context.applicationContext,
-                AppDatabase::class.java,
-                "roses.db")
-            .fallbackToDestructiveMigration()
-            .build()
-
 
     fun getCategories(): Observable<List<Category>> {
         return appDatabase.categoryDao().getAllCategories()

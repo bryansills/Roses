@@ -1,19 +1,15 @@
 package ninja.bryansills.repo
 
-import android.content.Context
 import dagger.Module
 import dagger.Provides
+import ninja.bryansills.database.DatabaseModule
 import ninja.bryansills.database.DatabaseService
 import ninja.bryansills.network.NetworkService
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [DatabaseModule::class])
 class RepoModule {
-    @Provides
-    @Singleton
-    fun database(context: Context): DatabaseService = DatabaseService(context)
-
     @Provides
     @Singleton
     fun network(@Named("FEEDLY_ACCESS_TOKEN") feedlyAccessToken: String): NetworkService =
