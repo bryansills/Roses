@@ -15,7 +15,7 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertInsert() {
-        val input = createOrigin(1)
+        val input = TestUtils.createOrigin(1)
 
         val outputId = db.originDao().upsertOrigin(input)
 
@@ -24,8 +24,8 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertInsertAutoIncrements() {
-        val first = createOrigin(1)
-        val second = createOrigin(2)
+        val first = TestUtils.createOrigin(1)
+        val second = TestUtils.createOrigin(2)
 
         val firstOutput = db.originDao().upsertOrigin(first)
         val secondOutput = db.originDao().upsertOrigin(second)
@@ -35,8 +35,8 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertUpdate() {
-        val first = createOrigin(1)
-        val firstDuplicate = createOrigin(1)
+        val first = TestUtils.createOrigin(1)
+        val firstDuplicate = TestUtils.createOrigin(1)
 
         val firstOutput = db.originDao().upsertOrigin(first)
         val firstDuplicateOutput = db.originDao().upsertOrigin(firstDuplicate)
@@ -46,10 +46,10 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertUpdateOldOrigin() {
-        val first = createOrigin(1)
-        val second = createOrigin(2)
-        val third = createOrigin(3)
-        val firstDuplicate = createOrigin(1)
+        val first = TestUtils.createOrigin(1)
+        val second = TestUtils.createOrigin(2)
+        val third = TestUtils.createOrigin(3)
+        val firstDuplicate = TestUtils.createOrigin(1)
 
         val firstOutput = db.originDao().upsertOrigin(first)
         val secondOutput = db.originDao().upsertOrigin(second)
@@ -59,13 +59,5 @@ class OriginDaoTest : DbTest() {
         assertTrue(firstOutput == firstDuplicateOutput)
         assertTrue(firstOutput <= secondOutput)
         assertTrue(secondOutput <= thirdOutput)
-    }
-
-    private fun createOrigin(id: Int): Origin {
-        return Origin(
-                networkId = "TEST_NETWORK_ID_$id",
-                title = "TEST_TITLE_$id",
-                htmlUrl = "TEST_URL_$id"
-        )
     }
 }
