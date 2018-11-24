@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Provides
     @Singleton
-    fun database(appDatabase: AppDatabase): DatabaseService = DatabaseService(appDatabase)
+    fun database(appDatabase: AppDatabase): DatabaseService = RealDatabaseService(appDatabase)
 
     @Provides
     @Singleton
