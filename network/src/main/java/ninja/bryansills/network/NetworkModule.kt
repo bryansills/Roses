@@ -15,7 +15,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun network(feedlyService: FeedlyService): NetworkService =
-            NetworkService(feedlyService)
+            RealNetworkService(feedlyService)
 
     @Provides
     @Singleton
