@@ -4,17 +4,13 @@ import dagger.Module
 import dagger.Provides
 import ninja.bryansills.database.DatabaseModule
 import ninja.bryansills.database.DatabaseService
+import ninja.bryansills.network.NetworkModule
 import ninja.bryansills.network.NetworkService
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [DatabaseModule::class])
+@Module(includes = [DatabaseModule::class, NetworkModule::class])
 class RepoModule {
-    @Provides
-    @Singleton
-    fun network(@Named("FEEDLY_ACCESS_TOKEN") feedlyAccessToken: String): NetworkService =
-            NetworkService(feedlyAccessToken)
-
     @Provides
     @Singleton
     fun repo(

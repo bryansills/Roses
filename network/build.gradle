@@ -4,6 +4,9 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation "com.google.dagger:dagger-android:${versions.dagger}"
+
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
     implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
