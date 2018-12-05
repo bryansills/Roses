@@ -15,7 +15,7 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertInsert() {
-        val input = TestUtils.createOrigin(1)
+        val input = DatabaseTestUtils.createOrigin(1)
 
         val outputId = db.originDao().upsertOrigin(input)
 
@@ -24,8 +24,8 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertInsertAutoIncrements() {
-        val first = TestUtils.createOrigin(1)
-        val second = TestUtils.createOrigin(2)
+        val first = DatabaseTestUtils.createOrigin(1)
+        val second = DatabaseTestUtils.createOrigin(2)
 
         val firstOutput = db.originDao().upsertOrigin(first)
         val secondOutput = db.originDao().upsertOrigin(second)
@@ -35,8 +35,8 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertUpdate() {
-        val first = TestUtils.createOrigin(1)
-        val firstDuplicate = TestUtils.createOrigin(1)
+        val first = DatabaseTestUtils.createOrigin(1)
+        val firstDuplicate = DatabaseTestUtils.createOrigin(1)
 
         val firstOutput = db.originDao().upsertOrigin(first)
         val firstDuplicateOutput = db.originDao().upsertOrigin(firstDuplicate)
@@ -46,10 +46,10 @@ class OriginDaoTest : DbTest() {
 
     @Test
     fun upsertUpdateOldOrigin() {
-        val first = TestUtils.createOrigin(1)
-        val second = TestUtils.createOrigin(2)
-        val third = TestUtils.createOrigin(3)
-        val firstDuplicate = TestUtils.createOrigin(1)
+        val first = DatabaseTestUtils.createOrigin(1)
+        val second = DatabaseTestUtils.createOrigin(2)
+        val third = DatabaseTestUtils.createOrigin(3)
+        val firstDuplicate = DatabaseTestUtils.createOrigin(1)
 
         val firstOutput = db.originDao().upsertOrigin(first)
         val secondOutput = db.originDao().upsertOrigin(second)

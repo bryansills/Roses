@@ -1,6 +1,6 @@
 package ninja.bryansills.database
 
-object TestUtils {
+object DatabaseTestUtils {
     fun createOrigin(id: Int): Origin {
         return Origin(
                 networkId = "TEST_NETWORK_ID_$id",

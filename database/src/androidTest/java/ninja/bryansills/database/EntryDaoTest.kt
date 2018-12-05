@@ -16,9 +16,9 @@ class EntryDaoTest : DbTest() {
 
     @Test
     fun simpleLastUpdated() {
-        val origin = TestUtils.createOrigin(1)
+        val origin = DatabaseTestUtils.createOrigin(1)
         val originId = db.originDao().upsertOrigin(origin)
-        val entry = TestUtils.createEntry(1, 1L, originId)
+        val entry = DatabaseTestUtils.createEntry(1, 1L, originId)
 
         db.entryDao().insertEntries(listOf(entry)).blockingAwait()
         val outputUpdatedAt = db.entryDao().getLastUpdatedAt().blockingGet()
@@ -28,10 +28,10 @@ class EntryDaoTest : DbTest() {
 
     @Test
     fun lastUpdated() {
-        val origin = TestUtils.createOrigin(1)
+        val origin = DatabaseTestUtils.createOrigin(1)
         val originId = db.originDao().upsertOrigin(origin)
-        val entry = TestUtils.createEntry(1, 1L, originId)
-        val newerEntry = TestUtils.createEntry(2, 2L, originId)
+        val entry = DatabaseTestUtils.createEntry(1, 1L, originId)
+        val newerEntry = DatabaseTestUtils.createEntry(2, 2L, originId)
 
         db.entryDao().insertEntries(listOf(entry)).blockingAwait()
         val firstOutputUpdatedAt = db.entryDao().getLastUpdatedAt().blockingGet()

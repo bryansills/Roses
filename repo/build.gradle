@@ -16,6 +16,17 @@ android {
     }
 }
 
+kotlin {
+    sourceSets {
+        test {
+            dependencies {
+                implementation project(":network")
+                implementation project(":database")
+            }
+        }
+    }
+}
+
 dependencies {
     implementation project(":network")
     implementation project(":database")
@@ -27,6 +38,4 @@ dependencies {
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
 
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"
-    androidTestImplementation "androidx.test:runner:${versions.atsl}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
 }

@@ -1,10 +1,10 @@
-package ninja.bryansills.repo
+package ninja.bryansills.network
 
 import ninja.bryansills.network.streams.EntryResponse
 import ninja.bryansills.network.streams.Origin
 import ninja.bryansills.network.streams.StreamContentsResponse
 
-object TestUtils {
+object NetworkTestUtils {
     fun createStreamContentsResponse(): StreamContentsResponse =
             StreamContentsResponse(
                     "TEST_ID",
@@ -29,13 +29,5 @@ object TestUtils {
                 origin,
                 null, null
                 )
-    }
-
-    fun createCategory(): Category {
-        return Category(
-                "TEST_ID",
-                "TEST_TITLE",
-                1
-        )
     }
 }

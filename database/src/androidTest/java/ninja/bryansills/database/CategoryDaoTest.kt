@@ -15,18 +15,18 @@ class CategoryDaoTest : DbTest() {
 
     @Test
     fun basicCategoryCount() {
-        val firstOrigin = TestUtils.createOrigin(1)
+        val firstOrigin = DatabaseTestUtils.createOrigin(1)
         val firstOriginId = db.originDao().upsertOrigin(firstOrigin)
-        val firstEntry = TestUtils.createEntry(1, 1L, firstOriginId)
-        val firstNewerEntry = TestUtils.createEntry(2, 2L, firstOriginId)
+        val firstEntry = DatabaseTestUtils.createEntry(1, 1L, firstOriginId)
+        val firstNewerEntry = DatabaseTestUtils.createEntry(2, 2L, firstOriginId)
         db.entryDao().insertEntries(listOf(firstEntry, firstNewerEntry)).blockingAwait()
 
-        val secondOrigin = TestUtils.createOrigin(2)
+        val secondOrigin = DatabaseTestUtils.createOrigin(2)
         val secondOriginId = db.originDao().upsertOrigin(secondOrigin)
-        val secondEntry = TestUtils.createEntry(3, 1L, secondOriginId)
+        val secondEntry = DatabaseTestUtils.createEntry(3, 1L, secondOriginId)
         db.entryDao().insertEntries(listOf(secondEntry)).blockingAwait()
 
-        val thirdOrigin = TestUtils.createOrigin(3)
+        val thirdOrigin = DatabaseTestUtils.createOrigin(3)
         val thirdOriginId = db.originDao().upsertOrigin(thirdOrigin)
 
         val categories = db.categoryDao().getAllCategories().blockingFirst()

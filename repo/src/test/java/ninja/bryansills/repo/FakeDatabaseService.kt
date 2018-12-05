@@ -6,12 +6,13 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import ninja.bryansills.database.Category
 import ninja.bryansills.database.DatabaseService
+import ninja.bryansills.database.DatabaseTestUtils
 import ninja.bryansills.database.Entry
 import ninja.bryansills.network.streams.EntryResponse
 
 class FakeDatabaseService : DatabaseService {
     override fun getEntries(categoryId: String): Flowable<List<Entry>> {
-        return Flowable.just(emptyList())
+        return Flowable.just(listOf(DatabaseTestUtils.createEntry(1, 1L, 1L)))
     }
 
     override fun insertEntries(entries: List<EntryResponse>): Completable {
