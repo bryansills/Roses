@@ -7,6 +7,7 @@ import androidx.room.Query
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import ninja.bryansills.database.models.Entry
 
 @Dao
 interface EntryDao {

@@ -1,4 +1,4 @@
-package ninja.bryansills.database
+package ninja.bryansills.database.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -3,6 +3,7 @@ package ninja.bryansills.database
 import androidx.room.Dao
 import androidx.room.Query
 import io.reactivex.Observable
+import ninja.bryansills.database.models.Category
 
 @Dao
 interface CategoryDao {
