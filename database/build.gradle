@@ -30,7 +30,7 @@ android {
 dependencies {
     implementation project(":network")
     api project(":database-models")
-    
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
@@ -46,6 +46,7 @@ dependencies {
 
     implementation "org.jsoup:jsoup:${versions.jsoup}"
 
+    androidTestImplementation project(":database-test")
     androidTestImplementation "androidx.test:core:${versions.testcore}"
     androidTestImplementation "androidx.arch.core:core-testing:${versions.archcore}"
     androidTestImplementation "androidx.test:runner:${versions.atsl}"
