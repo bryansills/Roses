@@ -10,4 +10,7 @@ interface Repository {
     fun getEntries(categoryId: String): Flowable<List<Entry>>
 
     fun updateDatabase(): Completable
+
+//    @WorkerThread
+//    fun updateDatabaseSync()
 }

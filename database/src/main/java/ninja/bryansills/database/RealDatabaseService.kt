@@ -37,21 +37,41 @@ class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : Da
     }
 
     private fun insertGroupOfEntries(entries: List<EntryResponse>): Completable {
-        val timestamp = Date().time
-        val origin = entries[0].origin
-        val dbOriginId = appDatabase.originDao().upsertOrigin(Origin(null, origin.streamId, origin.title, origin.htmlUrl))
-        val dbEntries = entries.map { netEntry ->
-            Entry(netEntry.id,
-                    netEntry.title,
-                    netEntry.url,
-                    netEntry.published,
-                    netEntry.author,
-                    netEntry.summary?.run { cleanHtml(content) },
-                    timestamp,
-                    dbOriginId)
-        }
 
-        return appDatabase.entryDao().insertEntries(dbEntries)
+        return Single.fromCallable {
+            val timestamp = Date().time
+            val origin = entries[0].origin
+            val dbOriginId = appDatabase.originDao().upsertOrigin(Origin(null, origin.streamId, origin.title, origin.htmlUrl))
+            entries.map { netEntry ->
+                Entry(netEntry.id,
+                        netEntry.title,
+                        netEntry.url,
+                        netEntry.published,
+                        netEntry.author,
+                        netEntry.summary?.run { cleanHtml(content) },
+                        timestamp,
+                        dbOriginId)
+            }
+        }
+                .flatMapCompletable { dbEntries ->
+                    appDatabase.entryDao().insertEntries(dbEntries)
+                }
+
+//        val timestamp = Date().time
+//        val origin = entries[0].origin
+//        val dbOriginId = appDatabase.originDao().upsertOrigin(Origin(null, origin.streamId, origin.title, origin.htmlUrl))
+//        val dbEntries = entries.map { netEntry ->
+//            Entry(netEntry.id,
+//                    netEntry.title,
+//                    netEntry.url,
+//                    netEntry.published,
+//                    netEntry.author,
+//                    netEntry.summary?.run { cleanHtml(content) },
+//                    timestamp,
+//                    dbOriginId)
+//        }
+//
+//        return appDatabase.entryDao().insertEntries(dbEntries)
     }
 
     private fun cleanHtml(html: String): String {

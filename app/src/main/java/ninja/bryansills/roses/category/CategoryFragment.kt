@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,6 +18,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.Category
+import ninja.bryansills.roses.CategoryUIEvent
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.ViewModelFactory
 import ninja.bryansills.roses.databinding.FragmentCategoryBinding
@@ -25,11 +27,19 @@ import javax.inject.Inject
 class CategoryFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    lateinit var categoryViewModel: CategoryViewModel
+    @Inject lateinit var categoryAdapter: CategoryAdapter
+
+    private val categoryViewModel: CategoryViewModel by lazy(LazyThreadSafetyMode.NONE) {
+        val vm = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
+        categoryAdapter.clickListener = vm::onClick
+        categoryList.adapter = categoryAdapter
+        vm
+    }
+//    lateinit var categoryViewModel: CategoryViewModel
     lateinit var subscription: CompositeDisposable
 
     lateinit var binding: FragmentCategoryBinding
-    lateinit var categoryAdapter: CategoryAdapter
+//    lateinit var categoryAdapter: CategoryAdapter
     lateinit var categoryList: RecyclerView
 
     override fun onAttach(context: Context) {
@@ -43,14 +53,42 @@ class CategoryFragment : Fragment() {
         categoryList = binding.root.findViewById(R.id.category_list)
         categoryList.layoutManager = LinearLayoutManager(context)
         categoryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        categoryList.adapter = CategoryAdapter {
-            binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
-        }.also { this.categoryAdapter = it }
 
-        categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
+
+//        categoryList.adapter = CategoryAdapter {
+//            binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
+//        }.also { this.categoryAdapter = it }
+
+//        categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
         subscription = CompositeDisposable()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val lifecycleOwner = viewLifecycleOwner
+        categoryViewModel.apply {
+            categoriesLiveData.observe(lifecycleOwner, Observer {
+                when (it) {
+                    is CategoryUiModel.Success -> onSuccess(it.categories)
+                    CategoryUiModel.Loading -> onLoading()
+                    is CategoryUiModel.Error -> onError(it.error)
+                }
+            })
+            uiEventLiveData.observe(lifecycleOwner, Observer {
+                when (it) {
+                    is CategoryUIEvent.SetupNavigationController -> {}
+                    is CategoryUIEvent.ShowSnackbar -> it.messageId
+                    is CategoryUIEvent.StartDetailView -> {
+                        binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
+                    }
+                }
+            })
+        }
+
+        categoryViewModel.initCategories()
     }
 
     override fun onStart() {

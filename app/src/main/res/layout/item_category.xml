@@ -26,7 +26,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Category Name" />
+            tools:text="Category Name kjlndfaklnkfdnklandfjklndlkafnjkldnfdadfafdjdknfajkndfkjnadfjkn" />
 
         <TextView
             android:id="@+id/category_count"
@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(category.count)}"
             style="@style/CategorySubhead"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/category_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/category_name"
             tools:text="99" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,6 +3,7 @@ package ninja.bryansills.repo
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.Single
 import ninja.bryansills.database.DatabaseService
 import ninja.bryansills.network.NetworkService
 import retrofit2.HttpException
@@ -28,6 +29,25 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
                 }
     }
 
+    fun getTestCompletable(): Completable {
+        // Main Thread
+
+        val a = 0
+
+        val stream =
+                // Schedulers Thread
+                Observable.fromIterable(listOf(1, 2, 3))
+                        .flatMap {
+                            Observable.just(it + 1)
+                        }
+                        .flatMapCompletable { Completable.complete() }
+
+        // Main thread
+        val b = 1
+
+        return stream
+    }
+
     override fun getEntries(categoryId: String): Flowable<List<Entry>> {
         return databaseService.getEntries(categoryId).map {
             dbEntries -> dbEntries.map { Entry(it.id, it.title, it.url, Date(it.published), it.author, it.summary) } }
@@ -35,8 +55,11 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
 
     override fun updateDatabase(): Completable {
         return networkService.streamContents()
-                .map { response -> response.items.toList() }
-                .flatMapCompletable { items -> databaseService.insertEntries(items) }
+                .flatMapSingle {
+                    Single.just(it.items)
+                }
+//                .map { response -> response.items.toList() }
+                .flatMapCompletable { items -> databaseService.insertEntries(items.toList()) }
     }
 
     private fun isOutdated(timestamp: Long): Boolean {
