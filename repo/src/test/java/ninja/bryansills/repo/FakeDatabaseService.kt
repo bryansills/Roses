@@ -4,10 +4,10 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
-import ninja.bryansills.database.DatabaseService
-import ninja.bryansills.database.models.Entry
-import ninja.bryansills.database.models.Category
-import ninja.bryansills.database.test.DatabaseTestUtils
+import ninja.bryansills.roses.database.DatabaseService
+import ninja.bryansills.roses.database.models.Entry
+import ninja.bryansills.roses.database.models.Category
+import ninja.bryansills.roses.database.test.DatabaseTestUtils
 import ninja.bryansills.network.streams.EntryResponse
 
 class FakeDatabaseService : DatabaseService {

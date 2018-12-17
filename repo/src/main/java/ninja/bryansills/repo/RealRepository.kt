@@ -3,7 +3,7 @@ package ninja.bryansills.repo
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import ninja.bryansills.database.DatabaseService
+import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.network.NetworkService
 import retrofit2.HttpException
 import java.util.Calendar

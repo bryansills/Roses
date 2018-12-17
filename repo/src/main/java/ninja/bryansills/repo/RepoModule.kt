@@ -2,8 +2,8 @@ package ninja.bryansills.repo
 
 import dagger.Module
 import dagger.Provides
-import ninja.bryansills.database.DatabaseModule
-import ninja.bryansills.database.DatabaseService
+import ninja.bryansills.roses.database.DatabaseModule
+import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.network.NetworkModule
 import ninja.bryansills.network.NetworkService
 import javax.inject.Named

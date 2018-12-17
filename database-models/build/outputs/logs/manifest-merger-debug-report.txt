@@ -1,14 +1,14 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-56
-INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-56
-INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-56
+ADDED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-62
+INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-62
+INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-62
 	package
-		ADDED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:11-53
+		ADDED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:11-59
 		INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml
 		INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-56
+		ADDED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml:1:1-62
 uses-sdk
 INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/bryan/android/Roses/database-models/src/main/AndroidManifest.xml
