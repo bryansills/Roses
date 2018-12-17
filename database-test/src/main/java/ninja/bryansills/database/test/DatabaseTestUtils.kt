@@ -1,7 +1,7 @@
 package ninja.bryansills.database.test
 
-import ninja.bryansills.database.models.Origin
-import ninja.bryansills.database.models.Entry
+import ninja.bryansills.roses.database.models.Entry
+import ninja.bryansills.roses.database.models.Origin
 
 object DatabaseTestUtils {
     fun createOrigin(id: Int): Origin {

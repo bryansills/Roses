@@ -16,10 +16,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    sourceSets {
-        androidTest.java.srcDirs += "src/test/java"
-    }
-
     kapt {
         arguments {
             arg("room.schemaLocation", "$projectDir/schemas".toString())

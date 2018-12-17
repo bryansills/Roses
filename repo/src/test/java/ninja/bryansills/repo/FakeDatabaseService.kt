@@ -4,11 +4,11 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
-import ninja.bryansills.roses.database.DatabaseService
-import ninja.bryansills.roses.database.models.Entry
-import ninja.bryansills.roses.database.models.Category
-import ninja.bryansills.roses.database.test.DatabaseTestUtils
+import ninja.bryansills.database.test.DatabaseTestUtils
 import ninja.bryansills.network.streams.EntryResponse
+import ninja.bryansills.roses.database.DatabaseService
+import ninja.bryansills.roses.database.models.Category
+import ninja.bryansills.roses.database.models.Entry
 
 class FakeDatabaseService : DatabaseService {
     override fun getEntries(categoryId: String): Flowable<List<Entry>> {

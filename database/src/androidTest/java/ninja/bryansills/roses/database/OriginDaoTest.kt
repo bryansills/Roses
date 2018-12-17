@@ -2,12 +2,11 @@ package ninja.bryansills.roses.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.runner.AndroidJUnit4
+import ninja.bryansills.database.test.DatabaseTestUtils
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import ninja.bryansills.roses.database.test.DatabaseTestUtils
 
 @RunWith(AndroidJUnit4::class)
 class OriginDaoTest : DbTest() {
