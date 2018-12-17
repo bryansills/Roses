@@ -6,14 +6,38 @@ import org.junit.Test
 
 class RealRepositoryTest {
     lateinit var repository: RealRepository
+    lateinit var fakeNetwork: FakeNetworkService
+    lateinit var fakeDatabaseService: FakeDatabaseService
 
     @Before
     fun setup() {
-        repository = RealRepository(FakeNetworkService(), FakeDatabaseService(), 1)
+        fakeNetwork = FakeNetworkService()
+        fakeDatabaseService = FakeDatabaseService()
+        repository = RealRepository(fakeNetwork, fakeDatabaseService, 1)
     }
 
     @Test
-    fun testing() {
+    fun cachedResultsAreReturnedWhenDataIsFresh() {
+        assertTrue(true)
+    }
+
+    @Test
+    fun networkResultsAreReturnedWhenDataIsOld() {
+        assertTrue(true)
+    }
+
+    @Test
+    fun errorResultIsReturnedWhenNetworkErrors() {
+        assertTrue(true)
+    }
+
+    @Test
+    fun getEntriesForCategoryIdWorks() {
+        assertTrue(true)
+    }
+
+    @Test
+    fun getEntriesForCategoryReturnsNothingWhenIdIsInvalid() {
         assertTrue(true)
     }
 }
