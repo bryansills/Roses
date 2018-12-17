@@ -1,9 +1,0 @@
--- Merging decision tree log ---
-manifest
-ADDED from /Users/bryan/android/Roses/database-test/src/main/AndroidManifest.xml:1:1-62
-INJECTED from /Users/bryan/android/Roses/database-test/src/main/AndroidManifest.xml:1:1-62
-INJECTED from /Users/bryan/android/Roses/database-test/src/main/AndroidManifest.xml:1:1-62
-	package
-		ADDED from /Users/bryan/android/Roses/database-test/src/main/AndroidManifest.xml:1:11-59
-		INJECTED from /Users/bryan/android/Roses/database-test/src/main/AndroidManifest.xml
-		INJECTED from /Users/bryan/android/Roses/database-test/src/main/AndroidManifest.xml

@@ -1,1 +1,0 @@
-ninja.bryansills.roses.database.models
