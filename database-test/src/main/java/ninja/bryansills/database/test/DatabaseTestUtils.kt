@@ -1,5 +1,6 @@
 package ninja.bryansills.database.test
 
+import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
 
@@ -21,5 +22,9 @@ object DatabaseTestUtils {
                 "TEST_SUMMARY_$id",
                 updatedAt,
                 originId)
+    }
+
+    fun createCategory(id: Int): Category {
+        return Category("TEST_ID_$id", "TEST_TITLE_$id", id)
     }
 }
