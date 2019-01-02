@@ -26,6 +26,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
 
+    testImplementation project(":network-test")
     testImplementation project(":database-test")
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"
 }

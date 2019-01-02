@@ -1,4 +1,4 @@
-package ninja.bryansills.network
+package ninja.bryansills.network.models
 
 import com.squareup.moshi.JsonClass
 

@@ -14,6 +14,8 @@
             <option value="$PROJECT_DIR$/database-models" />
             <option value="$PROJECT_DIR$/database-test" />
             <option value="$PROJECT_DIR$/network" />
+            <option value="$PROJECT_DIR$/network-models" />
+            <option value="$PROJECT_DIR$/network-test" />
             <option value="$PROJECT_DIR$/repo" />
           </set>
         </option>

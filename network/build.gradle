@@ -2,6 +2,8 @@ apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 
 dependencies {
+    api project(":network-models")
+    
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"

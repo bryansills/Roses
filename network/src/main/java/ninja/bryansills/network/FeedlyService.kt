@@ -1,7 +1,8 @@
 package ninja.bryansills.network
 
 import io.reactivex.Observable
-import ninja.bryansills.network.streams.StreamContentsResponse
+import ninja.bryansills.network.models.ProfileResponse
+import ninja.bryansills.network.models.streams.StreamContentsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

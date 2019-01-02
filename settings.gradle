@@ -1,5 +1,7 @@
 include ':app'
 include ':network'
+include ':network-models'
+include ':network-test'
 include ':database'
 include ':repo'
 include ':background'

@@ -5,13 +5,15 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import ninja.bryansills.database.test.DatabaseTestUtils
-import ninja.bryansills.network.streams.EntryResponse
+import ninja.bryansills.network.models.streams.EntryResponse
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import java.util.Date
 
 class FakeDatabaseService : DatabaseService {
+
+    var hasCategoriesBeenCalled = false
 
     var lastUpdated = Date().time
     var categories = listOf<Category>()
@@ -25,6 +27,7 @@ class FakeDatabaseService : DatabaseService {
     }
 
     override fun getCategories(): Observable<List<Category>> {
+        hasCategoriesBeenCalled = true
         return Observable.just(categories)
     }
 

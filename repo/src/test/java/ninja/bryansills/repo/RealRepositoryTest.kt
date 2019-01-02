@@ -43,12 +43,14 @@ class RealRepositoryTest {
 
     @Test
     fun networkResultsAreReturnedWhenDataIsOld() {
-        // is network results
-        // only 1 emission
-        // no errors thrown
-        // database is called
-        // network is called
-        assertTrue(true)
+        repository.categories().test()
+                .assertValue {
+                    it != null
+                }
+                .assertValueCount(1)
+                .assertNoErrors()
+        assertTrue(fakeNetworkService.hasBeenCalled)
+        assertTrue(fakeDatabaseService.hasCategoriesBeenCalled)
     }
 
     @Test
