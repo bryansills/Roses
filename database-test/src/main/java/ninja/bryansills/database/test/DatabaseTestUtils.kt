@@ -24,7 +24,7 @@ object DatabaseTestUtils {
                 originId)
     }
 
-    fun createCategory(id: Int): Category {
-        return Category("TEST_ID_$id", "TEST_TITLE_$id", id)
+    fun createCategory(id: Int, count: Int = 1): Category {
+        return Category("TEST_ID_$id", "TEST_TITLE_$id", count)
     }
 }

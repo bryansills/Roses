@@ -43,9 +43,14 @@ class RealRepositoryTest {
 
     @Test
     fun networkResultsAreReturnedWhenDataIsOld() {
+        val timestamp = Calendar.getInstance()
+        timestamp.add(Calendar.HOUR, -4)
+
+        fakeDatabaseService.lastUpdated = timestamp.timeInMillis
+
         repository.categories().test()
                 .assertValue {
-                    it != null
+                    it is FetchCategoryResult.Success
                 }
                 .assertValueCount(1)
                 .assertNoErrors()
@@ -55,26 +60,19 @@ class RealRepositoryTest {
 
     @Test
     fun errorResultIsReturnedWhenNetworkErrors() {
-        // is database results
-        // only 1 emission
-        // 1 error thrown
-        // database is called
-        // network is called
-        assertTrue(true)
-    }
+        val timestamp = Calendar.getInstance()
+        timestamp.add(Calendar.HOUR, -4)
 
-    @Test
-    fun getEntriesForCategoryIdWorks() {
-        // only 1 emission
-        // for same category
-        // only 1 category
-        assertTrue(true)
-    }
+        fakeNetworkService.emitError = true
+        fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
-    @Test
-    fun getEntriesForCategoryReturnsNothingWhenIdIsInvalid() {
-        // only 1 emission
-        // no results
-        assertTrue(true)
+        repository.categories().test()
+                .assertValue {
+                    it is FetchCategoryResult.Error
+                }
+                .assertValueCount(1)
+                .assertNoErrors()
+        assertTrue(fakeNetworkService.hasBeenCalled)
+        assertTrue(fakeDatabaseService.hasCategoriesBeenCalled)
     }
 }
