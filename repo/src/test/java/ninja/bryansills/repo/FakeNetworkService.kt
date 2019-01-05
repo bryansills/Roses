@@ -1,6 +1,6 @@
 package ninja.bryansills.repo
 
-import io.reactivex.Observable
+import io.reactivex.Single
 import ninja.bryansills.network.NetworkService
 import ninja.bryansills.network.models.streams.StreamContentsResponse
 import ninja.bryansills.network.test.NetworkTestUtils
@@ -12,8 +12,8 @@ class FakeNetworkService : NetworkService {
 
     var contents = NetworkTestUtils.createStreamContentsResponse()
 
-    override fun streamContents(): Observable<StreamContentsResponse> {
+    override fun streamContents(): Single<StreamContentsResponse> {
         hasBeenCalled = true
-        return if (emitError) Observable.error(RuntimeException("This is an error")) else Observable.just(contents)
+        return if (emitError) Single.error(RuntimeException("This is an error")) else Single.just(contents)
     }
 }
