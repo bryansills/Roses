@@ -7,15 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.AndroidSupportInjection
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.ViewModelFactory
@@ -26,7 +24,6 @@ class CategoryFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var categoryViewModel: CategoryViewModel
-    lateinit var subscription: CompositeDisposable
 
     lateinit var binding: FragmentCategoryBinding
     lateinit var categoryAdapter: CategoryAdapter
@@ -48,28 +45,20 @@ class CategoryFragment : Fragment() {
         }.also { this.categoryAdapter = it }
 
         categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
-        subscription = CompositeDisposable()
 
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        subscription.add(categoryViewModel.categories()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { when (it) {
-                            is CategoryUiModel.Success -> onSuccess(it.categories)
-                            CategoryUiModel.Loading -> onLoading()
-                            is CategoryUiModel.Error -> onError(it.error)
-                        } }, { onError(it.message ?: "We are in uncharted territory") }
-                ))
-    }
-
-    override fun onPause() {
-        super.onPause()
-        subscription.clear()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        categoryViewModel.categories.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is CategoryUiModel.Success -> onSuccess(it.categories)
+                CategoryUiModel.Loading -> onLoading()
+                is CategoryUiModel.Error -> onError(it.error)
+            }
+        })
+        categoryViewModel.initCategories()
     }
 
     fun onSuccess(categories: List<Category>) {
