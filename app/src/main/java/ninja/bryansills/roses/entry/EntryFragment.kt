@@ -22,9 +22,13 @@ import javax.inject.Inject
 class EntryFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    lateinit var entryViewModel: EntryViewModel
+    private val entryViewModel: EntryViewModel by lazy(LazyThreadSafetyMode.NONE) {
+        ViewModelProviders.of(this, viewModelFactory)[EntryViewModel::class.java]
+    }
 
-    lateinit var categoryName: String
+    private val categoryName: String by lazy(LazyThreadSafetyMode.NONE) {
+        EntryFragmentArgs.fromBundle(arguments).categoryName
+    }
 
     lateinit var entryAdapter: EntryAdapter
     lateinit var entryList: RecyclerView
@@ -32,11 +36,6 @@ class EntryFragment : Fragment() {
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        categoryName = EntryFragmentArgs.fromBundle(arguments).categoryName
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -55,8 +54,6 @@ class EntryFragment : Fragment() {
                 }
             }
         }.also { this.entryAdapter = it }
-
-        entryViewModel = ViewModelProviders.of(this, viewModelFactory)[EntryViewModel::class.java]
 
         return view
     }

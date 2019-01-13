@@ -23,7 +23,9 @@ import javax.inject.Inject
 class CategoryFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    lateinit var categoryViewModel: CategoryViewModel
+    private val categoryViewModel: CategoryViewModel by lazy(LazyThreadSafetyMode.NONE) {
+        ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
+    }
 
     lateinit var binding: FragmentCategoryBinding
     lateinit var categoryAdapter: CategoryAdapter
@@ -43,8 +45,6 @@ class CategoryFragment : Fragment() {
         categoryList.adapter = CategoryAdapter {
             binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
         }.also { this.categoryAdapter = it }
-
-        categoryViewModel = ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
 
         return binding.root
     }
