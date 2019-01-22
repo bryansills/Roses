@@ -66,4 +66,5 @@ dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"
     androidTestImplementation "androidx.test:runner:${versions.atsl}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    androidTestImplementation 'androidx.fragment:fragment-testing:1.1.0-alpha03'
 }

@@ -1,19 +1,29 @@
 object Libs {
+    // Core
+    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:" + Versions.kotlin
+    const val dagger = "com.google.dagger:dagger:" + Versions.dagger
+    const val dagger_compiler = "com.google.dagger:dagger-compiler:" + Versions.dagger
+
+    // Square
+    const val moshi = "com.squareup.moshi:moshi:" + Versions.moshi
+    const val moshi_codegen = "com.squareup.moshi:moshi-kotlin-codegen:" + Versions.moshi
+    const val moshi_kotlin = "com.squareup.moshi:moshi-kotlin:" + Versions.moshi
+
     const val navigation_fragment_ktx: String = "android.arch.navigation:navigation-fragment-ktx:" +
-            Versions.android_arch_navigation
+            Versions.navigation
 
     const val navigation_fragment: String = "android.arch.navigation:navigation-fragment:" +
-            Versions.android_arch_navigation
+            Versions.navigation
 
     const val navigation_safe_args_gradle_plugin: String =
             "android.arch.navigation:navigation-safe-args-gradle-plugin:" +
-            Versions.android_arch_navigation
+            Versions.navigation
 
     const val navigation_ui_ktx: String = "android.arch.navigation:navigation-ui-ktx:" +
-            Versions.android_arch_navigation
+            Versions.navigation
 
     const val navigation_ui: String = "android.arch.navigation:navigation-ui:" +
-            Versions.android_arch_navigation
+            Versions.navigation
 
     const val work_runtime: String = "android.arch.work:work-runtime:" + Versions.work_runtime
 
@@ -108,40 +118,17 @@ object Libs {
     /**
      * https://github.com/google/dagger */
     const val dagger_android_processor: String = "com.google.dagger:dagger-android-processor:" +
-            Versions.com_google_dagger
+            Versions.dagger
 
     /**
      * https://github.com/google/dagger */
     const val dagger_android_support: String = "com.google.dagger:dagger-android-support:" +
-            Versions.com_google_dagger
+            Versions.dagger
 
     /**
      * https://github.com/google/dagger */
     const val dagger_android: String = "com.google.dagger:dagger-android:" +
-            Versions.com_google_dagger
-
-    /**
-     * https://github.com/google/dagger */
-    const val dagger_compiler: String = "com.google.dagger:dagger-compiler:" +
-            Versions.com_google_dagger
-
-    /**
-     * https://github.com/google/dagger */
-    const val dagger: String = "com.google.dagger:dagger:" + Versions.com_google_dagger
-
-    /**
-     * https://github.com/square/moshi */
-    const val moshi_kotlin_codegen: String = "com.squareup.moshi:moshi-kotlin-codegen:" +
-            Versions.com_squareup_moshi
-
-    /**
-     * https://github.com/square/moshi */
-    const val moshi_kotlin: String = "com.squareup.moshi:moshi-kotlin:" +
-            Versions.com_squareup_moshi
-
-    /**
-     * https://github.com/square/moshi */
-    const val moshi: String = "com.squareup.moshi:moshi:" + Versions.com_squareup_moshi
+            Versions.dagger
 
     /**
      * https://github.com/square/retrofit/ */
@@ -172,26 +159,21 @@ object Libs {
      * https://kotlinlang.org/ */
     const val kotlin_annotation_processing_gradle: String =
             "org.jetbrains.kotlin:kotlin-annotation-processing-gradle:" +
-            Versions.org_jetbrains_kotlin
+            Versions.kotlin
 
     const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:" +
-            Versions.org_jetbrains_kotlin
+            Versions.kotlin
 
     /**
      * https://kotlinlang.org/ */
     const val kotlin_scripting_compiler_embeddable: String =
             "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:" +
-            Versions.org_jetbrains_kotlin
-
-    /**
-     * https://kotlinlang.org/ */
-    const val kotlin_stdlib: String = "org.jetbrains.kotlin:kotlin-stdlib:" +
-            Versions.org_jetbrains_kotlin
+            Versions.kotlin
 
     /**
      * https://kotlinlang.org/ */
     const val kotlin_test_junit: String = "org.jetbrains.kotlin:kotlin-test-junit:" +
-            Versions.org_jetbrains_kotlin
+            Versions.kotlin
 
     /**
      * https://jsoup.org/ */
