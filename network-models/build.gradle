@@ -5,8 +5,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     implementation "com.squareup.moshi:moshi:${versions.moshi}"
-    implementation ("com.squareup.moshi:moshi-kotlin:${versions.moshi}") {
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-reflect'
-    }
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
 }
