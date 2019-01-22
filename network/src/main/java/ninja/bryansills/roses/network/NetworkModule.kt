@@ -1,4 +1,4 @@
-package ninja.bryansills.network
+package ninja.bryansills.roses.network
 
 import dagger.Module
 import dagger.Provides

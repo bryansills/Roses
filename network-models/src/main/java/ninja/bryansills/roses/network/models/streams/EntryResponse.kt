@@ -1,4 +1,4 @@
-package ninja.bryansills.network.models.streams
+package ninja.bryansills.roses.network.models.streams
 
 import com.squareup.moshi.JsonClass
 

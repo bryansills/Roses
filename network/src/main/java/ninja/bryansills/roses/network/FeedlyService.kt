@@ -1,8 +1,8 @@
-package ninja.bryansills.network
+package ninja.bryansills.roses.network
 
 import io.reactivex.Single
-import ninja.bryansills.network.models.ProfileResponse
-import ninja.bryansills.network.models.streams.StreamContentsResponse
+import ninja.bryansills.roses.network.models.ProfileResponse
+import ninja.bryansills.roses.network.models.streams.StreamContentsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

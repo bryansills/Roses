@@ -4,7 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import ninja.bryansills.roses.database.DatabaseService
-import ninja.bryansills.network.NetworkService
+import ninja.bryansills.roses.network.NetworkService
 import retrofit2.HttpException
 import java.util.Calendar
 import java.util.Date

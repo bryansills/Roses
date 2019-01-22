@@ -1,7 +1,7 @@
-package ninja.bryansills.network
+package ninja.bryansills.roses.network
 
 import io.reactivex.Single
-import ninja.bryansills.network.models.streams.StreamContentsResponse
+import ninja.bryansills.roses.network.models.streams.StreamContentsResponse
 import javax.inject.Inject
 
 class RealNetworkService @Inject constructor(val feedly: FeedlyService) : NetworkService {

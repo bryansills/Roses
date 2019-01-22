@@ -4,10 +4,10 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
-import ninja.bryansills.network.models.streams.EntryResponse
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
+import ninja.bryansills.roses.network.models.streams.EntryResponse
 import org.jsoup.Jsoup
 import java.util.Date
 import javax.inject.Inject

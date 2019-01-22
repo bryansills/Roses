@@ -1,8 +1,8 @@
-package ninja.bryansills.network.test
+package ninja.bryansills.roses.network.test
 
-import ninja.bryansills.network.models.streams.EntryResponse
-import ninja.bryansills.network.models.streams.Origin
-import ninja.bryansills.network.models.streams.StreamContentsResponse
+import ninja.bryansills.roses.network.models.streams.EntryResponse
+import ninja.bryansills.roses.network.models.streams.Origin
+import ninja.bryansills.roses.network.models.streams.StreamContentsResponse
 
 object NetworkTestUtils {
     fun createStreamContentsResponse(id: Int = 1, count: Int = 0): StreamContentsResponse =

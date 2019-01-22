@@ -1,9 +1,9 @@
 package ninja.bryansills.repo
 
 import io.reactivex.Single
-import ninja.bryansills.network.NetworkService
-import ninja.bryansills.network.models.streams.StreamContentsResponse
-import ninja.bryansills.network.test.NetworkTestUtils
+import ninja.bryansills.roses.network.NetworkService
+import ninja.bryansills.roses.network.models.streams.StreamContentsResponse
+import ninja.bryansills.roses.network.test.NetworkTestUtils
 
 class FakeNetworkService : NetworkService {
 
