@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-    implementation project(":network")
     api project(":database-models")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"

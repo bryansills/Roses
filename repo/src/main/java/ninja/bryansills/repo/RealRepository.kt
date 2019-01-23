@@ -4,7 +4,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import ninja.bryansills.roses.database.DatabaseService
+import ninja.bryansills.roses.database.models.Origin
 import ninja.bryansills.roses.network.NetworkService
+import ninja.bryansills.roses.network.models.streams.EntryResponse
 import retrofit2.HttpException
 import java.util.Calendar
 import java.util.Date
@@ -36,8 +38,21 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
     override fun updateDatabase(): Completable {
         return networkService.streamContents()
                 .map { response -> response.items.toList() }
-                .flatMapCompletable { items -> databaseService.insertEntries(items) }
+                .flatMapCompletable { items ->
+                    insertEntries(items)
+                }
     }
+
+    private fun insertEntries(entries: List<EntryResponse>): Completable {
+        val mapping = entries.groupBy { entry -> entry.origin.streamId }
+                .values
+                .associateBy({ it.toOrigin() }, { it.toDbEntries()})
+
+        return Observable.just(mapping)
+                .flatMapCompletable { databaseService.insertMappedEntries(it) }
+    }
+
+
 
     private fun isOutdated(timestamp: Long): Boolean {
         val current = Calendar.getInstance()
@@ -63,5 +78,24 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
             429 -> FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED)
             else -> FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.UNKNOWN)
         }
+    }
+}
+
+fun List<EntryResponse>.toOrigin(): Origin {
+    val origin = this[0].origin
+    return Origin(null, origin.streamId, origin.title, origin.htmlUrl)
+}
+
+fun List<EntryResponse>.toDbEntries(): List<ninja.bryansills.roses.database.models.Entry> {
+    val timestamp = Date().time
+    return this.map { netEntry ->
+        ninja.bryansills.roses.database.models.Entry(netEntry.id,
+                netEntry.title,
+                netEntry.url,
+                netEntry.published,
+                netEntry.author,
+                netEntry.summary?.content,
+                timestamp,
+                null)
     }
 }

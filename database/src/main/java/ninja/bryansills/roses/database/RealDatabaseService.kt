@@ -7,9 +7,7 @@ import io.reactivex.Single
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
-import ninja.bryansills.roses.network.models.streams.EntryResponse
 import org.jsoup.Jsoup
-import java.util.Date
 import javax.inject.Inject
 
 class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : DatabaseService {
@@ -21,10 +19,8 @@ class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : Da
         return appDatabase.categoryDao().getAllCategories()
     }
 
-    override fun insertEntries(entries: List<EntryResponse>): Completable {
-        val grouping = entries.groupBy { entry -> entry.origin.streamId }
-
-        return Observable.fromIterable(grouping.values).flatMapCompletable { insertGroupOfEntries(it) }
+    override fun insertMappedEntries(entries: Map<Origin, List<Entry>>): Completable {
+        return Observable.fromIterable(entries.entries).flatMapCompletable { insertGroupOfEntries(it)}
     }
 
     override fun getEntries(categoryId: String): Flowable<List<Entry>> {
@@ -36,22 +32,16 @@ class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : Da
                 .onErrorReturn { MISSING_TIMESTAMP }
     }
 
-    private fun insertGroupOfEntries(entries: List<EntryResponse>): Completable {
-        val timestamp = Date().time
-        val origin = entries[0].origin
-        val dbOriginId = appDatabase.originDao().upsertOrigin(Origin(null, origin.streamId, origin.title, origin.htmlUrl))
-        val dbEntries = entries.map { netEntry ->
-            Entry(netEntry.id,
-                    netEntry.title,
-                    netEntry.url,
-                    netEntry.published,
-                    netEntry.author,
-                    netEntry.summary?.run { cleanHtml(content) },
-                    timestamp,
-                    dbOriginId)
-        }
+    private fun insertGroupOfEntries(entryGroup: Map.Entry<Origin, List<Entry>>): Completable {
+        return appDatabase.originDao().upsertOrigin(entryGroup.key)
+                .flatMapCompletable { originId ->
+                    val dbReady = entryGroup.value.map { singleEntry ->
+                        val cleanedSummary = cleanHtml(singleEntry.summary ?: "")
+                        singleEntry.copy(originId = originId, summary = cleanedSummary)
+                    }
 
-        return appDatabase.entryDao().insertEntries(dbEntries)
+                    appDatabase.entryDao().insertEntries(dbReady)
+                }
     }
 
     private fun cleanHtml(html: String): String {

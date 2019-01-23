@@ -6,14 +6,14 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
-import ninja.bryansills.roses.network.models.streams.EntryResponse
+import ninja.bryansills.roses.database.models.Origin
 
 interface DatabaseService {
     fun getLastUpdated(): Single<Long>
 
     fun getEntries(categoryId: String): Flowable<List<Entry>>
 
-    fun insertEntries(entries: List<EntryResponse>): Completable
+    fun insertMappedEntries(entries: Map<Origin, List<Entry>>): Completable
 
     fun getCategories(): Observable<List<Category>>
 }
