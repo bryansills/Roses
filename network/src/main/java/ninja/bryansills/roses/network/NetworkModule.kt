@@ -1,16 +1,19 @@
 package ninja.bryansills.roses.network
 
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import ninja.bryansills.roses.network.models.MoshiModule
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [MoshiModule::class])
 class NetworkModule {
     @Provides
     @Singleton
@@ -29,6 +32,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    fun converterFactory(moshi: Moshi): Converter.Factory =
+            MoshiConverterFactory.create(moshi)
+                    .asLenient()
+
+
+    @Provides
+    @Singleton
     fun okhttp(interceptor: Interceptor): OkHttpClient =
             OkHttpClient.Builder()
                 .addInterceptor(interceptor)
@@ -36,11 +46,11 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun retrofit(okHttpClient: OkHttpClient): Retrofit =
+    fun retrofit(converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
                 .baseUrl("https://cloud.feedly.com/v3/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(MoshiConverterFactory.create().asLenient())
+                .addConverterFactory(converterFactory)
                 .client(okHttpClient)
                 .build()
 

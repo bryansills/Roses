@@ -4,6 +4,9 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation Libs.kotlin_stdlib
 
+    implementation Libs.dagger
+    kapt Libs.dagger_compiler
+
     implementation Libs.moshi
     kapt Libs.moshi_codegen
 }
