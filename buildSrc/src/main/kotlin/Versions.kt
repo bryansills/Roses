@@ -5,4 +5,5 @@ object Versions {
 
     // Square
     const val moshi = "1.8.0"
+    const val retrofit = "2.5.0"
 }

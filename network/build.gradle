@@ -4,12 +4,12 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     api project(":network-models")
     
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+    implementation Libs.kotlin_stdlib
 
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
+    implementation Libs.dagger
+    kapt Libs.dagger_compiler
 
-    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
+    implementation Libs.retrofit
+    implementation Libs.retrofit_rxjava_adapter
+    implementation Libs.retrofit_moshi_converter
 }
