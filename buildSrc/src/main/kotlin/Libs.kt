@@ -24,6 +24,12 @@ object Libs {
     const val retrofit_rxjava_adapter = "com.squareup.retrofit2:adapter-rxjava2:" + Versions.retrofit
     const val retrofit_moshi_converter = "com.squareup.retrofit2:converter-moshi:" + Versions.retrofit
 
+    // Testing
+    const val android_test_core = "androidx.test:core:" + Versions.android_test_core
+    const val android_arch_core_testing = "androidx.arch.core:core-testing:" + Versions.android_arch_core_testing
+    const val android_testing_support_library = "androidx.test:runner:" + Versions.android_testing_support_library
+    const val rxkotlin = "io.reactivex.rxjava2:rxkotlin:" + Versions.rxkotlin
+
     // etc.
     const val jsoup = "org.jsoup:jsoup:" + Versions.jsoup
 }

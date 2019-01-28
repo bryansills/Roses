@@ -38,8 +38,8 @@ dependencies {
     implementation Libs.jsoup
 
     androidTestImplementation project(":database-test")
-    androidTestImplementation "androidx.test:core:${versions.testcore}"
-    androidTestImplementation "androidx.arch.core:core-testing:${versions.archcore}"
-    androidTestImplementation "androidx.test:runner:${versions.atsl}"
-    androidTestImplementation "androidx.room:room-testing:${versions.room}"
+    androidTestImplementation Libs.android_test_core
+    androidTestImplementation Libs.android_arch_core_testing
+    androidTestImplementation Libs.android_testing_support_library
+    androidTestImplementation Libs.rxkotlin
 }

@@ -2,8 +2,8 @@ package ninja.bryansills.roses.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.runner.AndroidJUnit4
-import io.reactivex.Single
-import io.reactivex.functions.BiFunction
+import io.reactivex.rxkotlin.Singles
+import io.reactivex.rxkotlin.zipWith
 import ninja.bryansills.database.test.DatabaseTestUtils
 import org.junit.Rule
 import org.junit.Test
@@ -34,7 +34,7 @@ class OriginDaoTest : DbTest() {
         val firstOutput = db.originDao().upsertOrigin(first)
         val secondOutput = db.originDao().upsertOrigin(second)
 
-        Single.zip(firstOutput, secondOutput, BiFunction<Long, Long, Pair<Long, Long>> { left, right -> Pair(left, right) })
+        Singles.zip(firstOutput, secondOutput) { left, right -> Pair(left, right) }
                 .test()
                 .assertValue {(first, second) -> first < second }
                 .assertComplete()
@@ -49,28 +49,43 @@ class OriginDaoTest : DbTest() {
         val firstOutput = db.originDao().upsertOrigin(first)
         val duplicateOutput = db.originDao().upsertOrigin(duplicate)
 
-        Single.zip(firstOutput, duplicateOutput, BiFunction<Long, Long, Pair<Long, Long>> { left, right -> Pair(left, right) })
+        Singles.zip(firstOutput, duplicateOutput) { left, right -> Pair(left, right) }
                 .test()
                 .assertValue {(first, duplicate) -> first == duplicate }
                 .assertComplete()
                 .assertNoErrors()
     }
 
-//    @Test
-//    fun upsertUpdateOldOrigin() {
-//        val first = DatabaseTestUtils.createOrigin(1)
-//        val second = DatabaseTestUtils.createOrigin(2)
-//        val third = DatabaseTestUtils.createOrigin(3)
-//        val firstDuplicate = DatabaseTestUtils.createOrigin(1)
-//
-//        val firstOutput = db.originDao().upsertOrigin(first)
-//        val secondOutput = db.originDao().upsertOrigin(second)
-//        val thirdOutput = db.originDao().upsertOrigin(third)
-//        val firstDuplicateOutput = db.originDao().upsertOrigin(firstDuplicate)
-//
-////        Single.zip(firstOutput, secondOutput, thirdOutput, { first: Long, second: Long, third: Long -> listOf(first, second, third) } )
-////        assertTrue(firstOutput == firstDuplicateOutput)
-////        assertTrue(firstOutput <= secondOutput)
-////        assertTrue(secondOutput <= thirdOutput)
-//    }
+    @Test
+    fun upsertUpdateOldOrigin() {
+        val firstInput = DatabaseTestUtils.createOrigin(1)
+        val secondInput = DatabaseTestUtils.createOrigin(2)
+        val thirdInput = DatabaseTestUtils.createOrigin(3)
+        val firstDuplicateInput = DatabaseTestUtils.createOrigin(1)
+
+        val firstSingle = db.originDao().upsertOrigin(firstInput)
+        val secondSingle = db.originDao().upsertOrigin(secondInput)
+        val thirdSingle = db.originDao().upsertOrigin(thirdInput)
+        val firstDuplicateSingle = db.originDao().upsertOrigin(firstDuplicateInput)
+
+        Singles.zip(firstSingle, secondSingle, thirdSingle) { first, second, third -> listOf(first, second, third) }
+                .zipWith(firstDuplicateSingle) { groupResult, duplicateResult -> Pair(groupResult, duplicateResult)}
+                .test()
+                .assertValue { (group, duplicate) ->
+                    val first = group[0]
+                    first == duplicate
+                }
+                .assertValue { (group, _) ->
+                    val first = group[0]
+                    val second = group[1]
+                    first < second
+                }
+                .assertValue { (group, _) ->
+                    val second = group[1]
+                    val third = group[2]
+                    second < third
+                }
+                .assertComplete()
+                .assertNoErrors()
+    }
 }

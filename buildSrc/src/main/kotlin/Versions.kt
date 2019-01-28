@@ -22,6 +22,12 @@ object Versions {
     const val moshi = "1.8.0"
     const val retrofit = "2.5.0"
 
+    // Test
+    const val android_test_core = "1.0.0"
+    const val android_arch_core_testing = "2.0.0"
+    const val android_testing_support_library = "1.1.0-alpha4"
+    const val rxkotlin = "2.2.0" // available: "2.3.0"
+
     // etc.
     const val jsoup = "1.11.3"
 }
