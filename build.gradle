@@ -34,10 +34,10 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.20.0"
-        classpath "com.android.tools.build:gradle:${versions.buildtools}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
+        classpath Libs.gradle_versions_plugin
+        classpath Libs.android_gradle_plugin
+        classpath Libs.kotlin_gradle_plugin
+        classpath Libs.navigation_safe_args_gradle_plugin
     }
 }
 
