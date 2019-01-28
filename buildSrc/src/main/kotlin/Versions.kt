@@ -11,6 +11,8 @@ object Versions {
     // Core
     const val kotlin = "1.3.0" // available: "1.3.20"
     const val dagger = "2.16" // available: "2.21"
+    const val rxjava = "2.1.16"
+    const val rxandroid = "2.0.2"
 
     // Android
     const val room = "2.1.0-alpha02"
@@ -19,4 +21,7 @@ object Versions {
     // Square
     const val moshi = "1.8.0"
     const val retrofit = "2.5.0"
+
+    // etc.
+    const val jsoup = "1.11.3"
 }

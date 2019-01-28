@@ -19,6 +19,6 @@ android {
 dependencies {
     implementation Libs.kotlin_stdlib
 
-    api Libs.room_runtime
+    implementation Libs.room_runtime
     kapt Libs.room_compiler
 }

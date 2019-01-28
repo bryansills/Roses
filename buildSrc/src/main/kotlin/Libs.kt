@@ -9,9 +9,12 @@ object Libs {
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:" + Versions.kotlin
     const val dagger = "com.google.dagger:dagger:" + Versions.dagger
     const val dagger_compiler = "com.google.dagger:dagger-compiler:" + Versions.dagger
+    const val rxjava = "io.reactivex.rxjava2:rxjava:" + Versions.rxjava
+    const val rxandroid = "io.reactivex.rxjava2:rxandroid:" + Versions.rxandroid
 
     // Android
     const val room_runtime = "androidx.room:room-runtime:" + Versions.room
+    const val room_rxjava = "androidx.room:room-rxjava2:" + Versions.room
     const val room_compiler = "androidx.room:room-compiler:" + Versions.room
 
     // Square
@@ -20,4 +23,7 @@ object Libs {
     const val retrofit = "com.squareup.retrofit2:retrofit:" + Versions.retrofit
     const val retrofit_rxjava_adapter = "com.squareup.retrofit2:adapter-rxjava2:" + Versions.retrofit
     const val retrofit_moshi_converter = "com.squareup.retrofit2:converter-moshi:" + Versions.retrofit
+
+    // etc.
+    const val jsoup = "org.jsoup:jsoup:" + Versions.jsoup
 }

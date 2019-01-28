@@ -52,8 +52,6 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
                 .flatMapCompletable { databaseService.insertMappedEntries(it) }
     }
 
-
-
     private fun isOutdated(timestamp: Long): Boolean {
         val current = Calendar.getInstance()
         current.add(Calendar.HOUR, -refreshInterval)
