@@ -5,10 +5,10 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import ninja.bryansills.database.test.DatabaseTestUtils
-import ninja.bryansills.roses.network.models.streams.EntryResponse
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
+import ninja.bryansills.roses.database.models.Origin
 import java.util.Date
 
 class FakeDatabaseService : DatabaseService {
@@ -22,7 +22,7 @@ class FakeDatabaseService : DatabaseService {
         return Flowable.just(listOf(DatabaseTestUtils.createEntry(1, 1L, 1L)))
     }
 
-    override fun insertEntries(entries: List<EntryResponse>): Completable {
+    override fun insertMappedEntries(entries: Map<Origin, List<Entry>>): Completable {
         return Completable.complete()
     }
 

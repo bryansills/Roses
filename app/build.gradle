@@ -4,13 +4,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
 android {
-    compileSdkVersion buildConfig.compileSdk
+    compileSdkVersion Versions.compile_sdk
 
     defaultConfig {
         applicationId "ninja.bryansills.roses"
 
-        minSdkVersion buildConfig.minSdk
-        targetSdkVersion buildConfig.targetSdk
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
 
         versionCode 1
         versionName "1.0"
@@ -43,27 +43,30 @@ dependencies {
     implementation project(":database")
     implementation project(":background")
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "androidx.core:core-ktx:${versions.ktx}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
-    implementation "androidx.lifecycle:lifecycle-extensions:${versions.viewmodel}"
-    kapt "androidx.lifecycle:lifecycle-compiler:${versions.viewmodel}"
-    implementation "android.arch.navigation:navigation-fragment:${versions.navigation}"
-    implementation "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}"
-    implementation "android.arch.navigation:navigation-ui:${versions.navigation}"
-    implementation "android.arch.navigation:navigation-ui-ktx:${versions.navigation}"
+    implementation Libs.kotlin_stdlib
 
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
-    implementation "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}"
+    implementation Libs.dagger
+    implementation Libs.dagger_android
+    implementation Libs.dagger_android_support
+    kapt Libs.dagger_compiler
+    kapt Libs.dagger_android_compiler
 
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    implementation Libs.rxjava
+    implementation Libs.rxandroid
 
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"
-    androidTestImplementation "androidx.test:runner:${versions.atsl}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    implementation Libs.appcompat
+    implementation Libs.androidx_core
+    implementation Libs.constraint_layout
+
+    implementation Libs.lifecycle
+    kapt Libs.lifecycle_compiler
+
+    implementation Libs.navigation
+    implementation Libs.navigation_ktx
+    implementation Libs.navigation_fragment
+    implementation Libs.navigation_fragment_ktx
+
+    testImplementation Libs.kotlin_junit
+    androidTestImplementation Libs.android_testing_support_library
+    androidTestImplementation Libs.espresso
 }

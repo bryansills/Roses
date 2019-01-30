@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion buildConfig.compileSdk
+    compileSdkVersion Versions.compile_sdk
 
     defaultConfig {
-        minSdkVersion buildConfig.minSdk
-        targetSdkVersion buildConfig.targetSdk
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
     }
 
     compileOptions {
@@ -19,10 +19,12 @@ android {
 dependencies {
     implementation project(":repo")
 
-    api "android.arch.work:work-runtime:${versions.work}"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
+    implementation Libs.kotlin_stdlib
 
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
+    implementation Libs.dagger_android
+    kapt Libs.dagger_compiler
+
+    implementation Libs.rxjava
+
+    api Libs.work_manager
 }

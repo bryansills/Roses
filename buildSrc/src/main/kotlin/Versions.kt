@@ -15,8 +15,13 @@ object Versions {
     const val rxandroid = "2.0.2"
 
     // Android
-    const val room = "2.1.0-alpha02"
+    const val appcompat = "1.0.2"
+    const val ktx = "1.0.1"
+    const val constraint_layout = "2.0.0-alpha2"
+    const val viewmodel = "2.0.0"
     const val navigation = "1.0.0-alpha07"
+    const val room = "2.1.0-alpha02"
+    const val work_manager = "1.0.0-alpha11"
 
     // Square
     const val moshi = "1.8.0"
@@ -26,6 +31,7 @@ object Versions {
     const val android_test_core = "1.0.0"
     const val android_arch_core_testing = "2.0.0"
     const val android_testing_support_library = "1.1.0-alpha4"
+    const val espresso = "3.1.0-alpha4"
     const val rxkotlin = "2.2.0" // available: "2.3.0"
 
     // etc.
