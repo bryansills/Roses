@@ -24,6 +24,7 @@ dependencies {
     implementation Libs.dagger
     kapt Libs.dagger_compiler
     implementation Libs.rxjava
+    implementation Libs.retrofit
 
     testImplementation project(":network-test")
     testImplementation project(":database-test")

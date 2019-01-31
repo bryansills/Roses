@@ -10,9 +10,9 @@ object Versions {
 
     // Core
     const val kotlin = "1.3.0" // available: "1.3.20"
-    const val dagger = "2.16" // available: "2.21"
-    const val rxjava = "2.1.16"
-    const val rxandroid = "2.0.2"
+    const val dagger = "2.21"
+    const val rxjava = "2.2.6"
+    const val rxandroid = "2.1.0"
 
     // Android
     const val appcompat = "1.0.2"
@@ -32,7 +32,7 @@ object Versions {
     const val android_arch_core_testing = "2.0.0"
     const val android_testing_support_library = "1.1.0-alpha4"
     const val espresso = "3.1.0-alpha4"
-    const val rxkotlin = "2.2.0" // available: "2.3.0"
+    const val rxkotlin = "2.3.0"
 
     // etc.
     const val jsoup = "1.11.3"
