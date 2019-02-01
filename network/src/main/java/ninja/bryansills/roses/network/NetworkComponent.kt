@@ -13,7 +13,7 @@ interface NetworkComponent {
     @Component.Builder
     interface Builder {
         fun build(): NetworkComponent
-        fun feedlyAccessToken(token: String): Builder
+        fun networkModule(networkModule: NetworkModule): Builder
         fun moshiComponent(moshiComponent: MoshiComponent): Builder
     }
 }

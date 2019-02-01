@@ -3,7 +3,6 @@ package ninja.bryansills.roses.network
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import ninja.bryansills.roses.network.models.MoshiModule
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Converter
@@ -13,8 +12,18 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [MoshiModule::class])
-class NetworkModule(@Named("FEEDLY_ACCESS_TOKEN") val token: String, val moshi: Moshi) {
+@Module
+class NetworkModule(val token: String, val moshi: Moshi) {
+
+    @Provides
+    @Singleton
+    @Named("FEEDLY_ACCESS_TOKEN")
+    fun token(): String = token
+
+    @Provides
+    @Singleton
+    fun moshi(): Moshi = moshi
+
     @Provides
     @Singleton
     fun network(feedlyService: FeedlyService): NetworkService =

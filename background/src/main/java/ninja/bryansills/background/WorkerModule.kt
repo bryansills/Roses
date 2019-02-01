@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module(includes = [WorkerModule.Bindings::class])
-class WorkerModule {
+class WorkerModule(val context: Context, @Named("REFRESH_INTERVAL") val refreshInterval: Int) {
     @Module
     interface Bindings {
         @Binds
@@ -26,6 +26,13 @@ class WorkerModule {
         @ClassKey(BackgroundWorker::class)
         fun bindBackgroundWorkerFactory(workerFactory: BackgroundWorkerFactory): RosesWorkerFactory
     }
+
+    @Provides
+    fun context(): Context = context
+
+    @Provides
+    @Named("REFRESH_INTERVAL")
+    fun refreshInterval(): Int = refreshInterval
 
     @Provides
     fun workerManager(

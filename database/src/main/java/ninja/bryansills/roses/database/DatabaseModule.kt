@@ -8,6 +8,11 @@ import javax.inject.Singleton
 
 @Module
 class DatabaseModule(val context: Context) {
+
+    @Provides
+    @Singleton
+    fun context(): Context = context
+
     @Provides
     @Singleton
     fun database(appDatabase: AppDatabase): DatabaseService = RealDatabaseService(appDatabase)

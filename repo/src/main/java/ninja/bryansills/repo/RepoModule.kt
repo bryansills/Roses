@@ -13,6 +13,20 @@ class RepoModule(
         val databaseService: DatabaseService,
         @Named("REFRESH_INTERVAL") val refreshInterval: Int
 ) {
+
+    @Provides
+    @Singleton
+    fun networkService(): NetworkService = networkService
+
+    @Provides
+    @Singleton
+    fun databaseService(): DatabaseService = databaseService
+
+    @Provides
+    @Singleton
+    @Named("REFRESH_INTERVAL")
+    fun refreshInterval(): Int = refreshInterval
+
     @Provides
     @Singleton
     fun repo(

@@ -1,8 +1,9 @@
 package ninja.bryansills.roses.database
 
-import android.content.Context
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [DatabaseModule::class])
 interface DatabaseComponent {
     fun databaseService(): DatabaseService
@@ -10,6 +11,6 @@ interface DatabaseComponent {
     @Component.Builder
     interface Builder {
         fun build(): DatabaseComponent
-        fun context(context: Context): Builder
+        fun databaseModule(databaseModule: DatabaseModule): Builder
     }
 }
