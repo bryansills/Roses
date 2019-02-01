@@ -14,7 +14,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module(includes = [MoshiModule::class])
-class NetworkModule {
+class NetworkModule(@Named("FEEDLY_ACCESS_TOKEN") val token: String, val moshi: Moshi) {
     @Provides
     @Singleton
     fun network(feedlyService: FeedlyService): NetworkService =

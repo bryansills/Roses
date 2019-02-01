@@ -9,7 +9,7 @@ object Versions {
     const val target_sdk = 28
 
     // Core
-    const val kotlin = "1.3.0" // available: "1.3.20"
+    const val kotlin = "1.3.20"
     const val dagger = "2.21"
     const val rxjava = "2.2.6"
     const val rxandroid = "2.1.0"
