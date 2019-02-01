@@ -1,9 +1,7 @@
 package ninja.bryansills.roses.database
 
 import dagger.Component
-import javax.inject.Singleton
 
-@Singleton
 @Component(modules = [DatabaseModule::class])
 interface DatabaseComponent {
     fun databaseService(): DatabaseService

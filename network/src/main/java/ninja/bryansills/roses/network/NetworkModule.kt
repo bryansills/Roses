@@ -10,27 +10,22 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 class NetworkModule(val token: String, val moshi: Moshi) {
 
     @Provides
-    @Singleton
     @Named("FEEDLY_ACCESS_TOKEN")
     fun token(): String = token
 
     @Provides
-    @Singleton
     fun moshi(): Moshi = moshi
 
     @Provides
-    @Singleton
     fun network(feedlyService: FeedlyService): NetworkService =
             RealNetworkService(feedlyService)
 
     @Provides
-    @Singleton
     fun authInterceptor(@Named("FEEDLY_ACCESS_TOKEN") feedlyAccessToken: String): Interceptor =
             Interceptor { chain ->
                 chain.proceed(chain.request()
@@ -40,21 +35,18 @@ class NetworkModule(val token: String, val moshi: Moshi) {
             }
 
     @Provides
-    @Singleton
     fun converterFactory(moshi: Moshi): Converter.Factory =
             MoshiConverterFactory.create(moshi)
                     .asLenient()
 
 
     @Provides
-    @Singleton
     fun okhttp(interceptor: Interceptor): OkHttpClient =
             OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build()
 
     @Provides
-    @Singleton
     fun retrofit(converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
                 .baseUrl("https://cloud.feedly.com/v3/")
@@ -64,6 +56,5 @@ class NetworkModule(val token: String, val moshi: Moshi) {
                 .build()
 
     @Provides
-    @Singleton
     fun feedlyService(retrofit: Retrofit): FeedlyService = retrofit.create(FeedlyService::class.java)
 }

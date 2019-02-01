@@ -3,9 +3,7 @@ package ninja.bryansills.repo
 import dagger.Component
 import ninja.bryansills.roses.database.DatabaseComponent
 import ninja.bryansills.roses.network.NetworkComponent
-import javax.inject.Singleton
 
-@Singleton
 @Component(
         dependencies = [DatabaseComponent::class, NetworkComponent::class],
         modules = [RepoModule::class]
