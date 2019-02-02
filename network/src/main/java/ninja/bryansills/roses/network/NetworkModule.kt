@@ -12,14 +12,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 
 @Module
-class NetworkModule(val token: String, val moshi: Moshi) {
+class NetworkModule(val token: String) {
 
     @Provides
     @Named("FEEDLY_ACCESS_TOKEN")
     fun token(): String = token
-
-    @Provides
-    fun moshi(): Moshi = moshi
 
     @Provides
     fun network(feedlyService: FeedlyService): NetworkService =
