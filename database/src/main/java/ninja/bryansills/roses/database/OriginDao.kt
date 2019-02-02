@@ -36,3 +36,5 @@ interface OriginDao {
                 }.blockingGet()
     }
 }
+
+fun OriginDao.upsertSingle(origin: Origin): Single<Long> = Single.fromCallable { upsertOrigin(origin) }

@@ -33,7 +33,7 @@ class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : Da
     }
 
     private fun insertGroupOfEntries(entryGroup: Map.Entry<Origin, List<Entry>>): Completable {
-        return Single.fromCallable { appDatabase.originDao().upsertOrigin(entryGroup.key) }
+        return appDatabase.originDao().upsertSingle(entryGroup.key)
                 .flatMapCompletable { originId ->
                     val dbReady = entryGroup.value.map { singleEntry ->
                         val cleanedSummary = cleanHtml(singleEntry.summary ?: "")
