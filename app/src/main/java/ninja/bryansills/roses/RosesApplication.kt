@@ -2,6 +2,9 @@ package ninja.bryansills.roses
 
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import ninja.bryansills.background.DaggerWorkerComponent
+import ninja.bryansills.background.WorkerManager
+import ninja.bryansills.background.WorkerModule
 import ninja.bryansills.repo.DaggerRepoComponent
 import ninja.bryansills.repo.RepoModule
 import ninja.bryansills.roses.database.DaggerDatabaseComponent
@@ -11,11 +14,12 @@ import ninja.bryansills.roses.network.DaggerNetworkComponent
 import ninja.bryansills.roses.network.NetworkModule
 import ninja.bryansills.roses.network.models.DaggerMoshiComponent
 import ninja.bryansills.roses.network.models.MoshiModule
+import javax.inject.Inject
 
 
 class RosesApplication : DaggerApplication() {
 
-//    @Inject lateinit var workerManager: WorkerManager
+    @Inject lateinit var workerManager: WorkerManager
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val databaseModule = DatabaseModule(applicationContext)
@@ -39,8 +43,15 @@ class RosesApplication : DaggerApplication() {
                 .repoModule(repoModule)
                 .build()
 
-        return DaggerApplicationComponent.builder().
-                repoComponent(repoComponent)
+        val workerModule = WorkerModule(applicationContext, 3)
+        val workerComponent = DaggerWorkerComponent.builder()
+                .repoComponent(repoComponent)
+                .workerModule(workerModule)
+                .build()
+
+        return DaggerApplicationComponent.builder()
+                .repoComponent(repoComponent)
+                .workerComponent(workerComponent)
                 .create(this)
     }
 }

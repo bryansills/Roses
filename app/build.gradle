@@ -41,7 +41,7 @@ dependencies {
     implementation project(":repo")
     implementation project(":network")
     implementation project(":database")
-//    implementation project(":background")
+    implementation project(":background")
 
     implementation Libs.kotlin_stdlib
 

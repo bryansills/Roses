@@ -17,8 +17,8 @@ android {
 }
 
 dependencies {
-    implementation project(":network")
-    implementation project(":database")
+    api project(":network") // api due to this issue: https://github.com/google/dagger/issues/970
+    api project(":database") // api due to this issue: https://github.com/google/dagger/issues/970
 
     implementation Libs.kotlin_stdlib
     implementation Libs.dagger
