@@ -21,7 +21,7 @@ interface OriginDao {
     fun updateOrigin(origin: Origin): Single<Int>
 
     @Transaction
-    fun upsertOrigin(origin: Origin): Single<Long> {
+    fun upsertOrigin(origin: Origin): Long {
         return getOrigin(origin.networkId)
                 .flatMap { databaseValue ->
                     val existingId = databaseValue.id ?: -1
@@ -33,6 +33,6 @@ interface OriginDao {
                     } else {
                         Single.error(throwable)
                     }
-                }
+                }.blockingGet()
     }
 }

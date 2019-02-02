@@ -2,9 +2,11 @@ package ninja.bryansills.roses.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.runner.AndroidJUnit4
+import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
 import io.reactivex.rxkotlin.zipWith
 import ninja.bryansills.database.test.DatabaseTestUtils
+import ninja.bryansills.roses.database.models.Origin
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,7 +21,7 @@ class OriginDaoTest : DbTest() {
     fun upsertInsert() {
         val input = DatabaseTestUtils.createOrigin(1)
 
-        db.originDao().upsertOrigin(input)
+        singleUpsert(input)
                 .test()
                 .assertValue { it >= 0L }
                 .assertComplete()
@@ -31,8 +33,8 @@ class OriginDaoTest : DbTest() {
         val first = DatabaseTestUtils.createOrigin(1)
         val second = DatabaseTestUtils.createOrigin(2)
 
-        val firstOutput = db.originDao().upsertOrigin(first)
-        val secondOutput = db.originDao().upsertOrigin(second)
+        val firstOutput = singleUpsert(first)
+        val secondOutput = singleUpsert(second)
 
         Singles.zip(firstOutput, secondOutput) { left, right -> Pair(left, right) }
                 .test()
@@ -46,8 +48,8 @@ class OriginDaoTest : DbTest() {
         val first = DatabaseTestUtils.createOrigin(1)
         val duplicate = DatabaseTestUtils.createOrigin(1)
 
-        val firstOutput = db.originDao().upsertOrigin(first)
-        val duplicateOutput = db.originDao().upsertOrigin(duplicate)
+        val firstOutput = singleUpsert(first)
+        val duplicateOutput = singleUpsert(duplicate)
 
         Singles.zip(firstOutput, duplicateOutput) { left, right -> Pair(left, right) }
                 .test()
@@ -63,10 +65,10 @@ class OriginDaoTest : DbTest() {
         val thirdInput = DatabaseTestUtils.createOrigin(3)
         val firstDuplicateInput = DatabaseTestUtils.createOrigin(1)
 
-        val firstSingle = db.originDao().upsertOrigin(firstInput)
-        val secondSingle = db.originDao().upsertOrigin(secondInput)
-        val thirdSingle = db.originDao().upsertOrigin(thirdInput)
-        val firstDuplicateSingle = db.originDao().upsertOrigin(firstDuplicateInput)
+        val firstSingle = singleUpsert(firstInput)
+        val secondSingle = singleUpsert(secondInput)
+        val thirdSingle = singleUpsert(thirdInput)
+        val firstDuplicateSingle = singleUpsert(firstDuplicateInput)
 
         Singles.zip(firstSingle, secondSingle, thirdSingle) { first, second, third -> listOf(first, second, third) }
                 .zipWith(firstDuplicateSingle) { groupResult, duplicateResult -> Pair(groupResult, duplicateResult)}
@@ -88,4 +90,6 @@ class OriginDaoTest : DbTest() {
                 .assertComplete()
                 .assertNoErrors()
     }
+
+    fun singleUpsert(origin: Origin): Single<Long> = Single.fromCallable { db.originDao().upsertOrigin(origin) }
 }

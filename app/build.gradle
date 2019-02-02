@@ -61,9 +61,7 @@ dependencies {
     implementation Libs.lifecycle
     kapt Libs.lifecycle_compiler
 
-    implementation Libs.navigation
     implementation Libs.navigation_ktx
-    implementation Libs.navigation_fragment
     implementation Libs.navigation_fragment_ktx
 
     testImplementation Libs.kotlin_junit

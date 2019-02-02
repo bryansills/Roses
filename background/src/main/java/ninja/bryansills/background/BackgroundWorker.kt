@@ -14,10 +14,10 @@ class BackgroundWorker(context: Context,
     override fun doWork(): Result {
         return try {
             repository.updateDatabase().blockingAwait()
-            Result.SUCCESS
+            Result.success()
         } catch (throwable: Throwable) {
             Log.d("BLARG", throwable.message)
-            Result.FAILURE
+            Result.failure()
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,9 +27,7 @@ class EntryFragment : Fragment() {
         ViewModelProviders.of(this, viewModelFactory)[EntryViewModel::class.java]
     }
 
-    private val categoryName: String by lazy(LazyThreadSafetyMode.NONE) {
-        EntryFragmentArgs.fromBundle(arguments).categoryName
-    }
+    val args: EntryFragmentArgs by navArgs()
 
     lateinit var entryAdapter: EntryAdapter
     lateinit var entryList: RecyclerView
@@ -41,7 +40,7 @@ class EntryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_entry, container, false)
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = categoryName
+        (activity as? AppCompatActivity)?.supportActionBar?.title = args.categoryName
         entryList = view.findViewById(R.id.entry_list)
         entryList.layoutManager = LinearLayoutManager(context)
         entryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -64,7 +63,6 @@ class EntryFragment : Fragment() {
         entryViewModel.entries.observe(viewLifecycleOwner, Observer {
             entryAdapter.submitList(it)
         })
-        val categoryId = EntryFragmentArgs.fromBundle(arguments).categoryId
-        entryViewModel.initEntries(categoryId)
+        entryViewModel.initEntries(args.categoryId)
     }
 }

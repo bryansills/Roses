@@ -25,9 +25,7 @@ object Libs {
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:" + Versions.viewmodel
     const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:" + Versions.viewmodel
 
-    const val navigation = "android.arch.navigation:navigation-ui:" + Versions.navigation
     const val navigation_ktx = "android.arch.navigation:navigation-ui-ktx:" + Versions.navigation
-    const val navigation_fragment = "android.arch.navigation:navigation-fragment:" + Versions.navigation
     const val navigation_fragment_ktx = "android.arch.navigation:navigation-fragment-ktx:" + Versions.navigation
 
     const val room_runtime = "androidx.room:room-runtime:" + Versions.room
