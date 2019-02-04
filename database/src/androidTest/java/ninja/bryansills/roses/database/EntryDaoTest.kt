@@ -2,7 +2,7 @@ package ninja.bryansills.roses.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.EmptyResultSetException
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.reactivex.rxkotlin.Singles
 import org.junit.Rule
 import org.junit.Test

@@ -65,6 +65,9 @@ dependencies {
     implementation Libs.navigation_fragment_ktx
 
     testImplementation Libs.kotlin_junit
-    androidTestImplementation Libs.android_testing_support_library
+    debugImplementation(Libs.fragment_testing) {
+        exclude group: "androidx.test", module: "monitor"
+    }
+    androidTestImplementation Libs.android_junit_testing
     androidTestImplementation Libs.espresso
 }

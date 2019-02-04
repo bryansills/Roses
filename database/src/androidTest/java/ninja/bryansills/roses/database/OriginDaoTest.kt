@@ -1,7 +1,7 @@
 package ninja.bryansills.roses.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.reactivex.rxkotlin.Singles
 import io.reactivex.rxkotlin.zipWith
 import ninja.bryansills.database.test.DatabaseTestUtils

@@ -44,8 +44,9 @@ object Libs {
 
     // Testing
     const val android_test_core = "androidx.test:core:" + Versions.android_test_core
+    const val fragment_testing = "androidx.fragment:fragment-testing:" + Versions.fragment_testing
     const val android_arch_core_testing = "androidx.arch.core:core-testing:" + Versions.android_arch_core_testing
-    const val android_testing_support_library = "androidx.test:runner:" + Versions.android_testing_support_library
+    const val android_junit_testing = "androidx.test.ext:junit:" + Versions.android_junit_testing
     const val espresso = "androidx.test.espresso:espresso-core:" + Versions.espresso
     const val rxkotlin = "io.reactivex.rxjava2:rxkotlin:" + Versions.rxkotlin
     const val kotlin_junit = "org.jetbrains.kotlin:kotlin-test-junit:" + Versions.kotlin

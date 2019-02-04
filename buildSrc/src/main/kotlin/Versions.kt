@@ -28,10 +28,11 @@ object Versions {
     const val retrofit = "2.5.0"
 
     // Test
-    const val android_test_core = "1.1.1-alpha01"
+    const val android_test_core = "1.1.0"
+    const val fragment_testing = "1.1.0-alpha03"
     const val android_arch_core_testing = "2.0.0"
-    const val android_testing_support_library = "1.1.2-alpha01"
-    const val espresso = "3.1.2-alpha01"
+    const val android_junit_testing = "1.0.0"
+    const val espresso = "3.1.1"
     const val rxkotlin = "2.3.0"
 
     // etc.

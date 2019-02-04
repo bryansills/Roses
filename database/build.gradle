@@ -40,6 +40,6 @@ dependencies {
     androidTestImplementation project(":database-test")
     androidTestImplementation Libs.android_test_core
     androidTestImplementation Libs.android_arch_core_testing
-    androidTestImplementation Libs.android_testing_support_library
+    androidTestImplementation Libs.android_junit_testing
     androidTestImplementation Libs.rxkotlin
 }
