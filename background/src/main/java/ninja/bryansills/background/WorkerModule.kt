@@ -41,7 +41,7 @@ class WorkerModule(val context: Context, @Named("REFRESH_INTERVAL") val refreshI
             @Named("BACKGROUND_WORK_NAME") workName: String,
             workPolicy: ExistingPeriodicWorkPolicy,
             workRequest: PeriodicWorkRequest
-    ) = WorkerManager(context, workerFactory, workName, workPolicy, workRequest)
+    ): WorkerManager = RealWorkerManager(context, workerFactory, workName, workPolicy, workRequest)
 
     @Provides
     fun backgroundWorkerConstraints(): Constraints = Constraints.Builder()
