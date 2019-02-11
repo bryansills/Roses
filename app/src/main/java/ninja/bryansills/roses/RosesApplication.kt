@@ -17,7 +17,7 @@ import ninja.bryansills.roses.network.models.MoshiModule
 import javax.inject.Inject
 
 
-class RosesApplication : DaggerApplication() {
+open class RosesApplication : DaggerApplication() {
 
     @Inject lateinit var workerManager: WorkerManager
 

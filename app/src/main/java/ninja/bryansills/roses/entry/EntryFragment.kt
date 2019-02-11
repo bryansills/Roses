@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,9 +23,7 @@ import javax.inject.Inject
 class EntryFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private val entryViewModel: EntryViewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProviders.of(this, viewModelFactory)[EntryViewModel::class.java]
-    }
+    private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
 
     val args: EntryFragmentArgs by navArgs()
 
@@ -60,9 +58,8 @@ class EntryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        entryViewModel.entries.observe(viewLifecycleOwner, Observer {
+        entryViewModel.getEntries(args.categoryId).observe(viewLifecycleOwner, Observer {
             entryAdapter.submitList(it)
         })
-        entryViewModel.initEntries(args.categoryId)
     }
 }

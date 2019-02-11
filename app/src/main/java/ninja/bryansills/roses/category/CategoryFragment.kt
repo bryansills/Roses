@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,9 +23,7 @@ import javax.inject.Inject
 class CategoryFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private val categoryViewModel: CategoryViewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProviders.of(this, viewModelFactory)[CategoryViewModel::class.java]
-    }
+    private val categoryViewModel: CategoryViewModel by viewModels { viewModelFactory }
 
     lateinit var binding: FragmentCategoryBinding
     lateinit var categoryAdapter: CategoryAdapter
@@ -58,7 +56,6 @@ class CategoryFragment : Fragment() {
                 is CategoryUiModel.Error -> onError(it.error)
             }
         })
-        categoryViewModel.initCategories()
     }
 
     fun onSuccess(categories: List<Category>) {

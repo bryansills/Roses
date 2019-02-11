@@ -8,7 +8,7 @@ import ninja.bryansills.roses.inject.DaggerTestApplicationComponent
 import ninja.bryansills.roses.inject.FakeRepoModule
 import ninja.bryansills.roses.inject.FakeWorkerModule
 
-class TestRosesApplication : DaggerApplication() {
+class TestRosesApplication : RosesApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val fakeRepoModule = FakeRepoModule()
         val fakeRepoComponent = DaggerFakeRepoComponent.builder()
