@@ -11,9 +11,7 @@ import javax.inject.Singleton
 @Component(
         dependencies = [RepoComponent::class, WorkerComponent::class],
         modules = [
-            ApplicationModule::class,
-            ActivityModule::class,
-            FragmentModule::class
+            ApplicationModule::class
 ])
 interface ApplicationComponent: AndroidInjector<RosesApplication> {
     @Component.Builder
