@@ -1,5 +1,6 @@
 package ninja.bryansills.roses.category
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,15 +17,14 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.AndroidSupportInjection
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
-import ninja.bryansills.roses.ViewModelFactory
 import ninja.bryansills.roses.databinding.FragmentCategoryBinding
+import ninja.bryansills.roses.factory.ViewModelFactory
 import javax.inject.Inject
 
-class CategoryFragment : Fragment() {
+@SuppressLint("ValidFragment")
+class CategoryFragment @Inject constructor(private val viewModelFactory: ViewModelFactory) : Fragment() {
 
-    @Inject lateinit var viewModelFactory: ViewModelFactory
     private val categoryViewModel: CategoryViewModel by viewModels { viewModelFactory }
-
     lateinit var binding: FragmentCategoryBinding
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var categoryList: RecyclerView

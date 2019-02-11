@@ -1,5 +1,6 @@
 package ninja.bryansills.roses.entry
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -17,16 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.AndroidSupportInjection
 import ninja.bryansills.roses.R
-import ninja.bryansills.roses.ViewModelFactory
+import ninja.bryansills.roses.factory.ViewModelFactory
 import javax.inject.Inject
 
-class EntryFragment : Fragment() {
+@SuppressLint("ValidFragment")
+class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelFactory) : Fragment() {
 
-    @Inject lateinit var viewModelFactory: ViewModelFactory
     private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
-
-    val args: EntryFragmentArgs by navArgs()
-
+    private val args: EntryFragmentArgs by navArgs()
     lateinit var entryAdapter: EntryAdapter
     lateinit var entryList: RecyclerView
 

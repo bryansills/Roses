@@ -2,7 +2,6 @@ package ninja.bryansills.roses.inject
 
 import dagger.Component
 import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
 import ninja.bryansills.background.WorkerComponent
 import ninja.bryansills.repo.RepoComponent
 import ninja.bryansills.roses.RosesApplication
@@ -12,9 +11,9 @@ import javax.inject.Singleton
 @Component(
         dependencies = [RepoComponent::class, WorkerComponent::class],
         modules = [
-            AndroidSupportInjectionModule::class,
             ApplicationModule::class,
-            ActivityModule::class
+            ActivityModule::class,
+            FragmentModule::class
 ])
 interface ApplicationComponent: AndroidInjector<RosesApplication> {
     @Component.Builder

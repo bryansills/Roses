@@ -1,4 +1,4 @@
-package ninja.bryansills.roses
+package ninja.bryansills.roses.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
