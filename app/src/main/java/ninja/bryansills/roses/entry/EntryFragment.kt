@@ -1,7 +1,6 @@
 package ninja.bryansills.roses.entry
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import dagger.android.support.AndroidSupportInjection
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.factory.ViewModelFactory
 import javax.inject.Inject
@@ -28,11 +26,6 @@ class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelF
     private val args: EntryFragmentArgs by navArgs()
     lateinit var entryAdapter: EntryAdapter
     lateinit var entryList: RecyclerView
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_entry, container, false)

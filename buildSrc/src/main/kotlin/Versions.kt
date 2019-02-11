@@ -19,7 +19,7 @@ object Versions {
     const val ktx = "1.1.0-alpha04"
     const val constraint_layout = "2.0.0-alpha3"
     const val viewmodel = "2.1.0-alpha02"
-    const val navigation = "1.0.0-alpha11"
+    const val navigation = "1.0.0-beta01"
     const val room = "2.1.0-alpha04"
     const val work_manager = "1.0.0-beta03"
 

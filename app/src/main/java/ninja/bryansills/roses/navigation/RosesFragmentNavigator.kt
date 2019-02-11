@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.FragmentNavigator
 
-@Navigator.Name("root")
+@Navigator.Name("fragment")
 class RosesFragmentNavigator(context: Context, manager: FragmentManager, containerId: Int) : FragmentNavigator(context, manager, containerId) {
     override fun instantiateFragment(context: Context, fragmentManager: FragmentManager, className: String, args: Bundle?): Fragment {
         return fragmentManager.fragmentFactory.instantiate(Class.forName(className).classLoader!!, className, args)
