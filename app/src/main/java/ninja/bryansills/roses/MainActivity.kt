@@ -20,13 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bundle = Bundle()
-        bundle.putInt("android-support-nav:fragment:graphId", R.navigation.nav_graph)
-        val navFragment = fragmentFactory.instantiate(RosesNavHostFragment::class.java.classLoader!!, RosesNavHostFragment::class.java.name, bundle) as RosesNavHostFragment
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment, navFragment)
-                .setPrimaryNavigationFragment(navFragment) // this is the equivalent to app:defaultNavHost="true"
-                .commit()
+        if (savedInstanceState == null) {
+            val bundle = Bundle()
+            bundle.putInt("android-support-nav:fragment:graphId", R.navigation.nav_graph)
+            val navFragment = fragmentFactory.instantiate(RosesNavHostFragment::class.java.classLoader!!, RosesNavHostFragment::class.java.name, bundle) as RosesNavHostFragment
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment, navFragment)
+                    .setPrimaryNavigationFragment(navFragment) // this is the equivalent to app:defaultNavHost="true"
+                    .commit()
+        }
     }
 
     override fun onSupportNavigateUp() =
