@@ -2,20 +2,17 @@ package ninja.bryansills.roses.inject
 
 import dagger.Component
 import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import ninja.bryansills.roses.RosesApplication
+import ninja.bryansills.roses.TestRosesApplication
 
 @Component(
         dependencies = [FakeWorkerComponent::class, FakeRepoComponent::class],
         modules = [
-            AndroidSupportInjectionModule::class,
-            ApplicationModule::class,
-            ActivityModule::class
+            ApplicationModule::class
         ]
 )
-interface TestApplicationComponent : AndroidInjector<RosesApplication> {
+interface TestApplicationComponent : AndroidInjector<TestRosesApplication> {
         @Component.Builder
-        abstract class Builder : AndroidInjector.Builder<RosesApplication>() { // AndroidInjector<RosesApplication>???
+        abstract class Builder : AndroidInjector.Builder<TestRosesApplication>() {
             abstract fun fakeRepoComponent(fakeRepoComponent: FakeRepoComponent): Builder
             abstract fun fakeWorkerComponent(fakeWorkerComponent: FakeWorkerComponent): Builder
         }
