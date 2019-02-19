@@ -11,16 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.roses.R
-import ninja.bryansills.roses.factory.ViewModelFactory
 import javax.inject.Inject
 
 @SuppressLint("ValidFragment")
-class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelFactory) : Fragment() {
+class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelProvider.Factory) : Fragment() {
 
     private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
     private val args: EntryFragmentArgs by navArgs()

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.databinding.FragmentCategoryBinding
-import ninja.bryansills.roses.factory.ViewModelFactory
 import javax.inject.Inject
 
 @SuppressLint("ValidFragment")
-class CategoryFragment @Inject constructor(private val viewModelFactory: ViewModelFactory) : Fragment() {
+class CategoryFragment @Inject constructor(private val viewModelFactory: ViewModelProvider.Factory) : Fragment() {
 
     private val categoryViewModel: CategoryViewModel by viewModels { viewModelFactory }
     lateinit var binding: FragmentCategoryBinding
@@ -42,7 +42,7 @@ class CategoryFragment @Inject constructor(private val viewModelFactory: ViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        categoryViewModel.categories.observe(viewLifecycleOwner, Observer {
+        categoryViewModel.getCategories().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is CategoryUiModel.Success -> onSuccess(it.categories)
                 CategoryUiModel.Loading -> onLoading()

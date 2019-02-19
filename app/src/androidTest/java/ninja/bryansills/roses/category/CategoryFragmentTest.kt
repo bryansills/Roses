@@ -6,74 +6,54 @@ import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
-import ninja.bryansills.repo.Entry
-import ninja.bryansills.repo.FetchCategoryResult
-import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
-import ninja.bryansills.roses.factory.ViewModelFactory
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import javax.inject.Provider
 
 @RunWith(AndroidJUnit4::class)
 class CategoryFragmentTest {
 
-    lateinit var repository: Repository
-    lateinit var compositeDisposable: CompositeDisposable
-
+    val categoryViewModel = FakeCategoryViewModel()
     lateinit var scenario: FragmentScenario<CategoryFragment>
 
     @Before
     fun setup() {
-        repository = FakeRepository()
-        compositeDisposable = CompositeDisposable()
-        val map = mapOf<Class<*>, Provider<ViewModel>>(Pair(CategoryViewModel::class.java, CategoryViewModelProvider(repository, compositeDisposable)))
-        val viewModelFactory = ViewModelFactory(map)
-        val fragmentFactory = TestFragmentFactory(viewModelFactory)
+        val viewModelFactory = CategoryViewModelFactory(categoryViewModel) as ViewModelProvider.Factory
+        val fragmentFactory = CategoryFragmentFactory(viewModelFactory)
 
         scenario = launchFragmentInContainer(factory = fragmentFactory)
     }
 
     @Test
-    fun something() {
+    fun displayError() {
         scenario.moveToState(Lifecycle.State.RESUMED)
-        onView(withId(R.id.category_error)).check(matches(isDisplayed()))
+        scenario.onFragment {
+            categoryViewModel.categories.value = CategoryUiModel.Error("BIG OL\' ERROR")
+        }
+        onView(withId(R.id.category_error)).check(matches(withText("BIG OL\' ERROR")))
     }
 }
 
-class CategoryViewModelProvider(val repository: Repository, val compositeDisposable: CompositeDisposable) : Provider<ViewModel> {
-    override fun get(): CategoryViewModel {
-        return CategoryViewModel(repository, compositeDisposable)
-    }
+class FakeCategoryViewModel : CategoryViewModel() {
+    val categories = MutableLiveData<CategoryUiModel>()
+    override fun getCategories(): LiveData<CategoryUiModel> = categories
 }
 
-class FakeRepository : Repository {
-    override fun categories(): Observable<FetchCategoryResult> {
-        return Observable.just(FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.UNKNOWN))
-    }
-
-    override fun getEntries(categoryId: String): Flowable<List<Entry>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun updateDatabase(): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
+class CategoryViewModelFactory(val viewModel: ViewModel) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T = viewModel as T
 }
 
-class TestFragmentFactory(val viewModelFactory: ViewModelFactory) : FragmentFactory() {
+class CategoryFragmentFactory(val viewModelFactory: ViewModelProvider.Factory) : FragmentFactory() {
     override fun instantiate(classLoader: ClassLoader, className: String, args: Bundle?): Fragment {
         return CategoryFragment(viewModelFactory)
     }
