@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "ninja.bryansills.roses.test.InstrumentedTestRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "FEEDLY_ACCESS_TOKEN", FEEDLY_ACCESS_TOKEN
     }
