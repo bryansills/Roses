@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -60,9 +61,9 @@ class CategoryFragment @Inject constructor(private val viewModelFactory: ViewMod
         binding.loading = true
     }
 
-    fun onError(error: String) {
+    fun onError(@StringRes error: Int) {
         binding.loading = false
-        binding.error = error
+        binding.error = resources.getString(error)
     }
 
     override fun getBinding(): ViewDataBinding = binding

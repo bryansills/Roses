@@ -8,6 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.repo.Repository
+import ninja.bryansills.roses.R
 import javax.inject.Inject
 
 class RealCategoryViewModel @Inject constructor(
@@ -40,15 +41,15 @@ class RealCategoryViewModel @Inject constructor(
                     is FetchCategoryResult.Error -> toErrorMessage(it.error)
                 } }
                 .startWith(CategoryUiModel.Loading)
-                .onErrorReturn { CategoryUiModel.Error("There has been an unknown error.") }
+                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_error) }
         }
     }
 
     private fun toErrorMessage(error: FetchCategoryResult.FetchCategoryError): CategoryUiModel {
         return when (error) {
-            FetchCategoryResult.FetchCategoryError.API_KEY_INVALID -> CategoryUiModel.Error("API key is invalid. Please refresh it.")
-            FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED -> CategoryUiModel.Error("API rate limit reached. Try again tomorrow.")
-            else -> CategoryUiModel.Error("There has been an unknown error.")
+            FetchCategoryResult.FetchCategoryError.API_KEY_INVALID -> CategoryUiModel.Error(R.string.api_key_invalid)
+            FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED -> CategoryUiModel.Error(R.string.api_rate_limit)
+            else -> CategoryUiModel.Error(R.string.unknown_error)
         }
     }
 }

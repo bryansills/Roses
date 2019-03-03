@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Roses</string>
+
+    <string name="unknown_error">There has been an unknown error.</string>
+    <string name="api_key_invalid">API key is invalid. Please refresh it.</string>
+    <string name="api_rate_limit">API rate limit reached. Try again tomorrow.</string>
 </resources>

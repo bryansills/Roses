@@ -45,10 +45,10 @@ class CategoryFragmentTest {
     @Test
     fun displayError() {
         scenario.onDataBindingFragment {
-            categoryViewModel.categories.value = CategoryUiModel.Error("BIG OL\' ERROR")
+            categoryViewModel.categories.value = CategoryUiModel.Error(ninja.bryansills.roses.test.R.string.test_error)
         }
 
-        onView(withId(R.id.category_error)).check(matches(withText("BIG OL\' ERROR")))
+        onView(withId(R.id.category_error)).check(matches(withText(ninja.bryansills.roses.test.R.string.test_error)))
         onView(withId(R.id.loading_bar)).check(matches(not(isDisplayed())))
     }
 
@@ -61,6 +61,12 @@ class CategoryFragmentTest {
         onView(withId(R.id.loading_bar)).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun displayEmptyList() {
+        scenario.onDataBindingFragment {
+            categoryViewModel.categories.value = CategoryUiModel.Success(emptyList())
+        }
+    }
 }
 
 class FakeCategoryViewModel : CategoryViewModel() {
