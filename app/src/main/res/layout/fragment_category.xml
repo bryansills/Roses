@@ -11,6 +11,10 @@
         <variable
             name="error"
             type="String" />
+
+        <variable
+            name="categories"
+            type="java.util.List" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +28,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:visibleGone="@{error == null}"
+            app:data="@{categories}"
             tools:listitem="@layout/item_category"/>
 
         <ProgressBar

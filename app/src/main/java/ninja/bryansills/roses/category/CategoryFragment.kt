@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.binding.BindingFragment
@@ -25,18 +24,16 @@ import javax.inject.Inject
 class CategoryFragment @Inject constructor(private val viewModelFactory: ViewModelProvider.Factory) : Fragment(), BindingFragment {
 
     private val categoryViewModel: CategoryViewModel by viewModels { viewModelFactory }
-    lateinit var binding: FragmentCategoryBinding
-    lateinit var categoryAdapter: CategoryAdapter
-    lateinit var categoryList: RecyclerView
+    private lateinit var binding: FragmentCategoryBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
 
-        categoryList = binding.root.findViewById(R.id.category_list)
+        val categoryList = binding.categoryList
         categoryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         categoryList.adapter = CategoryAdapter {
             binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
-        }.also { this.categoryAdapter = it }
+        }
 
         return binding.root
     }
@@ -52,16 +49,16 @@ class CategoryFragment @Inject constructor(private val viewModelFactory: ViewMod
         })
     }
 
-    fun onSuccess(categories: List<Category>) {
+    private fun onSuccess(categories: List<Category>) {
         binding.loading = false
-        categoryAdapter.submitList(categories)
+        binding.categories = categories
     }
 
-    fun onLoading() {
+    private fun onLoading() {
         binding.loading = true
     }
 
-    fun onError(@StringRes error: Int) {
+    private fun onError(@StringRes error: Int) {
         binding.loading = false
         binding.error = resources.getString(error)
     }
