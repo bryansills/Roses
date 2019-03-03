@@ -5,16 +5,8 @@
 
     <data>
         <variable
-            name="loading"
-            type="boolean" />
-
-        <variable
-            name="error"
-            type="String" />
-
-        <variable
-            name="categories"
-            type="java.util.List" />
+            name="uiModel"
+            type="ninja.bryansills.roses.category.CategoryUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:visibleGone="@{error == null}"
-            app:data="@{categories}"
+            app:visibleGone="@{uiModel.hasData()}"
+            app:data="@{uiModel.data}"
             tools:listitem="@layout/item_category"/>
 
         <ProgressBar
@@ -40,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visibleGone="@{loading}" />
+            app:visibleGone="@{uiModel.loading}" />
 
         <TextView
             android:id="@+id/category_error"
@@ -48,13 +40,26 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:text="@{error}"
-            app:layout_constraintBottom_toBottomOf="@+id/category_list"
-            app:layout_constraintEnd_toEndOf="@+id/category_list"
+            android:text="@{uiModel.getError(context)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visibleGone="@{error != null}"
+            app:visibleGone="@{uiModel.hasError()}"
             tools:text="This is an error message." />
+
+        <TextView
+            android:id="@+id/category_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/categories_empty"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleGone="@{uiModel.empty}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
