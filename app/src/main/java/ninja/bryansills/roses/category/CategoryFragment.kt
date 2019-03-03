@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
@@ -33,7 +32,6 @@ class CategoryFragment @Inject constructor(private val viewModelFactory: ViewMod
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
 
         categoryList = binding.root.findViewById(R.id.category_list)
-        categoryList.layoutManager = LinearLayoutManager(context)
         categoryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         categoryList.adapter = CategoryAdapter {
             binding.root.findNavController().navigate(CategoryFragmentDirections.selectCategory(it.id, it.title))
