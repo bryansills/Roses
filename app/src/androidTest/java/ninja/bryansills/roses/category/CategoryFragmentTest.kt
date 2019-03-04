@@ -33,8 +33,7 @@ class CategoryFragmentTest {
     val categoryViewModel = FakeCategoryViewModel()
     val fragmentFactory = CategoryFragmentFactory(SingleViewModelFactory(categoryViewModel))
 
-    @Rule
-    @JvmField
+    @get:Rule
     val fragmentScenarioRule = FragmentScenarioRule(fragmentFactory, CategoryFragment::class.java)
 
     lateinit var scenario: FragmentScenario<CategoryFragment>

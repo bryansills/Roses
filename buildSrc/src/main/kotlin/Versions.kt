@@ -17,6 +17,7 @@ object Versions {
     // Android
     const val appcompat = "1.1.0-alpha01"
     const val ktx = "1.1.0-alpha04"
+    const val fragment = "1.1.0-alpha04"
     const val constraint_layout = "2.0.0-alpha3"
     const val viewmodel = "2.1.0-alpha02"
     const val navigation = "1.0.0-beta01"
@@ -29,7 +30,6 @@ object Versions {
 
     // Test
     const val android_test_core = "1.1.0"
-    const val fragment_testing = "1.1.0-alpha04"
     const val android_arch_core_testing = "2.0.0"
     const val espresso = "3.1.1"
     const val rxkotlin = "2.3.0"

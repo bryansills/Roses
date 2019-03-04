@@ -20,6 +20,7 @@ object Libs {
     // Android
     const val appcompat = "androidx.appcompat:appcompat:" + Versions.appcompat
     const val androidx_core = "androidx.core:core-ktx:" + Versions.ktx
+    const val android_fragment = "androidx.fragment:fragment-ktx:" + Versions.fragment
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:" + Versions.constraint_layout
 
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:" + Versions.viewmodel
@@ -44,7 +45,8 @@ object Libs {
 
     // Testing
     const val android_test_core = "androidx.test:core:" + Versions.android_test_core
-    const val fragment_testing = "androidx.fragment:fragment-testing:" + Versions.fragment_testing
+    const val android_test_runner = "androidx.test:runner:" + Versions.android_test_core
+    const val fragment_testing = "androidx.fragment:fragment-testing:" + Versions.fragment
     const val android_arch_core_testing = "androidx.arch.core:core-testing:" + Versions.android_arch_core_testing
     const val android_junit_testing = "androidx.test.ext:junit:" + Versions.android_test_core
     const val espresso = "androidx.test.espresso:espresso-core:" + Versions.espresso
