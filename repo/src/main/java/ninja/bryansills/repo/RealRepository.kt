@@ -28,6 +28,7 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
                         else -> FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.UNKNOWN)
                     }
                 }
+                .startWith(FetchCategoryResult.InFlight)
     }
 
     override fun getEntries(categoryId: String): Flowable<List<Entry>> {

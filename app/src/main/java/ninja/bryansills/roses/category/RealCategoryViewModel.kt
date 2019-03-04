@@ -39,6 +39,7 @@ class RealCategoryViewModel @Inject constructor(
     private fun toCategoryUiModel(): ObservableTransformer<in FetchCategoryResult, out CategoryUiModel> {
         return ObservableTransformer { fetchCategoryResult ->
             fetchCategoryResult.map { when (it) {
+                    is FetchCategoryResult.InFlight -> CategoryUiModel.Loading
                     is FetchCategoryResult.Success ->CategoryUiModel.Success(it.categories)
                     is FetchCategoryResult.Error -> toErrorMessage(it.error)
                 } }
