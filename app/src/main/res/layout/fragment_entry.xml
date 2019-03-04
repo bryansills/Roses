@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="java.util.List" />
+        <import type="ninja.bryansills.repo.Entry" />
         <variable
             name="uiModel"
-            type="ninja.bryansills.roses.entry.EntryUiModel" />
+            type="ninja.bryansills.roses.utils.AsyncUiModel&lt;List&lt;Entry>>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:data="@{uiModel.getData()}"
             tools:listitem="@layout/item_entry"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.databinding.FragmentEntryBinding
 import javax.inject.Inject
@@ -26,14 +25,12 @@ class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelP
     private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
     private val args: EntryFragmentArgs by navArgs()
     private lateinit var binding: FragmentEntryBinding
-    lateinit var entryAdapter: EntryAdapter
-    lateinit var entryList: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_entry, container, false)
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = args.categoryName
-        entryList = binding.entryList
+        val entryList = binding.entryList
         entryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         entryList.adapter = EntryAdapter {
             if (it.url != null && activity != null) {
@@ -43,7 +40,7 @@ class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelP
                     startActivity(browserIntent)
                 }
             }
-        }.also { this.entryAdapter = it }
+        }
 
         return binding.root
     }
@@ -51,10 +48,7 @@ class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelP
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        entryViewModel.getEntries(args.categoryId).observe(viewLifecycleOwner, Observer {
-            if (it is EntryUiModel.Success) {
-                entryAdapter.submitList(it.entries)
-            }
-        })
+        entryViewModel.getEntries(args.categoryId)
+                .observe(viewLifecycleOwner, Observer { binding.uiModel = it })
     }
 }
