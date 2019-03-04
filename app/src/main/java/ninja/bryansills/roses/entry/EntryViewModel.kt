@@ -8,6 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.Entry
+import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.repo.Repository
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class EntryViewModel @Inject constructor(val repository: Repository,
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { entries.value = it },
+                        { entries.value = (it as? FetchEntryResult.Success)?.entries },
                         { Log.w("BLARG", it.toString()) }
                 ))
 

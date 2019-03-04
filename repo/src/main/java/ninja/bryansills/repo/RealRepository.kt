@@ -31,9 +31,14 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
                 .startWith(FetchCategoryResult.InFlight)
     }
 
-    override fun getEntries(categoryId: String): Flowable<List<Entry>> {
-        return databaseService.getEntries(categoryId).map {
-            dbEntries -> dbEntries.map { Entry(it.id, it.title, it.url, Date(it.published), it.author, it.summary) } }
+    override fun getEntries(categoryId: String): Flowable<FetchEntryResult> {
+        return databaseService.getEntries(categoryId)
+                .map {
+                    dbEntries -> dbEntries.map { Entry(it.id, it.title, it.url, Date(it.published), it.author, it.summary) }
+                }
+                .map { entries -> FetchEntryResult.Success(entries) as FetchEntryResult }
+                .onErrorReturn { FetchEntryResult.Error(FetchEntryResult.FetchEntryError.UNKNOWN) }
+                .startWith(FetchEntryResult.InFlight)
     }
 
     override fun updateDatabase(): Completable {

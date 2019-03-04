@@ -7,8 +7,8 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import ninja.bryansills.repo.Category
-import ninja.bryansills.repo.Entry
 import ninja.bryansills.repo.FetchCategoryResult
+import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.utils.LiveDataUtils.getValue
@@ -83,6 +83,6 @@ class FakeRepository : Repository {
     val categorySubject = PublishSubject.create<FetchCategoryResult>()
 
     override fun categories(): Observable<FetchCategoryResult> = categorySubject
-    override fun getEntries(categoryId: String): Flowable<List<Entry>> = Flowable.just(emptyList())
+    override fun getEntries(categoryId: String): Flowable<FetchEntryResult> = Flowable.just(FetchEntryResult.InFlight)
     override fun updateDatabase(): Completable = Completable.complete()
 }
