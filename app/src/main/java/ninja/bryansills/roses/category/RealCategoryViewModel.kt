@@ -24,11 +24,8 @@ class RealCategoryViewModel @Inject constructor(
                 .compose(toCategoryUiModel())
                 .subscribeOn(Schedulers.io())
                 .observeOn(observeOnScheduler)
-                .subscribe({
-                    categories.value = it
-                }, {
-                    categories.value = CategoryUiModel.Error(R.string.unknown_error)
-                })
+                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_error) }
+                .subscribe { categories.value = it }
         )
     }
 
@@ -39,7 +36,7 @@ class RealCategoryViewModel @Inject constructor(
 
     override fun getCategories(): LiveData<CategoryUiModel> = categories
 
-    private fun toCategoryUiModel(): ObservableTransformer<in FetchCategoryResult, out CategoryUiModel>? {
+    private fun toCategoryUiModel(): ObservableTransformer<in FetchCategoryResult, out CategoryUiModel> {
         return ObservableTransformer { fetchCategoryResult ->
             fetchCategoryResult.map { when (it) {
                     is FetchCategoryResult.Success ->CategoryUiModel.Success(it.categories)

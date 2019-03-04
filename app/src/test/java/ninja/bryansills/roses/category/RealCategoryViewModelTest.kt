@@ -6,10 +6,12 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import ninja.bryansills.repo.Category
 import ninja.bryansills.repo.Entry
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.repo.Repository
-import ninja.bryansills.roses.utils.getValue
+import ninja.bryansills.roses.R
+import ninja.bryansills.roses.utils.LiveDataUtils.getValue
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -39,7 +41,41 @@ class RealCategoryViewModelTest {
     fun basicSuccess() {
         fakeRepository.categorySubject.onNext(FetchCategoryResult.Success(emptyList()))
         val result = getValue(categoryViewModel.getCategories())
+
         assertTrue(result is CategoryUiModel.Success)
+        assertTrue((result as CategoryUiModel.Success).categories == emptyList<Category>())
+    }
+
+    @Test
+    fun normalSuccess() {
+        val categories = listOf(
+                Category("1", "FIRST", 4),
+                Category("2", "SECOND", 6)
+        )
+
+        fakeRepository.categorySubject.onNext(FetchCategoryResult.Success(categories))
+        val result = getValue(categoryViewModel.getCategories())
+
+        assertTrue(result is CategoryUiModel.Success)
+        assertTrue((result as CategoryUiModel.Success).categories == categories)
+    }
+
+    @Test
+    fun expectedError() {
+        fakeRepository.categorySubject.onNext(FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.API_KEY_INVALID))
+        val result = getValue(categoryViewModel.getCategories())
+
+        assertTrue(result is CategoryUiModel.Error)
+        assertTrue((result as CategoryUiModel.Error).error == R.string.api_key_invalid)
+    }
+
+    @Test
+    fun unexpectedError() {
+        fakeRepository.categorySubject.onError(Throwable("LOL WTF"))
+        val result = getValue(categoryViewModel.getCategories())
+
+        assertTrue(result is CategoryUiModel.Error)
+        assertTrue((result as CategoryUiModel.Error).error == R.string.unknown_error)
     }
 }
 

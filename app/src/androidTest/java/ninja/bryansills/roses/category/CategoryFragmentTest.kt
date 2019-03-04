@@ -17,9 +17,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ninja.bryansills.repo.Category
 import ninja.bryansills.roses.R
+import ninja.bryansills.roses.utils.CustomMatchers.atPosition
 import ninja.bryansills.roses.utils.FragmentScenarioRule
 import ninja.bryansills.roses.utils.SingleViewModelFactory
-import ninja.bryansills.roses.utils.atPosition
 import ninja.bryansills.roses.utils.onDataBindingFragment
 import org.hamcrest.Matchers.not
 import org.junit.Before
