@@ -2,7 +2,9 @@
     <string name="app_name">Roses</string>
 
     <string name="categories_empty">There is nothing to read. :(</string>
-    <string name="unknown_error">There has been an unknown error.</string>
+    <string name="unknown_category_error">There has been an unknown error.</string>
     <string name="api_key_invalid">API key is invalid. Please refresh it.</string>
     <string name="api_rate_limit">API rate limit reached. Try again tomorrow.</string>
+
+    <string name="unknown_entry_error">There has an error fetching this category.</string>
 </resources>

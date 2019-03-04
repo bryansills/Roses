@@ -33,7 +33,7 @@ class RealRepositoryTest {
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
         repository.categories().test()
-                .assertValue {
+                .assertValue { // InFlight
                     (it as FetchCategoryResult.Success).categories == repositoryResults
                 }
                 .assertValueCount(1)

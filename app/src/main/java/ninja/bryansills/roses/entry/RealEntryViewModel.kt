@@ -1,21 +1,23 @@
 package ninja.bryansills.roses.entry
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.FlowableTransformer
+import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.Entry
 import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.repo.Repository
+import ninja.bryansills.roses.R
 import javax.inject.Inject
 
 class RealEntryViewModel @Inject constructor(
-        val repository: Repository,
-        private val compositeDisposable: CompositeDisposable
+        private val repository: Repository,
+        private val observeOnScheduler: Scheduler
 ) : EntryViewModel() {
 
+    private val compositeDisposable = CompositeDisposable()
     private val entries = MutableLiveData<List<Entry>>()
 
     override fun onCleared() {
@@ -25,13 +27,25 @@ class RealEntryViewModel @Inject constructor(
 
     override fun getEntries(categoryId: String): LiveData<List<Entry>> {
         compositeDisposable.add(repository.getEntries(categoryId)
+                .compose(toEntryUiModel())
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { entries.value = (it as? FetchEntryResult.Success)?.entries },
-                        { Log.w("BLARG", it.toString()) }
-                ))
+                .observeOn(observeOnScheduler)
+                .onErrorReturn { EntryUiModel.Error(R.string.unknown_entry_error) }
+                .subscribe { entries.value = (it as? EntryUiModel.Success)?.entries }
+        )
 
         return entries
+    }
+
+    private fun toEntryUiModel(): FlowableTransformer<in FetchEntryResult, out EntryUiModel> {
+        return FlowableTransformer { fetchEntryResult ->
+            fetchEntryResult.map { when (it) {
+                    is FetchEntryResult.InFlight -> EntryUiModel.Loading
+                    is FetchEntryResult.Success -> EntryUiModel.Success(it.entries)
+                    is FetchEntryResult.Error -> EntryUiModel.Error(R.string.unknown_entry_error)
+                } }
+                .startWith(EntryUiModel.Loading)
+                .onErrorReturn { EntryUiModel.Error(R.string.unknown_entry_error) }
+        }
     }
 }

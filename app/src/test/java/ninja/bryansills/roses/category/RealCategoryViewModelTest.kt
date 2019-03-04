@@ -75,7 +75,7 @@ class RealCategoryViewModelTest {
         val result = getValue(categoryViewModel.getCategories())
 
         assertTrue(result is CategoryUiModel.Error)
-        assertTrue((result as CategoryUiModel.Error).error == R.string.unknown_error)
+        assertTrue((result as CategoryUiModel.Error).error == R.string.unknown_category_error)
     }
 }
 

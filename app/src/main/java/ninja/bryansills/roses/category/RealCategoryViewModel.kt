@@ -24,7 +24,7 @@ class RealCategoryViewModel @Inject constructor(
                 .compose(toCategoryUiModel())
                 .subscribeOn(Schedulers.io())
                 .observeOn(observeOnScheduler)
-                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_error) }
+                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_category_error) }
                 .subscribe { categories.value = it }
         )
     }
@@ -44,7 +44,7 @@ class RealCategoryViewModel @Inject constructor(
                     is FetchCategoryResult.Error -> toErrorMessage(it.error)
                 } }
                 .startWith(CategoryUiModel.Loading)
-                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_error) }
+                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_category_error) }
         }
     }
 
@@ -52,7 +52,7 @@ class RealCategoryViewModel @Inject constructor(
         return when (error) {
             FetchCategoryResult.FetchCategoryError.API_KEY_INVALID -> CategoryUiModel.Error(R.string.api_key_invalid)
             FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED -> CategoryUiModel.Error(R.string.api_rate_limit)
-            else -> CategoryUiModel.Error(R.string.unknown_error)
+            else -> CategoryUiModel.Error(R.string.unknown_category_error)
         }
     }
 }
