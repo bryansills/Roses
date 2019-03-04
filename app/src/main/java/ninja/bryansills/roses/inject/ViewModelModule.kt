@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ninja.bryansills.roses.category.CategoryViewModel
 import ninja.bryansills.roses.category.RealCategoryViewModel
 import ninja.bryansills.roses.entry.EntryViewModel
+import ninja.bryansills.roses.entry.RealEntryViewModel
 import ninja.bryansills.roses.factory.ViewModelFactory
 
 @Module
@@ -21,7 +22,7 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ClassKey(EntryViewModel::class)
-    abstract fun bindEntryViewModel(entryViewModel: EntryViewModel): ViewModel
+    abstract fun bindEntryViewModel(entryViewModel: RealEntryViewModel): ViewModel
 
     @Binds
     abstract fun bindFactory(factory: ViewModelFactory): ViewModelProvider.Factory
