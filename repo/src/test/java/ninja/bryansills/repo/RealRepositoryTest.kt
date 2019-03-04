@@ -19,6 +19,14 @@ class RealRepositoryTest {
     }
 
     @Test
+    fun startsWithInFlight() {
+        repository.categories().test()
+                .assertValueAt(0) {
+                    it is FetchCategoryResult.InFlight
+                }
+    }
+
+    @Test
     fun cachedResultsAreReturnedWhenDataIsFresh() {
         val databaseResults = listOf(
                 DatabaseTestUtils.createCategory(1),
@@ -33,10 +41,10 @@ class RealRepositoryTest {
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
         repository.categories().test()
-                .assertValue { // InFlight
+                .assertValueAt(1) {
                     (it as FetchCategoryResult.Success).categories == repositoryResults
                 }
-                .assertValueCount(1)
+                .assertValueCount(2)
                 .assertNoErrors()
         assertTrue(!fakeNetworkService.hasBeenCalled)
     }
@@ -49,10 +57,10 @@ class RealRepositoryTest {
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
         repository.categories().test()
-                .assertValue {
+                .assertValueAt(1) {
                     it is FetchCategoryResult.Success
                 }
-                .assertValueCount(1)
+                .assertValueCount(2)
                 .assertNoErrors()
         assertTrue(fakeNetworkService.hasBeenCalled)
         assertTrue(fakeDatabaseService.hasCategoriesBeenCalled)
@@ -67,10 +75,10 @@ class RealRepositoryTest {
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
         repository.categories().test()
-                .assertValue {
+                .assertValueAt(1) {
                     it is FetchCategoryResult.Error
                 }
-                .assertValueCount(1)
+                .assertValueCount(2)
                 .assertNoErrors()
         assertTrue(fakeNetworkService.hasBeenCalled)
         assertTrue(fakeDatabaseService.hasCategoriesBeenCalled)
