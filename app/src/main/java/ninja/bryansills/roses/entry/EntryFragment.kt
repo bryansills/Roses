@@ -8,15 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ninja.bryansills.roses.R
+import ninja.bryansills.roses.databinding.FragmentEntryBinding
 import javax.inject.Inject
 
 @SuppressLint("ValidFragment")
@@ -24,15 +25,15 @@ class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelP
 
     private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
     private val args: EntryFragmentArgs by navArgs()
+    private lateinit var binding: FragmentEntryBinding
     lateinit var entryAdapter: EntryAdapter
     lateinit var entryList: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_entry, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_entry, container, false)
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = args.categoryName
-        entryList = view.findViewById(R.id.entry_list)
-        entryList.layoutManager = LinearLayoutManager(context)
+        entryList = binding.entryList
         entryList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         entryList.adapter = EntryAdapter {
             if (it.url != null && activity != null) {
@@ -44,14 +45,16 @@ class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelP
             }
         }.also { this.entryAdapter = it }
 
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         entryViewModel.getEntries(args.categoryId).observe(viewLifecycleOwner, Observer {
-            entryAdapter.submitList(it)
+            if (it is EntryUiModel.Success) {
+                entryAdapter.submitList(it.entries)
+            }
         })
     }
 }
