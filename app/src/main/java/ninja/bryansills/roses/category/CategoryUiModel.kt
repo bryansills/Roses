@@ -1,53 +1,27 @@
 package ninja.bryansills.roses.category
 
-import android.content.Context
 import androidx.annotation.StringRes
 import ninja.bryansills.repo.Category
+import ninja.bryansills.roses.ui.AsyncUiModel
+import ninja.bryansills.roses.ui.ErrorDelegate
+import ninja.bryansills.roses.ui.LoadingDelegate
+import ninja.bryansills.roses.ui.SuccessDelegate
 
-sealed class CategoryUiModel {
-    data class Success(val categories: List<Category>) : CategoryUiModel()
-    object Loading : CategoryUiModel()
-    data class Error(@StringRes val error: Int) : CategoryUiModel()
+sealed class CategoryUiModel(
+        delegate: AsyncUiModel<List<Category>>
+) : AsyncUiModel<List<Category>> by delegate {
 
-    fun isLoading(): Boolean {
-        return when (this) {
-            is Loading -> true
+    data class Success(val categories: List<Category>)
+        : CategoryUiModel(SuccessDelegate(categories))
+    object Loading
+        : CategoryUiModel(LoadingDelegate())
+    data class Error(@StringRes val error: Int)
+        : CategoryUiModel(ErrorDelegate(error))
+
+    val isEmpty by lazy {
+        when (this) {
+            is Success -> this.data?.isEmpty()
             else -> false
-        }
-    }
-
-    fun hasError(): Boolean {
-        return when (this) {
-            is Error -> true
-            else -> false
-        }
-    }
-
-    fun isEmpty(): Boolean {
-        return when (this) {
-            is Success -> this.categories.isEmpty()
-            else -> false
-        }
-    }
-
-    fun hasData(): Boolean {
-        return when (this) {
-            is Success -> this.categories.isNotEmpty()
-            else -> false
-        }
-    }
-
-    fun getError(context: Context): String {
-        return when (this) {
-            is Error -> context.getString(this.error)
-            else -> ""
-        }
-    }
-
-    fun getData(): List<Category> {
-        return when (this) {
-            is Success -> this.categories
-            else -> emptyList()
         }
     }
 }

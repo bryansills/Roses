@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:visibleGone="@{uiModel.hasData()}"
+            app:visibleGone="@{uiModel.hasData}"
             app:data="@{uiModel.data}"
             tools:listitem="@layout/item_category"/>
 
@@ -45,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visibleGone="@{uiModel.hasError()}"
+            app:visibleGone="@{uiModel.hasError}"
             tools:text="This is an error message." />
 
         <TextView
@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visibleGone="@{uiModel.empty}" />
+            app:visibleGone="@{uiModel.isEmpty}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
