@@ -8,7 +8,7 @@
         <import type="ninja.bryansills.repo.Entry" />
         <variable
             name="uiModel"
-            type="ninja.bryansills.roses.utils.AsyncUiModel&lt;List&lt;Entry>>" />
+            type="ninja.bryansills.roses.entry.EntryUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
