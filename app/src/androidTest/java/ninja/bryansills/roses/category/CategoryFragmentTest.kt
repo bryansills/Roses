@@ -1,13 +1,9 @@
 package ninja.bryansills.roses.category
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
@@ -20,6 +16,7 @@ import ninja.bryansills.roses.R
 import ninja.bryansills.roses.utils.CustomMatchers.atPosition
 import ninja.bryansills.roses.utils.FragmentScenarioRule
 import ninja.bryansills.roses.utils.SingleViewModelFactory
+import ninja.bryansills.roses.utils.SingleViewModelFragmentFactory
 import ninja.bryansills.roses.utils.onDataBindingFragment
 import org.hamcrest.Matchers.not
 import org.junit.Before
@@ -31,10 +28,10 @@ import org.junit.runner.RunWith
 class CategoryFragmentTest {
 
     val categoryViewModel = FakeCategoryViewModel()
-    val fragmentFactory = CategoryFragmentFactory(SingleViewModelFactory(categoryViewModel))
+    val fragmentFactory = SingleViewModelFragmentFactory(SingleViewModelFactory(categoryViewModel))
 
     @get:Rule
-    val fragmentScenarioRule = FragmentScenarioRule(fragmentFactory, CategoryFragment::class.java)
+    val fragmentScenarioRule = FragmentScenarioRule(fragmentFactory, null, CategoryFragment::class.java)
 
     lateinit var scenario: FragmentScenario<CategoryFragment>
 
@@ -95,10 +92,4 @@ class CategoryFragmentTest {
 class FakeCategoryViewModel : CategoryViewModel() {
     val categories = MutableLiveData<CategoryUiModel>()
     override fun getCategories(): LiveData<CategoryUiModel> = categories
-}
-
-class CategoryFragmentFactory(val viewModelFactory: ViewModelProvider.Factory) : FragmentFactory() {
-    override fun instantiate(classLoader: ClassLoader, className: String, args: Bundle?): Fragment {
-        return CategoryFragment(viewModelFactory)
-    }
 }

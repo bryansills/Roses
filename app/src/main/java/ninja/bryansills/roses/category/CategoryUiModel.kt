@@ -12,7 +12,9 @@ sealed class CategoryUiModel(
 ) : AsyncUiModel<List<Category>> by delegate {
 
     data class Success(val categories: List<Category>)
-        : CategoryUiModel(SuccessDelegate(categories))
+        : CategoryUiModel(SuccessDelegate(categories)) {
+        override val hasData = categories.isNotEmpty()
+    }
     object Loading
         : CategoryUiModel(LoadingDelegate())
     data class Error(@StringRes val error: Int)
