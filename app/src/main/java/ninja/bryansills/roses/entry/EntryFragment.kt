@@ -23,7 +23,7 @@ import javax.inject.Inject
 class EntryFragment @Inject constructor(private val viewModelFactory: ViewModelProvider.Factory) : Fragment() {
 
     private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
-    private val args: EntryFragmentArgs by navArgs()
+    val args: EntryFragmentArgs by navArgs()
     private lateinit var binding: FragmentEntryBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
