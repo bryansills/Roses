@@ -3,7 +3,7 @@ object Libs {
     const val gradle_versions_plugin = "com.github.ben-manes:gradle-versions-plugin:" + Versions.gradle_versions_plugin
     const val android_gradle_plugin = "com.android.tools.build:gradle:" + Versions.android_gradle_plugin
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:" + Versions.kotlin
-    const val navigation_safe_args_gradle_plugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:" + Versions.navigation
+    const val navigation_safe_args_gradle_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:" + Versions.navigation
 
     // Core
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:" + Versions.kotlin
@@ -26,14 +26,14 @@ object Libs {
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:" + Versions.viewmodel
     const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:" + Versions.viewmodel
 
-    const val navigation_ktx = "android.arch.navigation:navigation-ui-ktx:" + Versions.navigation
-    const val navigation_fragment_ktx = "android.arch.navigation:navigation-fragment-ktx:" + Versions.navigation
+    const val navigation_ktx = "androidx.navigation:navigation-ui-ktx:" + Versions.navigation
+    const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:" + Versions.navigation
 
     const val room_runtime = "androidx.room:room-runtime:" + Versions.room
     const val room_rxjava = "androidx.room:room-rxjava2:" + Versions.room
     const val room_compiler = "androidx.room:room-compiler:" + Versions.room
 
-    const val work_manager = "android.arch.work:work-runtime:" + Versions.work_manager
+    const val work_manager = "androidx.work:work-runtime-ktx:" + Versions.work_manager
 
     // Square
     const val moshi = "com.squareup.moshi:moshi:" + Versions.moshi
