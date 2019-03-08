@@ -9,6 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ninja.bryansills.repo.Entry
 import ninja.bryansills.roses.R
@@ -57,6 +58,9 @@ class EntryFragmentTest {
             entryViewModel.entries.value = EntryUiModel.Loading()
         }
 
+        // Ughhhhhhhhh
+        Thread.sleep(1000)
+
         onView(withId(R.id.entry_error)).check(matches(not(isDisplayed())))
         onView(withId(R.id.loading_bar)).check(matches(isDisplayed()))
         onView(withId(R.id.entry_list)).check(matches(not(isDisplayed())))
@@ -65,10 +69,13 @@ class EntryFragmentTest {
     @Test
     fun displayError() {
         scenario.onDataBindingFragment {
-            entryViewModel.entries.value = EntryUiModel.Error(ninja.bryansills.roses.test.R.string.test_error)
+            entryViewModel.entries.value = EntryUiModel.Error(R.string.app_name)
         }
 
-        onView(withId(R.id.entry_error)).check(matches(ViewMatchers.withText(ninja.bryansills.roses.test.R.string.test_error)))
+        // Ughhhhhhhhh
+        Thread.sleep(1000)
+
+        onView(withId(R.id.entry_error)).check(matches(withText(R.string.app_name)))
         onView(withId(R.id.loading_bar)).check(matches(not(isDisplayed())))
         onView(withId(R.id.entry_list)).check(matches(not(isDisplayed())))
     }
@@ -82,6 +89,9 @@ class EntryFragmentTest {
             )
             entryViewModel.entries.value = EntryUiModel.Success(entries)
         }
+
+        // Ughhhhhhhhh
+        Thread.sleep(1000)
 
         onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(0, ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_TITLE")))))
         onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(0, ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_AUTHOR")))))

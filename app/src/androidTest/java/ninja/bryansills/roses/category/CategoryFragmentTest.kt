@@ -44,10 +44,10 @@ class CategoryFragmentTest {
     @Test
     fun displayError() {
         scenario.onDataBindingFragment {
-            categoryViewModel.categories.value = CategoryUiModel.Error(ninja.bryansills.roses.test.R.string.test_error)
+            categoryViewModel.categories.value = CategoryUiModel.Error(R.string.app_name)
         }
 
-        onView(withId(R.id.category_error)).check(matches(withText(ninja.bryansills.roses.test.R.string.test_error)))
+        onView(withId(R.id.category_error)).check(matches(withText(R.string.app_name)))
         onView(withId(R.id.loading_bar)).check(matches(not(isDisplayed())))
     }
 
