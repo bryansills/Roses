@@ -3,17 +3,16 @@ package ninja.bryansills.roses.category
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.ObservableTransformer
-import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
+import ninja.bryansills.roses.rx.SchedulerProvider
 import javax.inject.Inject
 
 class RealCategoryViewModel @Inject constructor(
         private val repository: Repository,
-        private val observeOnScheduler: Scheduler
+        private val schedulerProvider: SchedulerProvider
 ) : CategoryViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -22,8 +21,8 @@ class RealCategoryViewModel @Inject constructor(
     init {
         compositeDisposable.add(repository.categories()
                 .compose(toCategoryUiModel())
-                .subscribeOn(Schedulers.io())
-                .observeOn(observeOnScheduler)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .onErrorReturn { CategoryUiModel.Error(R.string.unknown_category_error) }
                 .subscribe { categories.value = it }
         )

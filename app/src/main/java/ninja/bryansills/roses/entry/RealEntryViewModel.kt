@@ -3,17 +3,16 @@ package ninja.bryansills.roses.entry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.FlowableTransformer
-import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
+import ninja.bryansills.roses.rx.SchedulerProvider
 import javax.inject.Inject
 
 class RealEntryViewModel @Inject constructor(
         private val repository: Repository,
-        private val observeOnScheduler: Scheduler
+        private val schedulerProvider: SchedulerProvider
 ) : EntryViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -27,8 +26,8 @@ class RealEntryViewModel @Inject constructor(
     override fun getEntries(categoryId: String): LiveData<EntryUiModel> {
         compositeDisposable.add(repository.getEntries(categoryId)
                 .compose(toEntryUiModel())
-                .subscribeOn(Schedulers.io())
-                .observeOn(observeOnScheduler)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .onErrorReturn { EntryUiModel.Error(R.string.unknown_entry_error) }
                 .subscribe { entries.value = it }
         )

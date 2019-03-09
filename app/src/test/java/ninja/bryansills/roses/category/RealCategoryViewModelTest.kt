@@ -1,12 +1,12 @@
 package ninja.bryansills.roses.category
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import io.reactivex.schedulers.Schedulers
 import ninja.bryansills.repo.Category
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.utils.FakeRepository
-import ninja.bryansills.roses.utils.LiveDataUtils.getValue
+import ninja.bryansills.roses.utils.TestSchedulerProvider
+import ninja.bryansills.roses.utils.getLatestValue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,21 +24,19 @@ class RealCategoryViewModelTest {
     @Before
     fun setup() {
         fakeRepository = FakeRepository()
-        categoryViewModel = RealCategoryViewModel(fakeRepository, Schedulers.trampoline())
+        categoryViewModel = RealCategoryViewModel(fakeRepository, TestSchedulerProvider())
     }
 
     @Test
     fun defaultsToLoading() {
-        val initialValue = getValue(categoryViewModel.getCategories())
+        val initialValue = categoryViewModel.getCategories().getLatestValue()
         assertTrue(initialValue is CategoryUiModel.Loading)
     }
 
     @Test
     fun basicSuccess() {
-        getValue(categoryViewModel.getCategories())
-
         fakeRepository.categorySubject.onNext(FetchCategoryResult.Success(emptyList()))
-        val result = getValue(categoryViewModel.getCategories())
+        val result = categoryViewModel.getCategories().getLatestValue()
 
         assertTrue(result is CategoryUiModel.Success)
         assertEquals(result.categories, emptyList())
@@ -46,15 +44,13 @@ class RealCategoryViewModelTest {
 
     @Test
     fun normalSuccess() {
-        getValue(categoryViewModel.getCategories())
-
         val categories = listOf(
                 Category("1", "FIRST", 4),
                 Category("2", "SECOND", 6)
         )
 
         fakeRepository.categorySubject.onNext(FetchCategoryResult.Success(categories))
-        val result = getValue(categoryViewModel.getCategories())
+        val result = categoryViewModel.getCategories().getLatestValue()
 
         assertTrue(result is CategoryUiModel.Success)
         assertEquals(result.categories, categories)
@@ -62,10 +58,8 @@ class RealCategoryViewModelTest {
 
     @Test
     fun expectedError() {
-        getValue(categoryViewModel.getCategories())
-
         fakeRepository.categorySubject.onNext(FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.API_KEY_INVALID))
-        val result = getValue(categoryViewModel.getCategories())
+        val result = categoryViewModel.getCategories().getLatestValue()
 
         assertTrue(result is CategoryUiModel.Error)
         assertEquals(result.error, R.string.api_key_invalid)
@@ -73,10 +67,8 @@ class RealCategoryViewModelTest {
 
     @Test
     fun unexpectedError() {
-        getValue(categoryViewModel.getCategories())
-
         fakeRepository.categorySubject.onError(Throwable("LOL WTF"))
-        val result = getValue(categoryViewModel.getCategories())
+        val result = categoryViewModel.getCategories().getLatestValue()
 
         assertTrue(result is CategoryUiModel.Error)
         assertEquals(result.error, R.string.unknown_category_error)

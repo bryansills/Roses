@@ -5,21 +5,18 @@ import androidx.lifecycle.Observer
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-object LiveDataUtils {
-    fun <T> getValue(liveData: LiveData<T>): T {
-        val data = arrayOfNulls<Any>(1)
-        val latch = CountDownLatch(1)
-        val observer = object : Observer<T> {
-            override fun onChanged(o: T?) {
-                data[0] = o
-                latch.countDown()
-                liveData.removeObserver(this)
-            }
+fun <U> LiveData<U>.getLatestValue(): U? {
+    var result: U? = null
+    val latch = CountDownLatch(1)
+    val observer = object : Observer<U> {
+        override fun onChanged(latest: U?) {
+            result = latest
+            latch.countDown()
+            this@getLatestValue.removeObserver(this)
         }
-        liveData.observeForever(observer)
-        latch.await(2, TimeUnit.SECONDS)
-
-        @Suppress("UNCHECKED_CAST")
-        return data[0] as T
     }
+    this.observeForever(observer)
+    latch.await(2, TimeUnit.SECONDS)
+
+    return result
 }

@@ -2,10 +2,11 @@ package ninja.bryansills.roses.inject
 
 import dagger.Module
 import dagger.Provides
-import io.reactivex.android.schedulers.AndroidSchedulers
+import ninja.bryansills.roses.rx.RealSchedulerProvider
+import ninja.bryansills.roses.rx.SchedulerProvider
 
 @Module
 class RxModule {
     @Provides
-    fun observeOnScheduler() = AndroidSchedulers.mainThread()!!
+    fun schedulerProvider(): SchedulerProvider = RealSchedulerProvider()
 }
