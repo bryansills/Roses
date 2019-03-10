@@ -58,9 +58,6 @@ class EntryFragmentTest {
             entryViewModel.entries.value = EntryUiModel.Loading()
         }
 
-        // Ughhhhhhhhh
-        Thread.sleep(1000)
-
         onView(withId(R.id.entry_error)).check(matches(not(isDisplayed())))
         onView(withId(R.id.loading_bar)).check(matches(isDisplayed()))
         onView(withId(R.id.entry_list)).check(matches(not(isDisplayed())))
@@ -71,9 +68,6 @@ class EntryFragmentTest {
         scenario.onDataBindingFragment {
             entryViewModel.entries.value = EntryUiModel.Error(R.string.app_name)
         }
-
-        // Ughhhhhhhhh
-        Thread.sleep(1000)
 
         onView(withId(R.id.entry_error)).check(matches(withText(R.string.app_name)))
         onView(withId(R.id.loading_bar)).check(matches(not(isDisplayed())))
@@ -89,9 +83,6 @@ class EntryFragmentTest {
             )
             entryViewModel.entries.value = EntryUiModel.Success(entries)
         }
-
-        // Ughhhhhhhhh
-        Thread.sleep(1000)
 
         onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(0, ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_TITLE")))))
         onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(0, ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_AUTHOR")))))

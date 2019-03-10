@@ -10,6 +10,8 @@ inline fun <T: Fragment> FragmentScenario<T>.onDataBindingFragment(crossinline l
 
         if (it is BindingFragment) {
             it.getBinding().executePendingBindings()
+        } else {
+            throw RuntimeException("Don\'t run onDataBindingFragment on non-databinding Fragments")
         }
     }
 }
