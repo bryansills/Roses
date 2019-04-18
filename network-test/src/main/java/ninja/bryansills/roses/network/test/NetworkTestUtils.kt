@@ -5,12 +5,8 @@ import ninja.bryansills.roses.network.models.streams.Origin
 import ninja.bryansills.roses.network.models.streams.StreamContentsResponse
 
 object NetworkTestUtils {
-    fun createStreamContentsResponse(id: Int = 1, count: Int = 0): StreamContentsResponse =
-            StreamContentsResponse(
-                    "TEST_ID_$id",
-                    id.toLong(),
-                    "TEST_CONTINUATION_$id",
-                    IntRange(0, count).map { createEntryResponse(it) }.toTypedArray())
+    fun createStreamContentsResponse(count: Int = 0): StreamContentsResponse =
+            StreamContentsResponse(IntRange(0, count).map { createEntryResponse(it) }.toTypedArray())
 
     fun createEntryResponse(id: Int): EntryResponse {
         val origin = Origin(
@@ -27,7 +23,8 @@ object NetworkTestUtils {
                 "TEST_CANONICAL_URL_$id",
                 origin.streamId,
                 origin,
-                null, null
-                )
+                null,
+                null
+        )
     }
 }
