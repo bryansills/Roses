@@ -17,10 +17,10 @@ object Versions {
     // Android
     const val appcompat = "1.1.0-alpha04"
     const val ktx = "1.1.0-alpha05"
-    const val fragment = "1.1.0-alpha04"
+    const val fragment = "1.1.0-alpha06"
     const val constraint_layout = "2.0.0-alpha4"
     const val viewmodel = "2.1.0-alpha04"
-    const val navigation = "2.0.0-rc02"
+    const val navigation = "2.1.0-alpha02"
     const val room = "2.1.0-alpha06"
     const val work_manager = "2.0.1"
 
