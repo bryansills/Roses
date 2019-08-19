@@ -16,7 +16,7 @@ class BackgroundWorker(context: Context,
             repository.updateDatabase().blockingAwait()
             Result.success()
         } catch (throwable: Throwable) {
-            Log.d("BLARG", throwable.message)
+            Log.d("BLARG", throwable.message ?: "")
             Result.failure()
         }
     }
