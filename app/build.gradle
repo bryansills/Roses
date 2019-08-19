@@ -68,9 +68,7 @@ dependencies {
     testImplementation Libs.kotlin_junit
     testImplementation Libs.android_arch_core_testing
 
-    debugImplementation(Libs.fragment_testing) {
-        exclude group: "androidx.test", module: "monitor"
-    }
+    debugImplementation Libs.fragment_testing
     androidTestImplementation Libs.android_junit_testing
     androidTestImplementation Libs.espresso
 }

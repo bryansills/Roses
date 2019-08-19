@@ -45,7 +45,7 @@ object Libs {
 
     // Testing
     const val android_test_core = "androidx.test:core:" + Versions.android_test_core
-    const val android_test_runner = "androidx.test:runner:" + Versions.android_test_core
+    const val android_test_runner = "androidx.test:runner:" + Versions.android_test
     const val fragment_testing = "androidx.fragment:fragment-testing:" + Versions.fragment
     const val android_arch_core_testing = "androidx.arch.core:core-testing:" + Versions.android_arch_core_testing
     const val android_junit_testing = "androidx.test.ext:junit:" + Versions.ext_junit
