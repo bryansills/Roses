@@ -32,7 +32,7 @@ object Libs {
     const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:" + Versions.navigation
 
     const val room_runtime = "androidx.room:room-runtime:" + Versions.room
-    const val room_rxjava = "androidx.room:room-rxjava2:" + Versions.room
+    const val room_ktx = "androidx.room:room-ktx:" + Versions.room
     const val room_compiler = "androidx.room:room-compiler:" + Versions.room
 
     const val work_manager = "androidx.work:work-runtime-ktx:" + Versions.work_manager

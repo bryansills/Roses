@@ -32,7 +32,7 @@ dependencies {
     implementation Libs.rxjava
 
     implementation Libs.room_runtime
-    implementation Libs.room_rxjava
+    implementation Libs.room_ktx
     kapt Libs.room_compiler
 
     implementation Libs.jsoup

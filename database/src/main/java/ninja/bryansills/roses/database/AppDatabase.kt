@@ -6,7 +6,7 @@ import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
 
 @Database(entities = [Entry::class, Origin::class],
-          version = 6)
+          version = 7)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun entryDao(): EntryDao
     abstract fun originDao(): OriginDao

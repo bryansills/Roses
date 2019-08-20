@@ -2,7 +2,6 @@ package ninja.bryansills.roses.database
 
 import androidx.room.Dao
 import androidx.room.Query
-import io.reactivex.Observable
 import ninja.bryansills.roses.database.models.Category
 
 @Dao
@@ -13,5 +12,5 @@ interface CategoryDao {
         WHERE entries.origin_id = origins.id
         GROUP BY origin_id
     """)
-    fun getAllCategories(): Observable<List<Category>>
+    suspend fun getAllCategories(): List<Category>
 }

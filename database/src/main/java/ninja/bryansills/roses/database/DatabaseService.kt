@@ -1,19 +1,15 @@
 package ninja.bryansills.roses.database
 
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.Single
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
 
 interface DatabaseService {
-    fun getLastUpdated(): Single<Long>
+    suspend fun getLastUpdated(): Long
 
-    fun getEntries(categoryId: String): Flowable<List<Entry>>
+    suspend fun getEntries(categoryId: String): List<Entry>
 
-    fun insertMappedEntries(entries: Map<Origin, List<Entry>>): Completable
+    suspend fun insertMappedEntries(entries: Map<Origin, List<Entry>>)
 
-    fun getCategories(): Observable<List<Category>>
+    suspend fun getCategories(): List<Category>
 }
