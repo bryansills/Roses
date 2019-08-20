@@ -10,6 +10,7 @@ object Versions {
 
     // Core
     const val kotlin = "1.3.41"
+    const val coroutines = "1.3.0-RC2"
     const val dagger = "2.24"
     const val rxjava = "2.2.11"
     const val rxandroid = "2.1.1"

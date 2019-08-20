@@ -5,11 +5,11 @@ dependencies {
     api project(":network-models")
     
     implementation Libs.kotlin_stdlib
+    implementation Libs.coroutines
 
     implementation Libs.dagger
     kapt Libs.dagger_compiler
 
     implementation Libs.retrofit
-    implementation Libs.retrofit_rxjava_adapter
     implementation Libs.retrofit_moshi_converter
 }
