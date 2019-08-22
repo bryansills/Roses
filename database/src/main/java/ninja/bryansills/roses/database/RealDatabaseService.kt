@@ -24,7 +24,7 @@ class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : Da
     }
 
     override suspend fun getLastUpdated(): Long {
-        return appDatabase.entryDao().getLastUpdatedAt()
+        return appDatabase.entryDao().getLastUpdatedAt() ?: MISSING_TIMESTAMP
     }
 
     private suspend fun insertGroupOfEntries(entryGroup: Map.Entry<Origin, List<Entry>>) {

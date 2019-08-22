@@ -3,6 +3,7 @@ package ninja.bryansills.roses.database
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.Assert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,25 +19,34 @@ class EntryDaoTest : DbTest() {
         assertThat(lastUpdated, `is`(1L))
     }
 
-//    @Test
-//    fun lastUpdated() {
-//        val firstOutput = Utils.upsertOriginAndInsertEntries(db, 1, 1)
-//                .flatMap { db.entryDao().getLastUpdatedAt() }
-//        val secondOutput = Utils.upsertOriginAndInsertEntries(db, 2, 2)
-//                .flatMap { db.entryDao().getLastUpdatedAt() }
-//
-//        Singles.zip(firstOutput, secondOutput) { first, second -> Pair(first, second) }
-//                .test()
-//                .assertValue { (first, _) -> 1L == first }
-//                .assertValue { (_, second) -> 2L == second }
-//                .assertComplete()
-//                .assertNoErrors()
-//    }
-//
-//    @Test
-//    fun emptyLastUpdatedFails() {
-//        db.entryDao().getLastUpdatedAt()
-//                .test()
-//                .assertError { it is EmptyResultSetException }
-//    }
+    @Test
+    fun lastUpdated() = runBlocking {
+        upsertOriginAndInsertEntries(db, 1, 100, 4L)
+        val firstLastUpdated = db.entryDao().getLastUpdatedAt()
+
+        upsertOriginAndInsertEntries(db, 2, 300, 7L)
+        val secondLastUpdated = db.entryDao().getLastUpdatedAt()
+
+        assertThat(firstLastUpdated, `is`(4L))
+        assertThat(secondLastUpdated, `is`(7L))
+    }
+
+    @Test
+    fun lastUpdatedOutOfOrder() = runBlocking {
+        upsertOriginAndInsertEntries(db, 1, 100, 40L)
+        val firstLastUpdated = db.entryDao().getLastUpdatedAt()
+
+        upsertOriginAndInsertEntries(db, 2, 300, 7L)
+        val secondLastUpdated = db.entryDao().getLastUpdatedAt()
+
+        assertThat(firstLastUpdated, `is`(40L))
+        assertThat(secondLastUpdated, `is`(40L))
+    }
+
+    @Test
+    fun emptyLastUpdated() = runBlocking {
+        val lastUpdated = db.entryDao().getLastUpdatedAt()
+
+        assertThat(lastUpdated, `is`(nullValue()))
+    }
 }

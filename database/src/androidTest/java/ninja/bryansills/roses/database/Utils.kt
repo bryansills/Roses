@@ -2,12 +2,12 @@ package ninja.bryansills.roses.database
 
 import ninja.bryansills.database.test.DatabaseTestUtils
 
-suspend fun upsertOriginAndInsertEntries(db: AppDatabase, originId: Int, count: Int): Long {
+suspend fun upsertOriginAndInsertEntries(db: AppDatabase, originId: Int, count: Int, updatedAt: Long = count.toLong()): Long {
     val firstOrigin = DatabaseTestUtils.createOrigin(originId)
     val firstOriginId = db.originDao().upsertOrigin(firstOrigin)
 
     val entries = (1..count).map { index ->
-        DatabaseTestUtils.createEntry(hashIndex(originId, index), index.toLong(), firstOriginId)
+        DatabaseTestUtils.createEntry(hashIndex(originId, index), updatedAt, firstOriginId)
     }
     db.entryDao().insertEntries(entries)
 

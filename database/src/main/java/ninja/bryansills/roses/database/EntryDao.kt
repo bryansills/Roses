@@ -15,5 +15,5 @@ interface EntryDao {
     suspend fun insertEntries(entries: List<Entry>)
 
     @Query("SELECT updated_at FROM entries ORDER BY updated_at DESC LIMIT 1")
-    suspend fun getLastUpdatedAt(): Long
+    suspend fun getLastUpdatedAt(): Long?
 }
