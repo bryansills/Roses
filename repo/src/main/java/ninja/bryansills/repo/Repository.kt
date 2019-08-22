@@ -1,13 +1,9 @@
 package ninja.bryansills.repo
 
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
-
 interface Repository {
-    fun categories(): Observable<FetchCategoryResult>
+    suspend fun categories(): FetchCategoryResult
 
-    fun getEntries(categoryId: String): Flowable<FetchEntryResult>
+    suspend fun getEntries(categoryId: String): FetchEntryResult
 
-    fun updateDatabase(): Completable
+    suspend fun updateDatabase()
 }

@@ -21,9 +21,10 @@ dependencies {
     api project(":database") // api due to this issue: https://github.com/google/dagger/issues/970
 
     implementation Libs.kotlin_stdlib
+    implementation Libs.coroutines
+
     implementation Libs.dagger
     kapt Libs.dagger_compiler
-    implementation Libs.rxjava
     implementation Libs.retrofit
 
     testImplementation project(":network-test")
