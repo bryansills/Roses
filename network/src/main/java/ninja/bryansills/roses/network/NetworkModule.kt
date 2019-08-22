@@ -7,7 +7,6 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 
@@ -47,7 +46,6 @@ class NetworkModule(val token: String) {
     fun retrofit(converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
                 .baseUrl("https://cloud.feedly.com/v3/")
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(converterFactory)
                 .client(okHttpClient)
                 .build()

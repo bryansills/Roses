@@ -1,6 +1,11 @@
 package ninja.bryansills.repo
 
+import kotlinx.coroutines.runBlocking
 import ninja.bryansills.database.test.DatabaseTestUtils
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -19,15 +24,7 @@ class RealRepositoryTest {
     }
 
     @Test
-    fun startsWithInFlight() {
-        repository.categories().test()
-                .assertValueAt(0) {
-                    it is FetchCategoryResult.InFlight
-                }
-    }
-
-    @Test
-    fun cachedResultsAreReturnedWhenDataIsFresh() {
+    fun cachedResultsAreReturnedWhenDataIsFresh() = runBlocking {
         val databaseResults = listOf(
                 DatabaseTestUtils.createCategory(1),
                 DatabaseTestUtils.createCategory(2),
@@ -40,47 +37,38 @@ class RealRepositoryTest {
         fakeDatabaseService.categories = databaseResults
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
-        repository.categories().test()
-                .assertValueAt(1) {
-                    (it as FetchCategoryResult.Success).categories == repositoryResults
-                }
-                .assertValueCount(2)
-                .assertNoErrors()
+        val result = repository.categories()
+
+        assertThat((result as FetchCategoryResult.Success).categories, `is`(equalTo(repositoryResults)))
         assertTrue(!fakeNetworkService.hasBeenCalled)
     }
 
     @Test
-    fun networkResultsAreReturnedWhenDataIsOld() {
+    fun networkResultsAreReturnedWhenDataIsOld() = runBlocking {
         val timestamp = Calendar.getInstance()
         timestamp.add(Calendar.HOUR, -4)
 
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
-        repository.categories().test()
-                .assertValueAt(1) {
-                    it is FetchCategoryResult.Success
-                }
-                .assertValueCount(2)
-                .assertNoErrors()
+        val result = repository.categories()
+
+        assertTrue(result is FetchCategoryResult.Success)
         assertTrue(fakeNetworkService.hasBeenCalled)
         assertTrue(fakeDatabaseService.hasCategoriesBeenCalled)
     }
 
     @Test
-    fun errorResultIsReturnedWhenNetworkErrors() {
+    fun errorResultIsReturnedWhenNetworkErrors() = runBlocking {
         val timestamp = Calendar.getInstance()
         timestamp.add(Calendar.HOUR, -4)
 
         fakeNetworkService.emitError = true
         fakeDatabaseService.lastUpdated = timestamp.timeInMillis
 
-        repository.categories().test()
-                .assertValueAt(1) {
-                    it is FetchCategoryResult.Error
-                }
-                .assertValueCount(2)
-                .assertNoErrors()
+        val result = repository.categories()
+
+        assertTrue(result is FetchCategoryResult.Error)
         assertTrue(fakeNetworkService.hasBeenCalled)
-        assertTrue(fakeDatabaseService.hasCategoriesBeenCalled)
+        assertFalse(fakeDatabaseService.hasCategoriesBeenCalled)
     }
 }
