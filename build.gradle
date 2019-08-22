@@ -17,6 +17,8 @@ apply plugin: "com.github.ben-manes.versions"
 allprojects {
     repositories {
         google()
+        // AndroidX snapshots. Remove this once Room 2.2.0-alpha03 is released
+        maven { url 'https://ci.android.com/builds/submitted/5799541/androidx_snapshot/latest/repository' }
         jcenter()
     }
 
@@ -45,6 +47,12 @@ allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile).configureEach { task ->
         task.kotlinOptions {
             jvmTarget = "1.8"
+            freeCompilerArgs += [
+                    '-XXLanguage:+NewInference',
+                    '-progressive',
+                    '-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi',
+                    '-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi',
+            ]
         }
     }
 }

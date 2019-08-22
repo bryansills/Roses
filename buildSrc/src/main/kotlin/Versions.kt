@@ -22,7 +22,7 @@ object Versions {
     const val constraint_layout = "2.0.0-beta2"
     const val viewmodel = "2.1.0-rc01"
     const val navigation = "2.1.0-rc01"
-    const val room = "2.1.0"
+    const val room = "2.2.0-SNAPSHOT"
     const val work_manager = "2.2.0"
 
     // Square
