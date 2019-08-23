@@ -8,6 +8,7 @@ object Libs {
     // Core
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:" + Versions.kotlin
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:" + Versions.coroutines
+    const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:" + Versions.coroutines
     const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:" + Versions.coroutines
 
     const val dagger = "com.google.dagger:dagger:" + Versions.dagger

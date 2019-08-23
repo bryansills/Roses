@@ -19,7 +19,7 @@ class RealEntryViewModel @Inject constructor(
     private val entries = MutableLiveData<EntryUiModel>()
 
     override fun getEntries(categoryId: String): LiveData<EntryUiModel> {
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineDispatchers.UI) {
             entries.value = EntryUiModel.Loading()
 
             val resultingUiState = withContext(coroutineDispatchers.IO) {
@@ -29,7 +29,7 @@ class RealEntryViewModel @Inject constructor(
                         is FetchEntryResult.Error -> EntryUiModel.Error(R.string.unknown_entry_error)
                         is FetchEntryResult.Success -> EntryUiModel.Success(repoResult.entries)
                     }
-                } catch (error: Error) {
+                } catch (error: Exception) {
                     EntryUiModel.Error(R.string.unknown_entry_error)
                 }
             }

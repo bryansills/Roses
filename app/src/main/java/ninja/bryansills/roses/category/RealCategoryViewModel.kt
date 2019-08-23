@@ -19,7 +19,7 @@ class RealCategoryViewModel @Inject constructor(
     private val categories = MutableLiveData<CategoryUiModel>()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineDispatchers.UI) {
             categories.value = CategoryUiModel.Loading
 
             val resultingUiState = withContext(coroutineDispatchers.IO) {
@@ -29,7 +29,7 @@ class RealCategoryViewModel @Inject constructor(
                         is FetchCategoryResult.Success ->CategoryUiModel.Success(network.categories)
                         is FetchCategoryResult.Error -> toErrorMessage(network.error)
                     }
-                } catch (error: Error) {
+                } catch (error: Exception) {
                     CategoryUiModel.Error(R.string.unknown_category_error)
                 }
             }

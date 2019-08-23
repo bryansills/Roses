@@ -66,6 +66,7 @@ dependencies {
     implementation Libs.navigation_fragment_ktx
 
     testImplementation Libs.kotlin_junit
+    testImplementation Libs.coroutines_test
     testImplementation Libs.android_arch_core_testing
 
     debugImplementation Libs.fragment_testing

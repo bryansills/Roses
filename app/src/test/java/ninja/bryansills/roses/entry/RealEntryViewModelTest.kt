@@ -5,16 +5,17 @@ import ninja.bryansills.repo.Entry
 import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.utils.FakeRepository
-import ninja.bryansills.roses.utils.TestSchedulerProvider
-import ninja.bryansills.roses.utils.getLatestValue
+import ninja.bryansills.roses.utils.TestCoroutineDispatchers
+import ninja.bryansills.roses.utils.ViewModelTest
+import ninja.bryansills.roses.utils.observeOnce
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.Date
+import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class RealEntryViewModelTest {
+class RealEntryViewModelTest : ViewModelTest() {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -23,24 +24,27 @@ class RealEntryViewModelTest {
     lateinit var entryViewModel: EntryViewModel
 
     @Before
-    fun setup() {
+    override fun setup() {
+        super.setup()
+
         fakeRepository = FakeRepository()
-        entryViewModel = RealEntryViewModel(fakeRepository, TestSchedulerProvider())
+        entryViewModel = RealEntryViewModel(fakeRepository, TestCoroutineDispatchers())
     }
 
     @Test
     fun defaultsToLoading() {
-        val initialValue = entryViewModel.getEntries("LOL").getLatestValue()
-        assertTrue(initialValue is EntryUiModel.Loading)
+        entryViewModel.getEntries("LOL").observeOnce { actual ->
+            assertTrue(actual is EntryUiModel.Loading)
+        }
     }
 
     @Test
     fun basicSuccess() {
-        fakeRepository.entriesSubject.onNext(FetchEntryResult.Success(emptyList()))
-        val realResult = entryViewModel.getEntries("LOL").getLatestValue()
-
-        assertTrue(realResult is EntryUiModel.Success)
-        assertEquals(realResult.results, emptyList())
+        fakeRepository.entries = FetchEntryResult.Success(emptyList())
+        entryViewModel.getEntries("LOL").observeOnce { actual ->
+            assertTrue(actual is EntryUiModel.Success)
+            assertEquals(actual.results, emptyList())
+        }
     }
 
     @Test
@@ -49,28 +53,30 @@ class RealEntryViewModelTest {
                 Entry("1", "FIRST_TITLE", "FIRST_URL", Date(), "FIRST_AUTHOR", "FIRST_SUMMARY"),
                 Entry("2", "SECOND_TITLE", "SECOND_URL", Date(), "SECOND_AUTHOR", "SECOND_SUMMARY")
         )
-        fakeRepository.entriesSubject.onNext(FetchEntryResult.Success(entries))
-        val realResult = entryViewModel.getEntries("LOL").getLatestValue()
+        fakeRepository.entries = FetchEntryResult.Success(entries)
+        entryViewModel.getEntries("LOL").observeOnce { actual ->
+            assertTrue(actual is EntryUiModel.Success)
+            assertEquals(actual.results, entries)
+        }
 
-        assertTrue(realResult is EntryUiModel.Success)
-        assertEquals(realResult.results, entries)
     }
 
     @Test
     fun expectedError() {
-        fakeRepository.entriesSubject.onNext(FetchEntryResult.Error(FetchEntryResult.FetchEntryError.UNKNOWN))
-        val realResult = entryViewModel.getEntries("LOL").getLatestValue()
-
-        assertTrue(realResult is EntryUiModel.Error)
-        assertEquals(realResult.error, R.string.unknown_entry_error)
+        fakeRepository.entries = FetchEntryResult.Error(FetchEntryResult.FetchEntryError.UNKNOWN)
+        entryViewModel.getEntries("LOL").observeOnce { actual ->
+            assertTrue(actual is EntryUiModel.Error)
+            assertEquals(actual.error, R.string.unknown_entry_error)
+        }
     }
 
     @Test
     fun unexpectedError() {
-        fakeRepository.entriesSubject.onError(Throwable("LOL ERROR"))
-        val realResult = entryViewModel.getEntries("LOL").getLatestValue()
+        fakeRepository.throwEntriesError = true
+        entryViewModel.getEntries("LOL").observeOnce { actual ->
+            assertTrue(actual is EntryUiModel.Error)
+            assertEquals(actual.error, R.string.unknown_entry_error)
 
-        assertTrue(realResult is EntryUiModel.Error)
-        assertEquals(realResult.error, R.string.unknown_entry_error)
+        }
     }
 }
