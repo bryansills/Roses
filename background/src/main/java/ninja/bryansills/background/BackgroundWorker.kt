@@ -2,18 +2,24 @@ package ninja.bryansills.background
 
 import android.content.Context
 import android.util.Log
-import androidx.work.Worker
+import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import ninja.bryansills.repo.Repository
 
 class BackgroundWorker(context: Context,
                        workerParams: WorkerParameters,
                        val repository: Repository)
-    : Worker(context, workerParams) {
+    : CoroutineWorker(context, workerParams) {
 
-    override fun doWork(): Result {
-        return try {
-//            repository.updateDatabase().blockingAwait()
+    override suspend fun doWork(): Result = coroutineScope {
+        try {
+            withContext(Dispatchers.IO) {
+                repository.updateDatabase()
+            }
+
             Result.success()
         } catch (throwable: Throwable) {
             Log.d("BLARG", throwable.message ?: "")
