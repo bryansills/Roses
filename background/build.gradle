@@ -24,7 +24,5 @@ dependencies {
     implementation Libs.dagger_android
     kapt Libs.dagger_compiler
 
-    implementation Libs.rxjava
-
     api Libs.work_manager
 }

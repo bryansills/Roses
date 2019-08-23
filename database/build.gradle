@@ -29,7 +29,6 @@ dependencies {
     implementation Libs.kotlin_stdlib
     implementation Libs.dagger
     kapt Libs.dagger_compiler
-    implementation Libs.rxjava
 
     implementation Libs.room_runtime
     implementation Libs.room_ktx
@@ -42,5 +41,4 @@ dependencies {
     androidTestImplementation Libs.android_test_runner
     androidTestImplementation Libs.android_arch_core_testing
     androidTestImplementation Libs.android_junit_testing
-    androidTestImplementation Libs.rxkotlin
 }
