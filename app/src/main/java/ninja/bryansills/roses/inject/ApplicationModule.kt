@@ -7,7 +7,7 @@ import ninja.bryansills.roses.BuildConfig
 import ninja.bryansills.roses.RosesApplication
 import javax.inject.Named
 
-@Module(includes = [ViewModelModule::class, RxModule::class, ActivityModule::class])
+@Module(includes = [ViewModelModule::class, ActivityModule::class, CoroutineModule::class])
 class ApplicationModule {
     @Provides
     fun context(app: RosesApplication): Context = app.applicationContext

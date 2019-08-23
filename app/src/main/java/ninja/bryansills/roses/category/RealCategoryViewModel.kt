@@ -2,50 +2,43 @@ package ninja.bryansills.roses.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.ObservableTransformer
-import io.reactivex.disposables.CompositeDisposable
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
-import ninja.bryansills.roses.rx.SchedulerProvider
+import ninja.bryansills.roses.coroutine.CoroutineDispatchers
 import javax.inject.Inject
 
 class RealCategoryViewModel @Inject constructor(
         private val repository: Repository,
-        private val schedulerProvider: SchedulerProvider
+        private val coroutineDispatchers: CoroutineDispatchers
 ) : CategoryViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
     private val categories = MutableLiveData<CategoryUiModel>()
 
     init {
-        compositeDisposable.add(repository.categories()
-                .compose(toCategoryUiModel())
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_category_error) }
-                .subscribe { categories.value = it }
-        )
-    }
+        viewModelScope.launch {
+            categories.value = CategoryUiModel.Loading
 
-    override fun onCleared() {
-        compositeDisposable.dispose()
-        super.onCleared()
+            val resultingUiState = withContext(coroutineDispatchers.IO) {
+                try {
+                    when (val network = repository.categories()) {
+                        is FetchCategoryResult.InFlight -> CategoryUiModel.Loading
+                        is FetchCategoryResult.Success ->CategoryUiModel.Success(network.categories)
+                        is FetchCategoryResult.Error -> toErrorMessage(network.error)
+                    }
+                } catch (error: Error) {
+                    CategoryUiModel.Error(R.string.unknown_category_error)
+                }
+            }
+
+            categories.value = resultingUiState
+        }
     }
 
     override fun getCategories(): LiveData<CategoryUiModel> = categories
-
-    private fun toCategoryUiModel(): ObservableTransformer<in FetchCategoryResult, out CategoryUiModel> {
-        return ObservableTransformer { fetchCategoryResult ->
-            fetchCategoryResult.map { when (it) {
-                    is FetchCategoryResult.InFlight -> CategoryUiModel.Loading
-                    is FetchCategoryResult.Success ->CategoryUiModel.Success(it.categories)
-                    is FetchCategoryResult.Error -> toErrorMessage(it.error)
-                } }
-                .startWith(CategoryUiModel.Loading)
-                .onErrorReturn { CategoryUiModel.Error(R.string.unknown_category_error) }
-        }
-    }
 
     private fun toErrorMessage(error: FetchCategoryResult.FetchCategoryError): CategoryUiModel {
         return when (error) {

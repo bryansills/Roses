@@ -44,6 +44,8 @@ dependencies {
     implementation project(":background")
 
     implementation Libs.kotlin_stdlib
+    implementation Libs.coroutines
+    implementation Libs.coroutines_android
 
     implementation Libs.dagger
     implementation Libs.dagger_android
@@ -51,15 +53,13 @@ dependencies {
     kapt Libs.dagger_compiler
     kapt Libs.dagger_android_compiler
 
-    implementation Libs.rxjava
-    implementation Libs.rxandroid
-
     implementation Libs.appcompat
     implementation Libs.androidx_core
     implementation Libs.android_fragment
     implementation Libs.constraint_layout
 
     implementation Libs.lifecycle
+    implementation Libs.lifecycle_viewmodel
     kapt Libs.lifecycle_compiler
 
     implementation Libs.navigation_ktx
