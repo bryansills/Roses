@@ -1,0 +1,25 @@
+workflow "Build and Test" {
+  on = "push"
+  resolves = "Checks Completed"
+}
+
+action "Build" {
+  uses = "vgaidarji/android-github-actions/build@v1.0.0"
+  args = "./gradlew assembleDebug"
+}
+
+action "Check" {
+  needs = ["Build"]
+  uses = "vgaidarji/android-github-actions/build@v1.0.0"
+  args = "./gradlew check"
+}
+
+action "Run UI Tests" {
+  needs = ["Build"]
+  secrets = ["FABRIC_API_KEY", "FABRIC_API_SECRET"]
+  uses = "vgaidarji/android-github-actions/emulator@v1.0.0"
+}
+
+action "Checks Completed" {
+  needs = ["Check", "Run UI Tests"]
+}
