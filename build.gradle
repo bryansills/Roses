@@ -2,6 +2,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
@@ -9,12 +12,15 @@ buildscript {
         classpath Libs.android_gradle_plugin
         classpath Libs.kotlin_gradle_plugin
         classpath Libs.navigation_safe_args_gradle_plugin
+        classpath Libs.ktlint_gradle_plugin
     }
 }
 
 apply plugin: "com.github.ben-manes.versions"
 
 allprojects {
+//    apply plugin: "org.jlleitschuh.gradle.ktlint"
+
     repositories {
         google()
         // AndroidX snapshots. Remove this once Room 2.2.0-alpha03 is released
