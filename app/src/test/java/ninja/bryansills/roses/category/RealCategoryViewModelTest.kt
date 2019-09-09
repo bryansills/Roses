@@ -1,6 +1,8 @@
 package ninja.bryansills.roses.category
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import ninja.bryansills.repo.Category
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.roses.R
@@ -11,8 +13,6 @@ import ninja.bryansills.roses.utils.observeOnce
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class RealCategoryViewModelTest : ViewModelTest() {
 
@@ -51,8 +51,8 @@ class RealCategoryViewModelTest : ViewModelTest() {
     @Test
     fun normalSuccess() {
         val categories = listOf(
-                Category("1", "FIRST", 4),
-                Category("2", "SECOND", 6)
+            Category("1", "FIRST", 4),
+            Category("2", "SECOND", 6)
         )
 
         fakeRepository.categories = FetchCategoryResult.Success(categories)
@@ -84,6 +84,5 @@ class RealCategoryViewModelTest : ViewModelTest() {
             assertTrue(actual is CategoryUiModel.Error)
             assertEquals(actual.error, R.string.unknown_category_error)
         }
-
     }
 }

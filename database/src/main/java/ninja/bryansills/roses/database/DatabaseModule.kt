@@ -16,9 +16,10 @@ class DatabaseModule(val context: Context) {
 
     @Provides
     fun appDatabase(context: Context): AppDatabase = Room.databaseBuilder(
-            context.applicationContext,
-            AppDatabase::class.java,
-            "roses.db")
-            .fallbackToDestructiveMigration()
-            .build()
+        context.applicationContext,
+        AppDatabase::class.java,
+        "roses.db"
+    )
+        .fallbackToDestructiveMigration()
+        .build()
 }

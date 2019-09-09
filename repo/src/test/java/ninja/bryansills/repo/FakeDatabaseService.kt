@@ -1,11 +1,11 @@
 package ninja.bryansills.repo
 
+import java.util.*
 import ninja.bryansills.database.test.DatabaseTestUtils
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
-import java.util.*
 
 class FakeDatabaseService : DatabaseService {
 
@@ -17,7 +17,7 @@ class FakeDatabaseService : DatabaseService {
     override suspend fun getLastUpdated() = lastUpdated
 
     override suspend fun getEntries(categoryId: String) =
-            listOf(DatabaseTestUtils.createEntry(1, 1L, 1L))
+        listOf(DatabaseTestUtils.createEntry(1, 1L, 1L))
 
     override suspend fun insertMappedEntries(entries: Map<Origin, List<Entry>>) {}
 

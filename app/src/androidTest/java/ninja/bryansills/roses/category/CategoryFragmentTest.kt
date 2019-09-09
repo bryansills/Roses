@@ -75,8 +75,8 @@ class CategoryFragmentTest {
     fun displayList() {
         scenario.onDataBindingFragment {
             val categories = listOf(
-                    Category("1", "FIRST", 5),
-                    Category("2", "SECOND", 7)
+                Category("1", "FIRST", 5),
+                Category("2", "SECOND", 7)
             )
             categoryViewModel.categories.value = CategoryUiModel.Success(categories)
         }

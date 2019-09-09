@@ -13,10 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import javax.inject.Inject
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.binding.BindingFragment
 import ninja.bryansills.roses.databinding.FragmentCategoryBinding
-import javax.inject.Inject
 
 @SuppressLint("ValidFragment")
 class CategoryFragment @Inject constructor(private val viewModelFactory: ViewModelProvider.Factory) : Fragment(), BindingFragment {

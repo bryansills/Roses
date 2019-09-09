@@ -1,6 +1,9 @@
 package ninja.bryansills.roses.entry
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import java.util.*
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import ninja.bryansills.repo.Entry
 import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.roses.R
@@ -11,9 +14,6 @@ import ninja.bryansills.roses.utils.observeOnce
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.*
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class RealEntryViewModelTest : ViewModelTest() {
 
@@ -50,15 +50,14 @@ class RealEntryViewModelTest : ViewModelTest() {
     @Test
     fun normalSuccess() {
         val entries = listOf(
-                Entry("1", "FIRST_TITLE", "FIRST_URL", Date(), "FIRST_AUTHOR", "FIRST_SUMMARY"),
-                Entry("2", "SECOND_TITLE", "SECOND_URL", Date(), "SECOND_AUTHOR", "SECOND_SUMMARY")
+            Entry("1", "FIRST_TITLE", "FIRST_URL", Date(), "FIRST_AUTHOR", "FIRST_SUMMARY"),
+            Entry("2", "SECOND_TITLE", "SECOND_URL", Date(), "SECOND_AUTHOR", "SECOND_SUMMARY")
         )
         fakeRepository.entries = FetchEntryResult.Success(entries)
         entryViewModel.getEntries("LOL").observeOnce { actual ->
             assertTrue(actual is EntryUiModel.Success)
             assertEquals(actual.results, entries)
         }
-
     }
 
     @Test
@@ -76,7 +75,6 @@ class RealEntryViewModelTest : ViewModelTest() {
         entryViewModel.getEntries("LOL").observeOnce { actual ->
             assertTrue(actual is EntryUiModel.Error)
             assertEquals(actual.error, R.string.unknown_entry_error)
-
         }
     }
 }

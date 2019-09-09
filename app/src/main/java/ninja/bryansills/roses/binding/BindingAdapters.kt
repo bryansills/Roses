@@ -8,7 +8,7 @@ import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import java.util.Date
+import java.util.*
 
 object BindingAdapters {
     @JvmStatic
@@ -34,6 +34,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("data")
     fun <T> setRecyclerViewData(recyclerView: RecyclerView, items: List<T>?) {
-        (recyclerView.adapter as? ListAdapter<T,*>)?.submitList(items)
+        (recyclerView.adapter as? ListAdapter<T, *>)?.submitList(items)
     }
 }

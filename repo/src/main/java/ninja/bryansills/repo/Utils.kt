@@ -1,8 +1,8 @@
 package ninja.bryansills.repo
 
+import java.util.Date
 import ninja.bryansills.roses.database.models.Origin
 import ninja.bryansills.roses.network.models.streams.EntryResponse
-import java.util.Date
 
 fun List<EntryResponse>.toOrigin(): Origin {
     val origin = this[0].origin
@@ -12,13 +12,15 @@ fun List<EntryResponse>.toOrigin(): Origin {
 fun List<EntryResponse>.toDbEntries(): List<ninja.bryansills.roses.database.models.Entry> {
     val timestamp = Date().time
     return this.map { netEntry ->
-        ninja.bryansills.roses.database.models.Entry(netEntry.id,
-                netEntry.title,
-                netEntry.url,
-                netEntry.published,
-                netEntry.author,
-                netEntry.summary?.content,
-                timestamp,
-                null)
+        ninja.bryansills.roses.database.models.Entry(
+            netEntry.id,
+            netEntry.title,
+            netEntry.url,
+            netEntry.published,
+            netEntry.author,
+            netEntry.summary?.content,
+            timestamp,
+            null
+        )
     }
 }

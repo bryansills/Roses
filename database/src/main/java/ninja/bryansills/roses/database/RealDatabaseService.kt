@@ -1,10 +1,10 @@
 package ninja.bryansills.roses.database
 
+import javax.inject.Inject
 import ninja.bryansills.roses.database.models.Category
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
 import org.jsoup.Jsoup
-import javax.inject.Inject
 
 class RealDatabaseService @Inject constructor(val appDatabase: AppDatabase) : DatabaseService {
     companion object {

@@ -3,9 +3,9 @@ package ninja.bryansills.roses.inject
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 import ninja.bryansills.roses.BuildConfig
 import ninja.bryansills.roses.RosesApplication
-import javax.inject.Named
 
 @Module(includes = [ViewModelModule::class, ActivityModule::class, CoroutineModule::class])
 class ApplicationModule {

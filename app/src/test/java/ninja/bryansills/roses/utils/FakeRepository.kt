@@ -12,10 +12,10 @@ class FakeRepository : Repository {
     var throwEntriesError: Boolean = false
 
     override suspend fun categories(): FetchCategoryResult =
-            if (throwCategoriesError) throw RuntimeException("Categories Error") else categories
+        if (throwCategoriesError) throw RuntimeException("Categories Error") else categories
 
     override suspend fun getEntries(categoryId: String): FetchEntryResult =
-            if (throwEntriesError) throw RuntimeException("Entries Error") else entries
+        if (throwEntriesError) throw RuntimeException("Entries Error") else entries
 
     override suspend fun updateDatabase() {}
 }

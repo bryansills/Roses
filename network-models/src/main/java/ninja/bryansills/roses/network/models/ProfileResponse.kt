@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ProfileResponse(
-        val id: String,
-        val email: String,
-        val fullName: String
+    val id: String,
+    val email: String,
+    val fullName: String
 )

@@ -4,5 +4,5 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class StreamContentsResponse(
-        val items: Array<EntryResponse>
+    val items: Array<EntryResponse>
 )

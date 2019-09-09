@@ -3,17 +3,17 @@ package ninja.bryansills.roses.category
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.coroutine.CoroutineDispatchers
-import javax.inject.Inject
 
 class RealCategoryViewModel @Inject constructor(
-        private val repository: Repository,
-        private val coroutineDispatchers: CoroutineDispatchers
+    private val repository: Repository,
+    private val coroutineDispatchers: CoroutineDispatchers
 ) : CategoryViewModel() {
 
     private val categories = MutableLiveData<CategoryUiModel>()
@@ -26,7 +26,7 @@ class RealCategoryViewModel @Inject constructor(
                 try {
                     when (val network = repository.categories()) {
                         is FetchCategoryResult.InFlight -> CategoryUiModel.Loading
-                        is FetchCategoryResult.Success ->CategoryUiModel.Success(network.categories)
+                        is FetchCategoryResult.Success -> CategoryUiModel.Success(network.categories)
                         is FetchCategoryResult.Error -> toErrorMessage(network.error)
                     }
                 } catch (error: Exception) {

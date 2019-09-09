@@ -36,18 +36,18 @@ class WorkerModule(val context: Context, @Named("REFRESH_INTERVAL") val refreshI
 
     @Provides
     fun workerManager(
-            context: Context,
-            workerFactory: WorkerFactory,
-            @Named("BACKGROUND_WORK_NAME") workName: String,
-            workPolicy: ExistingPeriodicWorkPolicy,
-            workRequest: PeriodicWorkRequest
+        context: Context,
+        workerFactory: WorkerFactory,
+        @Named("BACKGROUND_WORK_NAME") workName: String,
+        workPolicy: ExistingPeriodicWorkPolicy,
+        workRequest: PeriodicWorkRequest
     ): WorkerManager = RealWorkerManager(context, workerFactory, workName, workPolicy, workRequest)
 
     @Provides
     fun backgroundWorkerConstraints(): Constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresBatteryNotLow(true)
-            .build()
+        .setRequiredNetworkType(NetworkType.CONNECTED)
+        .setRequiresBatteryNotLow(true)
+        .build()
 
     @Provides
     @Named("BACKGROUND_WORK_NAME")
@@ -58,10 +58,10 @@ class WorkerModule(val context: Context, @Named("REFRESH_INTERVAL") val refreshI
 
     @Provides
     fun backgroundWorkRequest(
-            constraints: Constraints,
-            @Named("REFRESH_INTERVAL") refreshInterval: Int
+        constraints: Constraints,
+        @Named("REFRESH_INTERVAL") refreshInterval: Int
     ): PeriodicWorkRequest = PeriodicWorkRequest
-            .Builder(BackgroundWorker::class.java, refreshInterval.toLong(), TimeUnit.HOURS)
-            .setConstraints(constraints)
-            .build()
+        .Builder(BackgroundWorker::class.java, refreshInterval.toLong(), TimeUnit.HOURS)
+        .setConstraints(constraints)
+        .build()
 }

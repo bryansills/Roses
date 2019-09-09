@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import java.util.Date
 import ninja.bryansills.repo.Entry
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.category.CategoryFragmentDirections
@@ -25,7 +26,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.Date
 
 @RunWith(AndroidJUnit4::class)
 class EntryFragmentTest {
@@ -78,8 +78,8 @@ class EntryFragmentTest {
     fun displayList() {
         scenario.onDataBindingFragment {
             val entries = listOf(
-                    Entry("1", "FIRST_TITLE", "FIRST_URL", Date(), "FIRST_AUTHOR", "FIRST_SUMMARY"),
-                    Entry("2", "SECOND_TITLE", "SECOND_URL", Date(), "SECOND_AUTHOR", "SECOND_SUMMARY")
+                Entry("1", "FIRST_TITLE", "FIRST_URL", Date(), "FIRST_AUTHOR", "FIRST_SUMMARY"),
+                Entry("2", "SECOND_TITLE", "SECOND_URL", Date(), "SECOND_AUTHOR", "SECOND_SUMMARY")
             )
             entryViewModel.entries.value = EntryUiModel.Success(entries)
         }
@@ -101,4 +101,3 @@ class FakeEntryViewModel : EntryViewModel() {
         return entries
     }
 }
-

@@ -7,12 +7,20 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import androidx.work.WorkerFactory
 
-class RealWorkerManager(context: Context, workerFactory: WorkerFactory, workName: String,
-                    workPolicy: ExistingPeriodicWorkPolicy, workRequest: PeriodicWorkRequest) : WorkerManager {
+class RealWorkerManager(
+    context: Context,
+    workerFactory: WorkerFactory,
+    workName: String,
+    workPolicy: ExistingPeriodicWorkPolicy,
+    workRequest: PeriodicWorkRequest
+) : WorkerManager {
     init {
-        WorkManager.initialize(context, Configuration.Builder()
+        WorkManager.initialize(
+            context,
+            Configuration.Builder()
                 .setWorkerFactory(workerFactory)
-                .build())
+                .build()
+        )
         WorkManager.getInstance().enqueueUniquePeriodicWork(workName, workPolicy, workRequest)
     }
 }

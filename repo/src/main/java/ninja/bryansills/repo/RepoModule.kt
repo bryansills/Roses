@@ -2,13 +2,13 @@ package ninja.bryansills.repo
 
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.network.NetworkService
-import javax.inject.Named
 
 @Module
 class RepoModule(
-        @Named("REFRESH_INTERVAL") val refreshInterval: Int
+    @Named("REFRESH_INTERVAL") val refreshInterval: Int
 ) {
 
     @Provides
@@ -17,9 +17,9 @@ class RepoModule(
 
     @Provides
     fun repo(
-            networkService: NetworkService,
-            databaseService: DatabaseService,
-            @Named("REFRESH_INTERVAL") refreshInterval: Int
+        networkService: NetworkService,
+        databaseService: DatabaseService,
+        @Named("REFRESH_INTERVAL") refreshInterval: Int
     ): Repository =
-            RealRepository(networkService, databaseService, refreshInterval)
+        RealRepository(networkService, databaseService, refreshInterval)
 }

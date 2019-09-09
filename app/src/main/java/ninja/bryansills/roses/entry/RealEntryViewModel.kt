@@ -3,17 +3,17 @@ package ninja.bryansills.roses.entry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.coroutine.CoroutineDispatchers
-import javax.inject.Inject
 
 class RealEntryViewModel @Inject constructor(
-        private val repository: Repository,
-        private val coroutineDispatchers: CoroutineDispatchers
+    private val repository: Repository,
+    private val coroutineDispatchers: CoroutineDispatchers
 ) : EntryViewModel() {
 
     private val entries = MutableLiveData<EntryUiModel>()

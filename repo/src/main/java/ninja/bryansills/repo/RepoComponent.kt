@@ -5,8 +5,8 @@ import ninja.bryansills.roses.database.DatabaseComponent
 import ninja.bryansills.roses.network.NetworkComponent
 
 @Component(
-        dependencies = [DatabaseComponent::class, NetworkComponent::class],
-        modules = [RepoModule::class]
+    dependencies = [DatabaseComponent::class, NetworkComponent::class],
+    modules = [RepoModule::class]
 )
 interface RepoComponent {
     fun repository(): Repository

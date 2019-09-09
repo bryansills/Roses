@@ -11,5 +11,4 @@ class EntryCallback : DiffUtil.ItemCallback<Entry>() {
     override fun areContentsTheSame(oldItem: Entry, newItem: Entry): Boolean {
         return oldItem == newItem
     }
-
 }

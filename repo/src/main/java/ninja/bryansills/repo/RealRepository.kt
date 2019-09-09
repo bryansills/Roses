@@ -1,11 +1,10 @@
 package ninja.bryansills.repo
 
+import java.util.*
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.network.NetworkService
 import ninja.bryansills.roses.network.models.streams.EntryResponse
 import retrofit2.HttpException
-import java.util.Calendar
-import java.util.Date
 
 class RealRepository(var networkService: NetworkService, var databaseService: DatabaseService, var refreshInterval: Int) : Repository {
     override suspend fun categories(): FetchCategoryResult {
@@ -47,8 +46,8 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
 
     private suspend fun insertEntries(entries: List<EntryResponse>) {
         val mapping = entries.groupBy { entry -> entry.origin.streamId }
-                .values
-                .associateBy({ it.toOrigin() }, { it.toDbEntries()})
+            .values
+            .associateBy({ it.toOrigin() }, { it.toDbEntries() })
 
         databaseService.insertMappedEntries(mapping)
     }

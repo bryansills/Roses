@@ -4,8 +4,8 @@ import dagger.Component
 import ninja.bryansills.roses.network.models.MoshiComponent
 
 @Component(
-        dependencies = [MoshiComponent::class],
-        modules = [NetworkModule::class]
+    dependencies = [MoshiComponent::class],
+    modules = [NetworkModule::class]
 )
 interface NetworkComponent {
     fun networkService(): NetworkService

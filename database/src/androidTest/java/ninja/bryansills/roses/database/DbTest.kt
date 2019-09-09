@@ -14,12 +14,11 @@ abstract class DbTest {
     @Before
     fun initDb() {
         _db = Room
-                .inMemoryDatabaseBuilder(
-                        ApplicationProvider.getApplicationContext(),
-                        AppDatabase::class.java
-                )
-                .build()
-
+            .inMemoryDatabaseBuilder(
+                ApplicationProvider.getApplicationContext(),
+                AppDatabase::class.java
+            )
+            .build()
     }
 
     @After

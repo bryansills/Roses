@@ -5,8 +5,10 @@ import androidx.room.RoomDatabase
 import ninja.bryansills.roses.database.models.Entry
 import ninja.bryansills.roses.database.models.Origin
 
-@Database(entities = [Entry::class, Origin::class],
-          version = 7)
+@Database(
+    entities = [Entry::class, Origin::class],
+    version = 7
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun entryDao(): EntryDao
     abstract fun originDao(): OriginDao

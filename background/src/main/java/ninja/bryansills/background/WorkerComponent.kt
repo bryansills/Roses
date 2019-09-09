@@ -4,8 +4,8 @@ import dagger.Component
 import ninja.bryansills.repo.RepoComponent
 
 @Component(
-        dependencies = [RepoComponent::class],
-        modules = [WorkerModule::class]
+    dependencies = [RepoComponent::class],
+    modules = [WorkerModule::class]
 )
 interface WorkerComponent {
     fun workerManager(): WorkerManager
