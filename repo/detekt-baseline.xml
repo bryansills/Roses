@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>MagicNumber:RealRepository.kt$RealRepository$401</ID>
+    <ID>MagicNumber:RealRepository.kt$RealRepository$429</ID>
+    <ID>MaxLineLength:RealRepository.kt$RealRepository : Repository</ID>
+    <ID>NewLineAtEndOfFile:Category.kt$ninja.bryansills.repo.Category.kt</ID>
+    <ID>NewLineAtEndOfFile:Entry.kt$ninja.bryansills.repo.Entry.kt</ID>
+    <ID>NewLineAtEndOfFile:FetchCategoryResult.kt$ninja.bryansills.repo.FetchCategoryResult.kt</ID>
+    <ID>NewLineAtEndOfFile:FetchEntryResult.kt$ninja.bryansills.repo.FetchEntryResult.kt</ID>
+    <ID>NewLineAtEndOfFile:RealRepository.kt$ninja.bryansills.repo.RealRepository.kt</ID>
+    <ID>NewLineAtEndOfFile:RepoComponent.kt$ninja.bryansills.repo.RepoComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:RepoModule.kt$ninja.bryansills.repo.RepoModule.kt</ID>
+    <ID>NewLineAtEndOfFile:Repository.kt$ninja.bryansills.repo.Repository.kt</ID>
+    <ID>NewLineAtEndOfFile:Utils.kt$ninja.bryansills.repo.Utils.kt</ID>
+    <ID>TooGenericExceptionCaught:RealRepository.kt$RealRepository$error: Exception</ID>
+  </Whitelist>
+</SmellBaseline>

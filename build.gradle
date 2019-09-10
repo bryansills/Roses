@@ -13,6 +13,7 @@ buildscript {
         classpath Libs.kotlin_gradle_plugin
         classpath Libs.navigation_safe_args_gradle_plugin
         classpath Libs.ktlint_gradle_plugin
+        classpath Libs.detekt_gradle_plugin
     }
 }
 
@@ -20,6 +21,7 @@ apply plugin: "com.github.ben-manes.versions"
 
 allprojects {
     apply plugin: "org.jlleitschuh.gradle.ktlint"
+    apply plugin: "io.gitlab.arturbosch.detekt"
 
     repositories {
         google()
@@ -64,5 +66,11 @@ allprojects {
 
     ktlint {
         enableExperimentalRules = true
+        additionalEditorconfigFile = rootProject.file(".editorconfig")
+    }
+
+    detekt {
+        config = rootProject.files("config/detekt/detekt.yml")
+        baseline = project.file("detekt-baseline.xml")
     }
 }

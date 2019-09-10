@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>NewLineAtEndOfFile:AppDatabase.kt$ninja.bryansills.roses.database.AppDatabase.kt</ID>
+    <ID>NewLineAtEndOfFile:CategoryDao.kt$ninja.bryansills.roses.database.CategoryDao.kt</ID>
+    <ID>NewLineAtEndOfFile:DatabaseComponent.kt$ninja.bryansills.roses.database.DatabaseComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:DatabaseModule.kt$ninja.bryansills.roses.database.DatabaseModule.kt</ID>
+    <ID>NewLineAtEndOfFile:DatabaseService.kt$ninja.bryansills.roses.database.DatabaseService.kt</ID>
+    <ID>NewLineAtEndOfFile:EntryDao.kt$ninja.bryansills.roses.database.EntryDao.kt</ID>
+    <ID>NewLineAtEndOfFile:RealDatabaseService.kt$ninja.bryansills.roses.database.RealDatabaseService.kt</ID>
+  </Whitelist>
+</SmellBaseline>

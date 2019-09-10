@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>NewLineAtEndOfFile:NetworkTestUtils.kt$ninja.bryansills.roses.network.test.NetworkTestUtils.kt</ID>
+  </Whitelist>
+</SmellBaseline>

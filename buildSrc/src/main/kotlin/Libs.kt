@@ -55,4 +55,5 @@ object Libs {
     // etc.
     const val jsoup = "org.jsoup:jsoup:" + Versions.jsoup
     const val ktlint_gradle_plugin = "org.jlleitschuh.gradle:ktlint-gradle:" + Versions.ktlint_gradle_plugin
+    const val detekt_gradle_plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:" + Versions.detekt_gradle_plugin
 }

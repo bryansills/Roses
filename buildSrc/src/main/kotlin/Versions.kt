@@ -37,4 +37,5 @@ object Versions {
     // etc.
     const val jsoup = "1.12.1"
     const val ktlint_gradle_plugin = "8.2.0"
+    const val detekt_gradle_plugin = "1.0.1"
 }

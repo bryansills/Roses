@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>MagicNumber:RealNetworkService.kt$RealNetworkService$50</ID>
+    <ID>NewLineAtEndOfFile:FeedlyService.kt$ninja.bryansills.roses.network.FeedlyService.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkComponent.kt$ninja.bryansills.roses.network.NetworkComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkModule.kt$ninja.bryansills.roses.network.NetworkModule.kt</ID>
+  </Whitelist>
+</SmellBaseline>

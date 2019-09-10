@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>NewLineAtEndOfFile:AlternateEntry.kt$ninja.bryansills.roses.network.models.streams.AlternateEntry.kt</ID>
+    <ID>NewLineAtEndOfFile:MoshiComponent.kt$ninja.bryansills.roses.network.models.MoshiComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:MoshiModule.kt$ninja.bryansills.roses.network.models.MoshiModule.kt</ID>
+    <ID>NewLineAtEndOfFile:Origin.kt$ninja.bryansills.roses.network.models.streams.Origin.kt</ID>
+    <ID>NewLineAtEndOfFile:StreamContentsResponse.kt$ninja.bryansills.roses.network.models.streams.StreamContentsResponse.kt</ID>
+    <ID>NewLineAtEndOfFile:Summary.kt$ninja.bryansills.roses.network.models.streams.Summary.kt</ID>
+  </Whitelist>
+</SmellBaseline>

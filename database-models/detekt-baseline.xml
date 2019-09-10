@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>NewLineAtEndOfFile:Category.kt$ninja.bryansills.roses.database.models.Category.kt</ID>
+    <ID>NewLineAtEndOfFile:Entry.kt$ninja.bryansills.roses.database.models.Entry.kt</ID>
+    <ID>NewLineAtEndOfFile:Origin.kt$ninja.bryansills.roses.database.models.Origin.kt</ID>
+  </Whitelist>
+</SmellBaseline>

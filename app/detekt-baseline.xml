@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>MagicNumber:EntryItemViewHolder.kt$EntryItemViewHolder$20</ID>
+    <ID>MagicNumber:EntryItemViewHolder.kt$EntryItemViewHolder$3</ID>
+    <ID>MagicNumber:EntryItemViewHolder.kt$EntryItemViewHolder$4</ID>
+    <ID>MagicNumber:EntryItemViewHolder.kt$EntryItemViewHolder$5</ID>
+    <ID>MagicNumber:RosesApplication.kt$RosesApplication$3</ID>
+    <ID>MaxLineLength:CategoryAdapter.kt$CategoryAdapter : ListAdapter</ID>
+    <ID>MaxLineLength:CategoryFragment.kt$CategoryFragment : FragmentBindingFragment</ID>
+    <ID>MaxLineLength:EntryFragment.kt$EntryFragment : FragmentBindingFragment</ID>
+    <ID>NewLineAtEndOfFile:ActivityModule.kt$ninja.bryansills.roses.inject.ActivityModule.kt</ID>
+    <ID>NewLineAtEndOfFile:ActivityScope.kt$ninja.bryansills.roses.inject.ActivityScope.kt</ID>
+    <ID>NewLineAtEndOfFile:ApplicationModule.kt$ninja.bryansills.roses.inject.ApplicationModule.kt</ID>
+    <ID>NewLineAtEndOfFile:AsyncUiModel.kt$ninja.bryansills.roses.ui.AsyncUiModel.kt</ID>
+    <ID>NewLineAtEndOfFile:BindingAdapters.kt$ninja.bryansills.roses.binding.BindingAdapters.kt</ID>
+    <ID>NewLineAtEndOfFile:BindingFragment.kt$ninja.bryansills.roses.binding.BindingFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:CategoryAdapter.kt$ninja.bryansills.roses.category.CategoryAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:CategoryCallback.kt$ninja.bryansills.roses.category.CategoryCallback.kt</ID>
+    <ID>NewLineAtEndOfFile:CategoryFragment.kt$ninja.bryansills.roses.category.CategoryFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:CategoryUiModel.kt$ninja.bryansills.roses.category.CategoryUiModel.kt</ID>
+    <ID>NewLineAtEndOfFile:CategoryViewModel.kt$ninja.bryansills.roses.category.CategoryViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:CoroutineDispatchers.kt$ninja.bryansills.roses.coroutine.CoroutineDispatchers.kt</ID>
+    <ID>NewLineAtEndOfFile:CoroutineModule.kt$ninja.bryansills.roses.inject.CoroutineModule.kt</ID>
+    <ID>NewLineAtEndOfFile:EntryAdapter.kt$ninja.bryansills.roses.entry.EntryAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:EntryFragment.kt$ninja.bryansills.roses.entry.EntryFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:EntryItemViewHolder.kt$ninja.bryansills.roses.entry.EntryItemViewHolder.kt</ID>
+    <ID>NewLineAtEndOfFile:EntryViewModel.kt$ninja.bryansills.roses.entry.EntryViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:FragmentModule.kt$ninja.bryansills.roses.inject.FragmentModule.kt</ID>
+    <ID>NewLineAtEndOfFile:LoadingDelegate.kt$ninja.bryansills.roses.ui.LoadingDelegate.kt</ID>
+    <ID>NewLineAtEndOfFile:RealCategoryViewModel.kt$ninja.bryansills.roses.category.RealCategoryViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:RealCoroutineDispatchers.kt$ninja.bryansills.roses.coroutine.RealCoroutineDispatchers.kt</ID>
+    <ID>NewLineAtEndOfFile:RealEntryViewModel.kt$ninja.bryansills.roses.entry.RealEntryViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:RosesNavHostFragment.kt$ninja.bryansills.roses.navigation.RosesNavHostFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:SuccessDelegate.kt$ninja.bryansills.roses.ui.SuccessDelegate.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelFactory.kt$ninja.bryansills.roses.factory.ViewModelFactory.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelModule.kt$ninja.bryansills.roses.inject.ViewModelModule.kt</ID>
+    <ID>TooGenericExceptionCaught:DaggerFragmentFactory.kt$DaggerFragmentFactory$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:RealCategoryViewModel.kt$RealCategoryViewModel$error: Exception</ID>
+    <ID>TooGenericExceptionCaught:RealEntryViewModel.kt$RealEntryViewModel$error: Exception</ID>
+    <ID>TooGenericExceptionThrown:DaggerFragmentFactory.kt$DaggerFragmentFactory$throw RuntimeException(e)</ID>
+    <ID>VariableNaming:CoroutineDispatchers.kt$CoroutineDispatchers$val Computation: CoroutineDispatcher</ID>
+    <ID>VariableNaming:CoroutineDispatchers.kt$CoroutineDispatchers$val IO: CoroutineDispatcher</ID>
+    <ID>VariableNaming:CoroutineDispatchers.kt$CoroutineDispatchers$val UI: CoroutineDispatcher</ID>
+  </Whitelist>
+</SmellBaseline>
