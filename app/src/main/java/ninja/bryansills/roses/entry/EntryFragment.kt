@@ -30,7 +30,11 @@ class EntryFragment @Inject constructor(
     val args: EntryFragmentArgs by navArgs()
     private lateinit var binding: FragmentEntryBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_entry, container, false)
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = args.categoryName
