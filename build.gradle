@@ -38,6 +38,11 @@ allprojects {
                 }
             }
         }
+        if (project.plugins.hasPlugin("com.android.application") || project.plugins.hasPlugin("com.android.library")) {
+            ktlint {
+                android = true
+            }
+        }
     }
 
     plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
@@ -66,6 +71,7 @@ allprojects {
 
     ktlint {
         enableExperimentalRules = true
+        ignoreFailures = true
         additionalEditorconfigFile = rootProject.file(".editorconfig")
     }
 
