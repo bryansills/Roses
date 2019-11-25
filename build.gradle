@@ -2,6 +2,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
@@ -9,12 +12,15 @@ buildscript {
         classpath Libs.android_gradle_plugin
         classpath Libs.kotlin_gradle_plugin
         classpath Libs.navigation_safe_args_gradle_plugin
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
     }
 }
 
 apply plugin: "com.github.ben-manes.versions"
 
 allprojects {
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+
     repositories {
         google()
         // AndroidX snapshots. Remove this once Room 2.2.0-alpha03 is released
@@ -28,6 +34,12 @@ allprojects {
                 javacOptions {
                     option("-Xmaxerrs", 500)
                 }
+            }
+        }
+
+        if (project.plugins.hasPlugin("com.android.application") || project.plugins.hasPlugin("com.android.library")) {
+            ktlint {
+                android = true
             }
         }
     }
@@ -48,11 +60,15 @@ allprojects {
         task.kotlinOptions {
             jvmTarget = "1.8"
             freeCompilerArgs += [
-                    '-XXLanguage:+NewInference',
                     '-progressive',
                     '-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi',
                     '-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi',
             ]
         }
+    }
+
+    ktlint {
+        enableExperimentalRules = true
+        ignoreFailures = true
     }
 }
