@@ -9,11 +9,13 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import ninja.bryansills.repo.Repository
 
-class BackgroundWorker(context: Context,
-                       workerParams: WorkerParameters,
-                       val repository: Repository)
-    : CoroutineWorker(context, workerParams) {
+class BackgroundWorker(
+    context: Context,
+    workerParams: WorkerParameters,
+    val repository: Repository
+) : CoroutineWorker(context, workerParams) {
 
+    // this does something
     override suspend fun doWork(): Result = coroutineScope {
         try {
             withContext(Dispatchers.IO) {
@@ -26,4 +28,6 @@ class BackgroundWorker(context: Context,
             Result.failure()
         }
     }
+
+    // here is some dumb code
 }
