@@ -1,7 +1,6 @@
 package ninja.bryansills.roses.entry
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import java.util.*
+import java.util.Date
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import ninja.bryansills.repo.Entry
@@ -12,13 +11,9 @@ import ninja.bryansills.roses.utils.TestCoroutineDispatchers
 import ninja.bryansills.roses.utils.ViewModelTest
 import ninja.bryansills.roses.utils.observeOnce
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 class RealEntryViewModelTest : ViewModelTest() {
-
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     lateinit var fakeRepository: FakeRepository
     lateinit var entryViewModel: EntryViewModel

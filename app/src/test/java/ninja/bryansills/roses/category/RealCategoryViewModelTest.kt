@@ -1,6 +1,5 @@
 package ninja.bryansills.roses.category
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import ninja.bryansills.repo.Category
@@ -11,13 +10,9 @@ import ninja.bryansills.roses.utils.TestCoroutineDispatchers
 import ninja.bryansills.roses.utils.ViewModelTest
 import ninja.bryansills.roses.utils.observeOnce
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 class RealCategoryViewModelTest : ViewModelTest() {
-
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     lateinit var fakeRepository: FakeRepository
     lateinit var categoryViewModel: CategoryViewModel
