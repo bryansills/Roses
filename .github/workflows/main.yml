@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
 
     steps:
     - uses: actions/checkout@v1
@@ -13,7 +13,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+        
     - name: Copy gradle.properties file
       run: cp app/gradle.properties.example app/gradle.properties
-    - name: Build with Gradle
+
+    - name: Run the linter and unit tests
       run: ./gradlew check
+
+    - name: Run instrumented UI tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        script: ./gradlew connectedCheck
