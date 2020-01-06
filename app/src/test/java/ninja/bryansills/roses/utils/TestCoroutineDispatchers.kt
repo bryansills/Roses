@@ -6,7 +6,7 @@ import ninja.bryansills.roses.coroutine.CoroutineDispatchers
 
 class TestCoroutineDispatchers : CoroutineDispatchers {
     override val UI: CoroutineDispatcher
-        get() = TestCoroutineDispatchers().UI
+        get() = Dispatchers.Unconfined
     override val IO: CoroutineDispatcher
         get() = Dispatchers.Unconfined
     override val Computation: CoroutineDispatcher
