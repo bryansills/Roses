@@ -10,7 +10,7 @@ inline fun <Frag : Fragment> FragmentScenario<Frag>.onDataBindingFragment(
     this.onFragment {
         lambda(it)
 
-        if (it is BindingFragment) {
+        if (it is BindingFragment<*>) {
             it.getBinding().executePendingBindings()
         } else {
             throw RuntimeException("Don\'t run onDataBindingFragment on non-databinding Fragments")

@@ -1,7 +1,7 @@
 object Versions {
     // Buildscript
     const val gradle_versions_plugin = "0.22.0"
-    const val android_gradle_plugin = "3.4.0"
+    const val android_gradle_plugin = "3.6.1"
 
     // Android SDK
     const val compile_sdk = 29
@@ -9,18 +9,18 @@ object Versions {
     const val target_sdk = 29
 
     // Core
-    const val kotlin = "1.3.41"
-    const val coroutines = "1.3.0-RC2"
+    const val kotlin = "1.3.71"
+    const val coroutines = "1.3.5"
     const val dagger = "2.24"
 
     // Android
-    const val appcompat = "1.1.0-rc01"
+    const val appcompat = "1.1.0"
     const val ktx = "1.1.0-rc03"
-    const val fragment = "1.1.0-rc04"
-    const val constraint_layout = "2.0.0-beta2"
-    const val viewmodel = "2.1.0-rc01"
-    const val navigation = "2.1.0-rc01"
-    const val room = "2.2.0-SNAPSHOT"
+    const val fragment = "1.1.0"
+    const val constraint_layout = "2.0.0-beta4"
+    const val viewmodel = "2.1.0"
+    const val navigation = "2.1.0"
+    const val room = "2.2.0"
     const val work_manager = "2.2.0"
 
     // Square

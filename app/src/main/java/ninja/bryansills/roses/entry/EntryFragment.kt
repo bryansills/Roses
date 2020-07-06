@@ -9,22 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
+import javax.inject.Inject
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.binding.BindingFragment
 import ninja.bryansills.roses.databinding.FragmentEntryBinding
-import javax.inject.Inject
 
 @SuppressLint("ValidFragment")
 class EntryFragment @Inject constructor(
     private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment(), BindingFragment {
+) : Fragment(), BindingFragment<FragmentEntryBinding> {
 
     private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
     val args: EntryFragmentArgs by navArgs()
@@ -60,5 +59,5 @@ class EntryFragment @Inject constructor(
             .observe(viewLifecycleOwner, Observer { binding.uiModel = it })
     }
 
-    override fun getBinding(): ViewDataBinding = binding
+    override fun getBinding(): FragmentEntryBinding = binding
 }

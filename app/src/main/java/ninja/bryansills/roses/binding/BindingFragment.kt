@@ -2,6 +2,6 @@ package ninja.bryansills.roses.binding
 
 import androidx.databinding.ViewDataBinding
 
-interface BindingFragment {
-    fun getBinding(): ViewDataBinding
+interface BindingFragment<Binding : ViewDataBinding> {
+    fun getBinding(): Binding
 }
