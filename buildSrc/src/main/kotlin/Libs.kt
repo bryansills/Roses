@@ -23,7 +23,7 @@ object Libs {
     const val android_fragment = "androidx.fragment:fragment-ktx:" + Versions.fragment
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:" + Versions.constraint_layout
 
-    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:" + Versions.viewmodel
+    const val lifecycle = "androidx.lifecycle:lifecycle-livedata-ktx:" + Versions.viewmodel
     const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:" + Versions.viewmodel
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:" + Versions.viewmodel
 

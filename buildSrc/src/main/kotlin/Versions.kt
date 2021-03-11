@@ -9,7 +9,7 @@ object Versions {
     const val target_sdk = 29
 
     // Core
-    const val kotlin = "1.3.71"
+    const val kotlin = "1.4.21"
     const val coroutines = "1.3.5"
     const val dagger = "2.24"
 
@@ -18,7 +18,7 @@ object Versions {
     const val ktx = "1.1.0-rc03"
     const val fragment = "1.1.0"
     const val constraint_layout = "2.0.0-beta4"
-    const val viewmodel = "2.1.0"
+    const val viewmodel = "2.2.0"
     const val navigation = "2.1.0"
     const val room = "2.2.0"
     const val work_manager = "2.2.0"
