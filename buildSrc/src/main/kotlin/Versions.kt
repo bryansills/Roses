@@ -1,15 +1,15 @@
 object Versions {
     // Buildscript
-    const val gradle_versions_plugin = "0.22.0"
-    const val android_gradle_plugin = "3.6.1"
+    const val gradle_versions_plugin = "0.38.0"
+    const val android_gradle_plugin = "4.1.2"
 
     // Android SDK
-    const val compile_sdk = 29
+    const val compile_sdk = 30
     const val min_sdk = 24
-    const val target_sdk = 29
+    const val target_sdk = 30
 
     // Core
-    const val kotlin = "1.4.21"
+    const val kotlin = "1.4.31"
     const val coroutines = "1.3.5"
     const val dagger = "2.24"
 
@@ -36,6 +36,6 @@ object Versions {
 
     // etc.
     const val jsoup = "1.12.1"
-    const val ktlint_gradle_plugin = "8.2.0"
-    const val detekt_gradle_plugin = "1.0.1"
+    const val ktlint_gradle_plugin = "10.0.0"
+    const val detekt_gradle_plugin = "1.16.0"
 }

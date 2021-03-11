@@ -18,10 +18,10 @@ jobs:
       run: cp app/gradle.properties.example app/gradle.properties
 
     - name: Run the linter and unit tests
-      run: ./gradlew check
+      run: ./gradlew check --stacktrace
 
     - name: Run instrumented UI tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        script: ./gradlew connectedCheck
+        script: ./gradlew connectedCheck --stacktrace
