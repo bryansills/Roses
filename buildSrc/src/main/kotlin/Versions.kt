@@ -10,29 +10,29 @@ object Versions {
 
     // Core
     const val kotlin = "1.4.31"
-    const val coroutines = "1.3.5"
-    const val dagger = "2.24"
+    const val coroutines = "1.4.3"
+    const val dagger = "2.33"
 
     // Android
-    const val appcompat = "1.1.0"
-    const val ktx = "1.1.0-rc03"
-    const val fragment = "1.1.0"
-    const val constraint_layout = "2.0.0-beta4"
-    const val viewmodel = "2.2.0"
-    const val navigation = "2.1.0"
-    const val room = "2.2.0"
-    const val work_manager = "2.2.0"
+    const val appcompat = "1.2.0"
+    const val ktx = "1.3.2"
+    const val fragment = "1.3.1"
+    const val constraint_layout = "2.0.4"
+    const val viewmodel = "2.3.0"
+    const val navigation = "2.3.4"
+    const val room = "2.2.6"
+    const val work_manager = "2.5.0"
 
     // Square
-    const val moshi = "1.8.0"
-    const val retrofit = "2.6.1"
+    const val moshi = "1.11.0"
+    const val retrofit = "2.9.0"
 
     // Test
-    const val android_test = "1.1.1"
-    const val android_test_core = "1.1.0"
-    const val android_arch_core_testing = "2.0.1"
-    const val ext_junit = "1.1.0"
-    const val espresso = "3.1.1"
+    const val android_test = "1.3.0"
+    const val android_test_core = "1.3.0"
+    const val android_arch_core_testing = "2.1.0"
+    const val ext_junit = "1.1.2"
+    const val espresso = "3.3.0"
 
     // etc.
     const val jsoup = "1.12.1"

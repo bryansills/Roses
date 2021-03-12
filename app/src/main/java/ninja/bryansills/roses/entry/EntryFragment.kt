@@ -43,7 +43,7 @@ class EntryFragment @Inject constructor(
             if (it.url != null && activity != null) {
                 val uri = Uri.parse(it.url)
                 val browserIntent = Intent(Intent.ACTION_VIEW, uri)
-                if (browserIntent.resolveActivity(activity!!.packageManager) != null) {
+                if (browserIntent.resolveActivity(requireActivity().packageManager) != null) {
                     startActivity(browserIntent)
                 }
             }
