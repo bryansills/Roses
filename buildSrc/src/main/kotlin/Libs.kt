@@ -16,6 +16,9 @@ object Libs {
     const val dagger_android_support = "com.google.dagger:dagger-android-support:" + Versions.dagger
     const val dagger_compiler = "com.google.dagger:dagger-compiler:" + Versions.dagger
     const val dagger_android_compiler = "com.google.dagger:dagger-android-processor:" + Versions.dagger
+    const val dagger_hilt_android = "com.google.dagger:hilt-android:${Versions.dagger_hilt}"
+    const val dagger_hilt_compiler = "com.google.dagger:hilt-compiler:${Versions.dagger_hilt}"
+    const val dagger_hilt_gradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger_hilt}"
 
     // Android
     const val appcompat = "androidx.appcompat:appcompat:" + Versions.appcompat

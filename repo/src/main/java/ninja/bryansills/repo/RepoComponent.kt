@@ -11,11 +11,11 @@ import ninja.bryansills.roses.network.NetworkComponent
 interface RepoComponent {
     fun repository(): Repository
 
-    @Component.Builder
-    interface Builder {
-        fun build(): RepoComponent
-        fun repoModule(repoModule: RepoModule): Builder
-        fun databaseComponent(databaseComponent: DatabaseComponent): Builder
-        fun networkComponent(networkComponent: NetworkComponent): Builder
-    }
+    // @Component.Builder
+    // interface Builder {
+    //     fun build(): RepoComponent
+    //     fun repoModule(repoModule: RepoModule): Builder
+    //     fun databaseComponent(databaseComponent: DatabaseComponent): Builder
+    //     fun networkComponent(networkComponent: NetworkComponent): Builder
+    // }
 }

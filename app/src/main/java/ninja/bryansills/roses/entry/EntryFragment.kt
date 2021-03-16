@@ -1,6 +1,5 @@
 package ninja.bryansills.roses.entry
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,20 +11,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.binding.BindingFragment
 import ninja.bryansills.roses.databinding.FragmentEntryBinding
 
-@SuppressLint("ValidFragment")
-class EntryFragment @Inject constructor(
-    private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment(), BindingFragment<FragmentEntryBinding> {
-
-    private val entryViewModel: EntryViewModel by viewModels { viewModelFactory }
+@AndroidEntryPoint
+class EntryFragment : Fragment(), BindingFragment<FragmentEntryBinding> {
+    private val entryViewModel: RealEntryViewModel by viewModels()
     val args: EntryFragmentArgs by navArgs()
     private lateinit var binding: FragmentEntryBinding
 

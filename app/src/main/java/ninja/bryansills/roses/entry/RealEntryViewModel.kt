@@ -3,14 +3,16 @@ package ninja.bryansills.roses.entry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import javax.inject.Inject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ninja.bryansills.repo.FetchEntryResult
 import ninja.bryansills.repo.Repository
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.coroutine.CoroutineDispatchers
+import javax.inject.Inject
 
+@HiltViewModel
 class RealEntryViewModel @Inject constructor(
     private val repository: Repository,
     private val coroutineDispatchers: CoroutineDispatchers
@@ -26,7 +28,9 @@ class RealEntryViewModel @Inject constructor(
                 try {
                     when (val repoResult = repository.getEntries(categoryId)) {
                         is FetchEntryResult.InFlight -> EntryUiModel.Loading()
-                        is FetchEntryResult.Error -> EntryUiModel.Error(R.string.unknown_entry_error)
+                        is FetchEntryResult.Error -> EntryUiModel.Error(
+                            R.string.unknown_entry_error
+                        )
                         is FetchEntryResult.Success -> EntryUiModel.Success(repoResult.entries)
                     }
                 } catch (error: Exception) {

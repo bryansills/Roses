@@ -12,6 +12,7 @@ object Versions {
     const val kotlin = "1.4.31"
     const val coroutines = "1.4.3"
     const val dagger = "2.33"
+    const val dagger_hilt = "2.33-beta"
 
     // Android
     const val appcompat = "1.2.0"
