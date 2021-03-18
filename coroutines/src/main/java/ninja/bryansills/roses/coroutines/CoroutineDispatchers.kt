@@ -1,4 +1,4 @@
-package ninja.bryansills.roses.coroutine
+package ninja.bryansills.roses.coroutines
 
 import kotlinx.coroutines.CoroutineDispatcher
 

@@ -12,15 +12,7 @@ android {
 }
 
 dependencies {
-    implementation project(":repo")
-    implementation project(":coroutines")
-
     implementation Libs.kotlin_stdlib
-
-    implementation Libs.dagger_android
-    kapt Libs.dagger_compiler
-
-    api Libs.work_manager
-    api Libs.hilt_work
-    kapt Libs.hilt_compiler
+    implementation Libs.coroutines
+    implementation Libs.coroutines_android
 }

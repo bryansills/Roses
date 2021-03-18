@@ -43,11 +43,11 @@ dependencies {
     implementation project(":repo")
     implementation project(":network")
     implementation project(":database")
-//    implementation project(":background")
+    implementation project(":background")
+    implementation project(":coroutines")
 
     implementation Libs.kotlin_stdlib
     implementation Libs.coroutines
-    implementation Libs.coroutines_android
 
     implementation Libs.dagger
     implementation Libs.dagger_android

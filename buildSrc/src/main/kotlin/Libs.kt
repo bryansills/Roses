@@ -38,6 +38,8 @@ object Libs {
     const val room_compiler = "androidx.room:room-compiler:" + Versions.room
 
     const val work_manager = "androidx.work:work-runtime-ktx:" + Versions.work_manager
+    const val hilt_work = "androidx.hilt:hilt-work:${Versions.androidx_hilt}"
+    const val hilt_compiler = "androidx.hilt:hilt-compiler:${Versions.androidx_hilt}"
 
     // Square
     const val moshi = "com.squareup.moshi:moshi:" + Versions.moshi

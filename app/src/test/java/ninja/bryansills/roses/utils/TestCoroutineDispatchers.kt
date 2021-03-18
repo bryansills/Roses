@@ -2,7 +2,7 @@ package ninja.bryansills.roses.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import ninja.bryansills.roses.coroutine.CoroutineDispatchers
+import ninja.bryansills.roses.coroutines.CoroutineDispatchers
 
 class TestCoroutineDispatchers : CoroutineDispatchers {
     override val UI: CoroutineDispatcher

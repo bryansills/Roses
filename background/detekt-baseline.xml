@@ -9,7 +9,7 @@
     <ID>NewLineAtEndOfFile:WorkerComponent.kt$ninja.bryansills.background.WorkerComponent.kt</ID>
     <ID>NewLineAtEndOfFile:WorkerFactoryProvider.kt$ninja.bryansills.background.WorkerFactoryProvider.kt</ID>
     <ID>NewLineAtEndOfFile:WorkerManager.kt$ninja.bryansills.background.WorkerManager.kt</ID>
-    <ID>NewLineAtEndOfFile:WorkerModule.kt$ninja.bryansills.background.WorkerModule.kt</ID>
+    <ID>NewLineAtEndOfFile:WorkerModule.kt$ninja.bryansills.roses.background.WorkerModule.kt</ID>
     <ID>TooGenericExceptionCaught:BackgroundWorker.kt$BackgroundWorker$throwable: Throwable</ID>
   </Whitelist>
 </SmellBaseline>

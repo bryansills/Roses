@@ -21,7 +21,7 @@
     <ID>NewLineAtEndOfFile:CategoryFragment.kt$ninja.bryansills.roses.category.CategoryFragment.kt</ID>
     <ID>NewLineAtEndOfFile:CategoryUiModel.kt$ninja.bryansills.roses.category.CategoryUiModel.kt</ID>
     <ID>NewLineAtEndOfFile:CategoryViewModel.kt$ninja.bryansills.roses.category.CategoryViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:CoroutineDispatchers.kt$ninja.bryansills.roses.coroutine.CoroutineDispatchers.kt</ID>
+    <ID>NewLineAtEndOfFile:CoroutineDispatchers.kt$ninja.bryansills.roses.coroutines.CoroutineDispatchers.kt</ID>
     <ID>NewLineAtEndOfFile:CoroutineModule.kt$ninja.bryansills.roses.inject.CoroutineModule.kt</ID>
     <ID>NewLineAtEndOfFile:EntryAdapter.kt$ninja.bryansills.roses.entry.EntryAdapter.kt</ID>
     <ID>NewLineAtEndOfFile:EntryFragment.kt$ninja.bryansills.roses.entry.EntryFragment.kt</ID>
@@ -30,7 +30,7 @@
     <ID>NewLineAtEndOfFile:FragmentModule.kt$ninja.bryansills.roses.inject.FragmentModule.kt</ID>
     <ID>NewLineAtEndOfFile:LoadingDelegate.kt$ninja.bryansills.roses.ui.LoadingDelegate.kt</ID>
     <ID>NewLineAtEndOfFile:RealCategoryViewModel.kt$ninja.bryansills.roses.category.RealCategoryViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:RealCoroutineDispatchers.kt$ninja.bryansills.roses.coroutine.RealCoroutineDispatchers.kt</ID>
+    <ID>NewLineAtEndOfFile:RealCoroutineDispatchers.kt$ninja.bryansills.roses.coroutines.RealCoroutineDispatchers.kt</ID>
     <ID>NewLineAtEndOfFile:RealEntryViewModel.kt$ninja.bryansills.roses.entry.RealEntryViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:RosesNavHostFragment.kt$ninja.bryansills.roses.navigation.RosesNavHostFragment.kt</ID>
     <ID>NewLineAtEndOfFile:SuccessDelegate.kt$ninja.bryansills.roses.ui.SuccessDelegate.kt</ID>

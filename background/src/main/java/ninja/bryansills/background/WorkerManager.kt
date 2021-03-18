@@ -1,3 +1,0 @@
-package ninja.bryansills.background
-
-interface WorkerManager

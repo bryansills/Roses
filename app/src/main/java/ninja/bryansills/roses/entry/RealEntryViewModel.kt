@@ -6,10 +6,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import ninja.bryansills.roses.R
+import ninja.bryansills.roses.coroutines.CoroutineDispatchers
 import ninja.bryansills.roses.repo.FetchEntryResult
 import ninja.bryansills.roses.repo.Repository
-import ninja.bryansills.roses.R
-import ninja.bryansills.roses.coroutine.CoroutineDispatchers
 import javax.inject.Inject
 
 @HiltViewModel
