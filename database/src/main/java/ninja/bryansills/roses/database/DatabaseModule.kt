@@ -6,11 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class DatabaseModule(val context: Context) {
-
-    @Provides
-    fun context(): Context = context
-
+object DatabaseModule {
     @Provides
     fun database(appDatabase: AppDatabase): DatabaseService = RealDatabaseService(appDatabase)
 

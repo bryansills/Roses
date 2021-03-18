@@ -3,20 +3,16 @@ package ninja.bryansills.roses.network
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
+import ninja.bryansills.roses.network.models.MoshiModule
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Named
 
-@Module
-class NetworkModule(val token: String) {
-
-    @Provides
-    @Named("FEEDLY_ACCESS_TOKEN")
-    fun token(): String = token
-
+@Module(includes = [MoshiModule::class])
+object NetworkModule {
     @Provides
     fun network(feedlyService: FeedlyService): NetworkService =
         RealNetworkService(feedlyService)
@@ -52,5 +48,6 @@ class NetworkModule(val token: String) {
             .build()
 
     @Provides
-    fun feedlyService(retrofit: Retrofit): FeedlyService = retrofit.create(FeedlyService::class.java)
+    fun feedlyService(retrofit: Retrofit): FeedlyService =
+        retrofit.create(FeedlyService::class.java)
 }

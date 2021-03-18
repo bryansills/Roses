@@ -17,7 +17,7 @@ import ninja.bryansills.roses.databinding.FragmentCategoryBinding
 
 @AndroidEntryPoint
 class CategoryFragment : Fragment(), BindingFragment<FragmentCategoryBinding> {
-    private val categoryViewModel: CategoryViewModel by viewModels()
+    private val categoryViewModel: RealCategoryViewModel by viewModels()
     private lateinit var binding: FragmentCategoryBinding
 
     override fun onCreateView(

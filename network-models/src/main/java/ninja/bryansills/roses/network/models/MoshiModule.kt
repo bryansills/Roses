@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class MoshiModule {
+object MoshiModule {
     @Provides
     fun moshi(): Moshi = Moshi.Builder().build()
 }

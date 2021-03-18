@@ -9,11 +9,11 @@ import ninja.bryansills.roses.network.NetworkService
 import javax.inject.Named
 
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
-class RepoModule(
-    private val networkService: NetworkService,
-    private val databaseService: DatabaseService,
-    @Named("REFRESH_INTERVAL") private val refreshInterval: Int
-) {
+object RepoModule {
     @Provides
-    fun repo(): Repository = RealRepository(networkService, databaseService, refreshInterval)
+    fun repo(
+        networkService: NetworkService,
+        databaseService: DatabaseService,
+        @Named("REFRESH_INTERVAL") refreshInterval: Int
+    ): Repository = RealRepository(networkService, databaseService, refreshInterval)
 }
