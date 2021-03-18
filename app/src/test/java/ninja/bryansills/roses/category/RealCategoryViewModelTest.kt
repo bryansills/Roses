@@ -1,6 +1,6 @@
 package ninja.bryansills.roses.category
 
-import ninja.bryansills.repo.FetchCategoryResult
+import ninja.bryansills.roses.repo.FetchCategoryResult
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.repo.Category
 import ninja.bryansills.roses.utils.FakeRepository

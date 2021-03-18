@@ -3,6 +3,8 @@ package ninja.bryansills.repo
 import kotlinx.coroutines.runBlocking
 import ninja.bryansills.database.test.DatabaseTestUtils
 import ninja.bryansills.roses.repo.Category
+import ninja.bryansills.roses.repo.FetchCategoryResult
+import ninja.bryansills.roses.repo.RealRepository
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert.assertFalse

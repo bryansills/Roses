@@ -1,4 +1,4 @@
-package ninja.bryansills.repo
+package ninja.bryansills.roses.repo
 
 interface Repository {
     suspend fun categories(): FetchCategoryResult

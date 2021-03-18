@@ -1,12 +1,11 @@
-package ninja.bryansills.repo
+package ninja.bryansills.roses.repo
 
-import java.util.*
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.network.NetworkService
 import ninja.bryansills.roses.network.models.streams.EntryResponse
-import ninja.bryansills.roses.repo.Category
-import ninja.bryansills.roses.repo.Entry
 import retrofit2.HttpException
+import java.util.Calendar
+import java.util.Date
 
 class RealRepository(
     var networkService: NetworkService,

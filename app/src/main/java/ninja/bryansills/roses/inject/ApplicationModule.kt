@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ninja.bryansills.repo.RepoModule
+import ninja.bryansills.roses.repo.RepoModule
 import ninja.bryansills.roses.BuildConfig
 import ninja.bryansills.roses.coroutine.CoroutineDispatchers
 import ninja.bryansills.roses.coroutine.RealCoroutineDispatchers

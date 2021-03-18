@@ -30,12 +30,10 @@ android {
         enableExperimentalClasspathAggregation = true
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-    }
-
     buildFeatures {
+        buildConfig true
         dataBinding true
+        resValues true
     }
 
     buildTypes {

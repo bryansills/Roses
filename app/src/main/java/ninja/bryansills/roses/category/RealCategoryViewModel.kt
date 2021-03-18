@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import ninja.bryansills.repo.FetchCategoryResult
-import ninja.bryansills.repo.Repository
+import ninja.bryansills.roses.repo.FetchCategoryResult
+import ninja.bryansills.roses.repo.Repository
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.coroutine.CoroutineDispatchers
 import javax.inject.Inject

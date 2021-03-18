@@ -1,4 +1,4 @@
-package ninja.bryansills.repo
+package ninja.bryansills.roses.repo
 
 import dagger.Module
 import dagger.Provides

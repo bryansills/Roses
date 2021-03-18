@@ -1,6 +1,4 @@
-package ninja.bryansills.repo
-
-import ninja.bryansills.roses.repo.Category
+package ninja.bryansills.roses.repo
 
 sealed class FetchCategoryResult {
     object InFlight : FetchCategoryResult()

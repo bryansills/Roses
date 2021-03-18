@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
-import ninja.bryansills.repo.Repository
+import ninja.bryansills.roses.repo.Repository
 
 class BackgroundWorker(
     context: Context,

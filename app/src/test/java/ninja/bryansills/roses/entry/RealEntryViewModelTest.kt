@@ -4,7 +4,7 @@ import java.util.Date
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import ninja.bryansills.roses.repo.Entry
-import ninja.bryansills.repo.FetchEntryResult
+import ninja.bryansills.roses.repo.FetchEntryResult
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.utils.FakeRepository
 import ninja.bryansills.roses.utils.TestCoroutineDispatchers

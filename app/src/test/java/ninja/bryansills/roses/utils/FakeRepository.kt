@@ -1,8 +1,8 @@
 package ninja.bryansills.roses.utils
 
-import ninja.bryansills.repo.FetchCategoryResult
-import ninja.bryansills.repo.FetchEntryResult
-import ninja.bryansills.repo.Repository
+import ninja.bryansills.roses.repo.FetchCategoryResult
+import ninja.bryansills.roses.repo.FetchEntryResult
+import ninja.bryansills.roses.repo.Repository
 
 class FakeRepository : Repository {
     var categories: FetchCategoryResult = FetchCategoryResult.InFlight

@@ -7,12 +7,12 @@
     <ID>MaxLineLength:RealRepository.kt$RealRepository : Repository</ID>
     <ID>NewLineAtEndOfFile:Category.kt$ninja.bryansills.roses.repo.Category.kt</ID>
     <ID>NewLineAtEndOfFile:Entry.kt$ninja.bryansills.roses.repo.Entry.kt</ID>
-    <ID>NewLineAtEndOfFile:FetchCategoryResult.kt$ninja.bryansills.repo.FetchCategoryResult.kt</ID>
-    <ID>NewLineAtEndOfFile:FetchEntryResult.kt$ninja.bryansills.repo.FetchEntryResult.kt</ID>
-    <ID>NewLineAtEndOfFile:RealRepository.kt$ninja.bryansills.repo.RealRepository.kt</ID>
+    <ID>NewLineAtEndOfFile:FetchCategoryResult.kt$ninja.bryansills.roses.repo.FetchCategoryResult.kt</ID>
+    <ID>NewLineAtEndOfFile:FetchEntryResult.kt$ninja.bryansills.roses.repo.FetchEntryResult.kt</ID>
+    <ID>NewLineAtEndOfFile:RealRepository.kt$ninja.bryansills.roses.repo.RealRepository.kt</ID>
     <ID>NewLineAtEndOfFile:RepoComponent.kt$ninja.bryansills.repo.RepoComponent.kt</ID>
-    <ID>NewLineAtEndOfFile:RepoModule.kt$ninja.bryansills.repo.RepoModule.kt</ID>
-    <ID>NewLineAtEndOfFile:Repository.kt$ninja.bryansills.repo.Repository.kt</ID>
+    <ID>NewLineAtEndOfFile:RepoModule.kt$ninja.bryansills.roses.repo.RepoModule.kt</ID>
+    <ID>NewLineAtEndOfFile:Repository.kt$ninja.bryansills.roses.repo.Repository.kt</ID>
     <ID>NewLineAtEndOfFile:Utils.kt$ninja.bryansills.repo.Utils.kt</ID>
     <ID>TooGenericExceptionCaught:RealRepository.kt$RealRepository$error: Exception</ID>
   </Whitelist>

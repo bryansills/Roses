@@ -1,6 +1,4 @@
-package ninja.bryansills.repo
-
-import ninja.bryansills.roses.repo.Entry
+package ninja.bryansills.roses.repo
 
 sealed class FetchEntryResult {
     object InFlight : FetchEntryResult()

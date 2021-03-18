@@ -1,8 +1,8 @@
-package ninja.bryansills.repo
+package ninja.bryansills.roses.repo
 
-import java.util.Date
 import ninja.bryansills.roses.database.models.Origin
 import ninja.bryansills.roses.network.models.streams.EntryResponse
+import java.util.Date
 
 fun List<EntryResponse>.toOrigin(): Origin {
     val origin = this[0].origin
