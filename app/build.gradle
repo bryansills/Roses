@@ -21,11 +21,6 @@ android {
         buildConfigField "String", "FEEDLY_ACCESS_TOKEN", FEEDLY_ACCESS_TOKEN
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     hilt {
         enableExperimentalClasspathAggregation = true
     }

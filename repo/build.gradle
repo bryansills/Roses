@@ -9,16 +9,11 @@ android {
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    api project(":network") // api due to this issue: https://github.com/google/dagger/issues/970
-    api project(":database") // api due to this issue: https://github.com/google/dagger/issues/970
+    implementation project(":network")
+    implementation project(":database")
 
     implementation Libs.kotlin_stdlib
     implementation Libs.coroutines
