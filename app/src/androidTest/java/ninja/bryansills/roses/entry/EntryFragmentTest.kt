@@ -12,7 +12,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import java.util.Date
-import ninja.bryansills.repo.Entry
+import ninja.bryansills.roses.repo.Entry
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.category.CategoryFragmentDirections
 import ninja.bryansills.roses.utils.CustomMatchers
@@ -35,7 +35,11 @@ class EntryFragmentTest {
     val args = CategoryFragmentDirections.selectCategory("1337", "CATEGORY_NAME").arguments
 
     @get:Rule
-    val fragmentScenarioRule = FragmentScenarioRule(fragmentFactory, args, EntryFragment::class.java)
+    val fragmentScenarioRule = FragmentScenarioRule(
+        fragmentFactory,
+        args,
+        EntryFragment::class.java
+    )
 
     lateinit var scenario: FragmentScenario<EntryFragment>
 
@@ -84,11 +88,39 @@ class EntryFragmentTest {
             entryViewModel.entries.value = EntryUiModel.Success(entries)
         }
 
-        onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(0, ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_TITLE")))))
-        onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(0, ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_AUTHOR")))))
+        onView(withId(R.id.entry_list)).check(
+            matches(
+                CustomMatchers.atPosition(
+                    0,
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_TITLE"))
+                )
+            )
+        )
+        onView(withId(R.id.entry_list)).check(
+            matches(
+                CustomMatchers.atPosition(
+                    0,
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("FIRST_AUTHOR"))
+                )
+            )
+        )
 
-        onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(1, ViewMatchers.hasDescendant(ViewMatchers.withText("SECOND_TITLE")))))
-        onView(withId(R.id.entry_list)).check(matches(CustomMatchers.atPosition(1, ViewMatchers.hasDescendant(ViewMatchers.withText("SECOND_AUTHOR")))))
+        onView(withId(R.id.entry_list)).check(
+            matches(
+                CustomMatchers.atPosition(
+                    1,
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("SECOND_TITLE"))
+                )
+            )
+        )
+        onView(withId(R.id.entry_list)).check(
+            matches(
+                CustomMatchers.atPosition(
+                    1,
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("SECOND_AUTHOR"))
+                )
+            )
+        )
     }
 }
 

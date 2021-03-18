@@ -5,7 +5,7 @@
 
     <data>
         <import type="java.util.List" />
-        <import type="ninja.bryansills.repo.Entry" />
+        <import type="ninja.bryansills.roses.repo.Entry" />
         <variable
             name="uiModel"
             type="ninja.bryansills.roses.entry.EntryUiModel" />

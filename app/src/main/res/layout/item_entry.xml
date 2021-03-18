@@ -5,7 +5,7 @@
     <data>
         <variable
             name="entry"
-            type="ninja.bryansills.repo.Entry" />
+            type="ninja.bryansills.roses.repo.Entry" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

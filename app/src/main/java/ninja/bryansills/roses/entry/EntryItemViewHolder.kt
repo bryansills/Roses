@@ -6,7 +6,7 @@ import androidx.core.text.toSpannable
 import androidx.core.view.doOnLayout
 import androidx.core.view.postDelayed
 import androidx.recyclerview.widget.RecyclerView
-import ninja.bryansills.repo.Entry
+import ninja.bryansills.roses.repo.Entry
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.databinding.ItemEntryBinding
 

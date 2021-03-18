@@ -1,7 +1,7 @@
 package ninja.bryansills.roses.entry
 
 import androidx.recyclerview.widget.DiffUtil
-import ninja.bryansills.repo.Entry
+import ninja.bryansills.roses.repo.Entry
 
 class EntryCallback : DiffUtil.ItemCallback<Entry>() {
     override fun areItemsTheSame(oldItem: Entry, newItem: Entry): Boolean {

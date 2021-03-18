@@ -5,6 +5,7 @@ import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.network.NetworkService
 import ninja.bryansills.roses.network.models.streams.EntryResponse
 import ninja.bryansills.roses.repo.Category
+import ninja.bryansills.roses.repo.Entry
 import retrofit2.HttpException
 
 class RealRepository(
