@@ -1,7 +1,7 @@
 package ninja.bryansills.roses.category
 
 import androidx.annotation.StringRes
-import ninja.bryansills.repo.Category
+import ninja.bryansills.roses.repo.Category
 import ninja.bryansills.roses.ui.AsyncUiModel
 import ninja.bryansills.roses.ui.ErrorDelegate
 import ninja.bryansills.roses.ui.LoadingDelegate

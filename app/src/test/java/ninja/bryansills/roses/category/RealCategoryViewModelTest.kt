@@ -1,16 +1,16 @@
 package ninja.bryansills.roses.category
 
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
-import ninja.bryansills.repo.Category
 import ninja.bryansills.repo.FetchCategoryResult
 import ninja.bryansills.roses.R
+import ninja.bryansills.roses.repo.Category
 import ninja.bryansills.roses.utils.FakeRepository
 import ninja.bryansills.roses.utils.TestCoroutineDispatchers
 import ninja.bryansills.roses.utils.ViewModelTest
 import ninja.bryansills.roses.utils.observeOnce
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class RealCategoryViewModelTest : ViewModelTest() {
 
@@ -61,7 +61,9 @@ class RealCategoryViewModelTest : ViewModelTest() {
 
     @Test
     fun expectedError() {
-        fakeRepository.categories = FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.API_KEY_INVALID)
+        fakeRepository.categories = FetchCategoryResult.Error(
+            FetchCategoryResult.FetchCategoryError.API_KEY_INVALID
+        )
         categoryViewModel = RealCategoryViewModel(fakeRepository, TestCoroutineDispatchers())
 
         categoryViewModel.getCategories().observeOnce { actual ->

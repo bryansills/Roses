@@ -4,9 +4,14 @@ import java.util.*
 import ninja.bryansills.roses.database.DatabaseService
 import ninja.bryansills.roses.network.NetworkService
 import ninja.bryansills.roses.network.models.streams.EntryResponse
+import ninja.bryansills.roses.repo.Category
 import retrofit2.HttpException
 
-class RealRepository(var networkService: NetworkService, var databaseService: DatabaseService, var refreshInterval: Int) : Repository {
+class RealRepository(
+    var networkService: NetworkService,
+    var databaseService: DatabaseService,
+    var refreshInterval: Int
+) : Repository {
     override suspend fun categories(): FetchCategoryResult {
         return try {
             val lastUpdatedTimestamp = databaseService.getLastUpdated()
@@ -73,7 +78,9 @@ class RealRepository(var networkService: NetworkService, var databaseService: Da
     private fun extractNetworkErrorCode(error: HttpException): FetchCategoryResult {
         return when (error.code()) {
             401 -> FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.API_KEY_INVALID)
-            429 -> FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED)
+            429 -> FetchCategoryResult.Error(
+                FetchCategoryResult.FetchCategoryError.RATE_LIMIT_REACHED
+            )
             else -> FetchCategoryResult.Error(FetchCategoryResult.FetchCategoryError.UNKNOWN)
         }
     }

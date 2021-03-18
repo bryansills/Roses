@@ -1,5 +1,7 @@
 package ninja.bryansills.repo
 
+import ninja.bryansills.roses.repo.Category
+
 sealed class FetchCategoryResult {
     object InFlight : FetchCategoryResult()
     data class Success(val categories: List<Category>) : FetchCategoryResult()

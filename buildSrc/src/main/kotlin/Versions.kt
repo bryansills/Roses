@@ -1,7 +1,7 @@
 object Versions {
     // Buildscript
     const val gradle_versions_plugin = "0.38.0"
-    const val android_gradle_plugin = "4.1.2"
+    const val android_gradle_plugin = "7.0.0-alpha10"
 
     // Android SDK
     const val compile_sdk = 30
@@ -36,7 +36,7 @@ object Versions {
     const val espresso = "3.3.0"
 
     // etc.
-    const val jsoup = "1.12.1"
+    const val jsoup = "1.13.1"
     const val ktlint_gradle_plugin = "10.0.0"
     const val detekt_gradle_plugin = "1.16.0"
 }

@@ -11,7 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import ninja.bryansills.repo.Category
+import ninja.bryansills.roses.repo.Category
 import ninja.bryansills.roses.R
 import ninja.bryansills.roses.utils.CustomMatchers.atPosition
 import ninja.bryansills.roses.utils.FragmentScenarioRule
@@ -31,7 +31,11 @@ class CategoryFragmentTest {
     val fragmentFactory = SingleViewModelFragmentFactory(SingleViewModelFactory(categoryViewModel))
 
     @get:Rule
-    val fragmentScenarioRule = FragmentScenarioRule(fragmentFactory, null, CategoryFragment::class.java)
+    val fragmentScenarioRule = FragmentScenarioRule(
+        fragmentFactory,
+        null,
+        CategoryFragment::class.java
+    )
 
     lateinit var scenario: FragmentScenario<CategoryFragment>
 
@@ -81,11 +85,19 @@ class CategoryFragmentTest {
             categoryViewModel.categories.value = CategoryUiModel.Success(categories)
         }
 
-        onView(withId(R.id.category_list)).check(matches(atPosition(0, hasDescendant(withText("FIRST")))))
-        onView(withId(R.id.category_list)).check(matches(atPosition(0, hasDescendant(withText("5")))))
+        onView(withId(R.id.category_list)).check(
+            matches(atPosition(0, hasDescendant(withText("FIRST"))))
+        )
+        onView(withId(R.id.category_list)).check(
+            matches(atPosition(0, hasDescendant(withText("5"))))
+        )
 
-        onView(withId(R.id.category_list)).check(matches(atPosition(1, hasDescendant(withText("SECOND")))))
-        onView(withId(R.id.category_list)).check(matches(atPosition(1, hasDescendant(withText("7")))))
+        onView(withId(R.id.category_list)).check(
+            matches(atPosition(1, hasDescendant(withText("SECOND"))))
+        )
+        onView(withId(R.id.category_list)).check(
+            matches(atPosition(1, hasDescendant(withText("7"))))
+        )
     }
 }
 

@@ -1,8 +1,8 @@
 package ninja.bryansills.repo
 
-import java.util.Calendar
 import kotlinx.coroutines.runBlocking
 import ninja.bryansills.database.test.DatabaseTestUtils
+import ninja.bryansills.roses.repo.Category
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert.assertFalse
@@ -10,6 +10,7 @@ import org.junit.Assert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import java.util.Calendar
 
 class RealRepositoryTest {
     lateinit var repository: RealRepository
@@ -39,7 +40,10 @@ class RealRepositoryTest {
 
         val result = repository.categories()
 
-        assertThat((result as FetchCategoryResult.Success).categories, `is`(equalTo(repositoryResults)))
+        assertThat(
+            (result as FetchCategoryResult.Success).categories,
+            `is`(equalTo(repositoryResults))
+        )
         assertTrue(!fakeNetworkService.hasBeenCalled)
     }
 
