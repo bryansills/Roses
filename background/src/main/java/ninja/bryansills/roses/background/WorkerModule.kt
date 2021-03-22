@@ -6,10 +6,13 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module
+@InstallIn(SingletonComponent::class)
 object WorkerModule {
     @Provides
     fun backgroundWorkerConstraints(): Constraints = Constraints.Builder()

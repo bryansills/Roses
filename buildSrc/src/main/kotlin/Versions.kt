@@ -24,6 +24,7 @@ object Versions {
     const val room = "2.2.6"
     const val work_manager = "2.5.0"
     const val androidx_hilt = "1.0.0-beta01"
+    const val startup = "1.0.0"
 
     // Square
     const val moshi = "1.11.0"

@@ -19,8 +19,12 @@ dependencies {
 
     implementation Libs.dagger_android
     kapt Libs.dagger_compiler
+    implementation Libs.dagger_hilt_android
+    kapt Libs.dagger_hilt_compiler
 
     api Libs.work_manager
     api Libs.hilt_work
     kapt Libs.hilt_compiler
+
+    implementation Libs.startup
 }

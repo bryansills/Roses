@@ -7,12 +7,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ninja.bryansills.roses.BuildConfig
+import ninja.bryansills.roses.background.WorkerModule
 import ninja.bryansills.roses.coroutines.CoroutineDispatchers
 import ninja.bryansills.roses.coroutines.RealCoroutineDispatchers
 import ninja.bryansills.roses.repo.RepoModule
 import javax.inject.Named
 
-@Module(includes = [RepoModule::class])
+@Module(includes = [RepoModule::class, WorkerModule::class])
 @InstallIn(SingletonComponent::class)
 object ApplicationModule {
     @Provides

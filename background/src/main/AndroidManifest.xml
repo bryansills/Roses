@@ -1,10 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ninja.bryansills.background">
     <application>
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
-            android:enabled="false"
+            android:authorities="${applicationId}.workmanager-init"
+            tools:node="remove"/>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            android:authorities="${applicationId}.workmanager-init" />
+            tools:node="merge">
+            <meta-data
+                android:name="ninja.bryansills.roses.background.BackgroundWorkInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
     </application>
 </manifest>
